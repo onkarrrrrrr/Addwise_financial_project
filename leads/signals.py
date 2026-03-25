@@ -6,17 +6,14 @@ from .models import Appointment
 
 @receiver(post_save, sender=Appointment)
 def send_appointment_emails(sender, instance, created, **kwargs):
-    # 'created' True tabhi hoga jab pehli baar naya form/appointment save hoga
     if created:
         try:
-            # ---------------------------------------------------------
-            # 1. CLIENT KO MAIL (Jo customer form bharega usko jayega)
-            # ---------------------------------------------------------
+            # 1. CLIENT EMAIL (English)
             client_subject = "Appointment Confirmed - Addwise Financials"
             client_message = (
-                f"Namaste {instance.full_name},\n\n"
-                f"Humne aapka {instance.service} ke liye request receive kar liya hai. "
-                f"Hamari team jald hi aapse {instance.phone} par sampark karegi.\n\n"
+                f"Dear {instance.full_name},\n\n"
+                f"We have successfully received your request for {instance.get_service_display()}. "
+                f"Our team will contact you shortly on {instance.phone}.\n\n"
                 f"Thank You,\n"
                 f"Team Addwise Financials"
             )
@@ -25,33 +22,30 @@ def send_appointment_emails(sender, instance, created, **kwargs):
                 subject=client_subject,
                 message=client_message,
                 from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=[instance.email], # Customer ka email jo form me aaya
+                recipient_list=[instance.email],
                 fail_silently=False,
             )
 
-            # ---------------------------------------------------------
-            # 2. ADMIN KO MAIL (Aapko alert aayega ki nayi lead aayi hai)
-            # ---------------------------------------------------------
+            # 2. ADMIN EMAIL (English)
             admin_subject = f"New Lead Alert: {instance.full_name}"
             admin_message = (
-                f"Website par ek nayi lead aayi hai!\n\n"
+                f"A new lead has been generated on the website!\n\n"
                 f"Name: {instance.full_name}\n"
                 f"Phone: {instance.phone}\n"
                 f"Email: {instance.email}\n"
-                f"Service: {instance.service}\n\n"
-                f"Please check the admin panel."
+                f"Service: {instance.get_service_display()}\n\n"
+                f"Please log in to the admin panel for more details."
             )
             
             send_mail(
                 subject=admin_subject,
                 message=admin_message,
                 from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=['satyampathrikar2007@gmail.com'], # <-- Admin ki email ID
+                recipient_list=['satyampathrikar2007@gmail.com'], 
                 fail_silently=False,
             )
             
-            print(f"Success: {instance.full_name} ke liye mail bhej diya gaya hai!")
+            print(f"Success: Email sent for {instance.full_name}")
 
         except Exception as e:
-            # Agar koi error aati hai (jaise net band ho ya password galat ho), toh terminal me dikhegi
-            print(f"Mail bhejne me error aayi: {e}")
+            print(f"Error sending mail: {e}")
