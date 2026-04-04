@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Addwise Financials Appointment</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { color: #333; }
+        form { max-width: 500px; }
+        label { display: block; margin-top: 15px; }
+        input, select, textarea { width: 100%; padding: 8px; margin-top: 5px; box-sizing: border-box; }
+        button { margin-top: 20px; padding: 10px 16px; background: #007BFF; color: white; border: none; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .success { background: #e6ffed; border: 1px solid #b5f0c8; padding: 12px; margin-top: 20px; }
+        .nav { margin-bottom: 20px; }
+        .nav a { color: #007BFF; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="nav"><a href="/">← Back to calculators</a></div>
+    <h1>Book an Appointment</h1>
+    <p>Use this form to request a consultation with Addwise Financials.</p>
+    {% if success %}
+        <div class="success">Your appointment request has been submitted successfully.</div>
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        <label for="full_name">Full Name</label>
+        <input type="text" id="full_name" name="full_name" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="phone">Phone Number</label>
+        <input type="text" id="phone" name="phone" required>
+
+        <label for="service">Service</label>
+        <select id="service" name="service" required>
+            <option value="HOME">Home Loan</option>
+            <option value="BIZ">Business Loan</option>
+            <option value="SIP">SIP/Investment</option>
+            <option value="LAP">Loan Against Property</option>
+        </select>
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="4"></textarea>
+
+        <button type="submit">Submit Appointment Request</button>
+    </form>
+</body>
+</html>
