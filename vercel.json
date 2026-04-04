@@ -15,9 +15,8 @@
       "dest": "/api/$1"
     }
   ],
-  "functions": {
-    "api/**/*.py": {
-      "runtime": "python3.12"
-    }
+  "env": {
+    "DJANGO_SETTINGS_MODULE": "core.settings",
+    "DEBUG": "False"
   }
 }
