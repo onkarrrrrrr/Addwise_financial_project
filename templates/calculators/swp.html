@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SWP Calculator</title>
+</head>
+<body>
+    <h1>Systematic Withdrawal Plan Calculator</h1>
+    <form method="post">
+        {% csrf_token %}
+        Total Investment: <input type="number" name="total_investment" step="0.01" required><br>
+        Monthly Withdrawal: <input type="number" name="withdrawal" step="0.01" required><br>
+        Annual Interest Rate (%): <input type="number" name="rate" step="0.01" required><br>
+        Number of Years: <input type="number" name="years" required><br>
+        <input type="submit" value="Calculate">
+    </form>
+    {% if final_balance %}
+    <h2>Results</h2>
+    <p>Final Balance: {{ final_balance }}</p>
+    <p>Total Withdrawn: {{ total_withdrawal }}</p>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Addwise Financials - Calculators</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { color: #333; }
+        ul { list-style-type: none; padding: 0; }
+        li { margin: 10px 0; }
+        a { text-decoration: none; color: #007BFF; font-size: 18px; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Addwise Financials Calculators</h1>
+    <p>Select a calculator to get started:</p>
+    <ul>
+        <li><a href="{% url 'sip_calculator' %}">SIP Calculator</a></li>
+        <li><a href="{% url 'lumpsum_calculator' %}">Lumpsum Calculator</a></li>
+        <li><a href="{% url 'step_up_sip' %}">Step-Up SIP Calculator</a></li>
+        <li><a href="{% url 'stepup_vs_normal_sip' %}">Step-Up vs Normal SIP Comparison</a></li>
+        <li><a href="{% url 'cost_of_delay' %}">Cost of Delay SIP</a></li>
+        <li><a href="{% url 'swp_calculator' %}">SWP Calculator</a></li>
+        <li><a href="{% url 'emi_calculator' %}">EMI Calculator</a></li>
+        <li><a href="{% url 'inflation_calculator' %}">Inflation Calculator</a></li>
+        <li><a href="{% url 'fd_calculator' %}">FD Calculator</a></li>
+        <li><a href="{% url 'cagr_calculator' %}">CAGR Calculator</a></li>
+        <li><a href="{% url 'dream_goal_calculator' %}">Dream Goal Calculator</a></li>
+        <li><a href="{% url 'net_worth_calculator' %}">Net Worth Calculator</a></li>
+        <li><a href="{% url 'life_cover_calculator' %}">Life Cover Calculator</a></li>
+        <li><a href="{% url 'retirement_calculator' %}">Retirement Calculator</a></li>
+        <li><a href="{% url 'stp_calculator' %}">STP Calculator</a></li>
+    </ul>
+</body>
+</html>

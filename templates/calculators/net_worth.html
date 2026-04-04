@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Net Worth Calculator</title>
+</head>
+<body>
+    <h1>Net Worth Calculator</h1>
+    <form method="post">
+        {% csrf_token %}
+        Total Assets: <input type="number" name="total_assets" step="0.01" required><br>
+        Total Liabilities: <input type="number" name="total_liabilities" step="0.01" required><br>
+        <input type="submit" value="Calculate">
+    </form>
+    {% if net_worth %}
+    <h2>Results</h2>
+    <p>Net Worth: {{ net_worth }}</p>
+    {% endif %}
+</body>
+</html>

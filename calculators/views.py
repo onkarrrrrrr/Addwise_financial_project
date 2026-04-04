@@ -1,6 +1,9 @@
 from django.shortcuts import render
 import math
 
+def home(request):
+    return render(request, 'calculators/home.html')
+
 # 1. SIP Calculator
 def sip_calculator(request):
     context = {}

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CAGR Calculator</title>
+</head>
+<body>
+    <h1>CAGR Calculator</h1>
+    <form method="post">
+        {% csrf_token %}
+        Initial Value: <input type="number" name="initial_value" step="0.01" required><br>
+        Final Value: <input type="number" name="final_value" step="0.01" required><br>
+        Number of Years: <input type="number" name="years" step="0.01" required><br>
+        <input type="submit" value="Calculate">
+    </form>
+    {% if cagr_percentage %}
+    <h2>Results</h2>
+    <p>CAGR (%): {{ cagr_percentage }}</p>
+    {% endif %}
+</body>
+</html>

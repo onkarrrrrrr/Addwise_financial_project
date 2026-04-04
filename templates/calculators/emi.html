@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EMI Calculator</title>
+</head>
+<body>
+    <h1>EMI Calculator</h1>
+    <form method="post">
+        {% csrf_token %}
+        Loan Amount: <input type="number" name="loan_amount" step="0.01" required><br>
+        Annual Interest Rate (%): <input type="number" name="rate" step="0.01" required><br>
+        Loan Tenure (Years): <input type="number" name="years" step="0.01" required><br>
+        <input type="submit" value="Calculate">
+    </form>
+    {% if emi %}
+    <h2>Results</h2>
+    <p>Monthly EMI: {{ emi }}</p>
+    <p>Total Interest: {{ total_interest }}</p>
+    <p>Total Payment: {{ total_payment }}</p>
+    {% endif %}
+</body>
+</html>

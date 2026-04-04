@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Retirement Calculator</title>
+</head>
+<body>
+    <h1>Retirement Calculator</h1>
+    <form method="post">
+        {% csrf_token %}
+        Current Age: <input type="number" name="current_age" required><br>
+        Retirement Age: <input type="number" name="retire_age" required><br>
+        Life Expectancy: <input type="number" name="life_expectancy" value="80" required><br>
+        Monthly Expenses: <input type="number" name="monthly_expenses" step="0.01" required><br>
+        Annual Inflation Rate (%): <input type="number" name="inflation" step="0.01" required><br>
+        Annual Return Rate (%): <input type="number" name="return_rate" step="0.01" required><br>
+        <input type="submit" value="Calculate">
+    </form>
+    {% if required_corpus %}
+    <h2>Results</h2>
+    <p>Monthly Expense at Retirement: {{ monthly_expense_at_retirement }}</p>
+    <p>Required Corpus: {{ required_corpus }}</p>
+    {% endif %}
+</body>
+</html>

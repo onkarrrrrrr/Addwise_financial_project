@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Life Cover Calculator</title>
+</head>
+<body>
+    <h1>Life Cover Calculator</h1>
+    <form method="post">
+        {% csrf_token %}
+        Monthly Expenses: <input type="number" name="monthly_expenses" step="0.01" required><br>
+        Total Liabilities: <input type="number" name="liabilities" step="0.01" required><br>
+        Current Savings: <input type="number" name="current_savings" step="0.01" required><br>
+        Years to Provide Cover: <input type="number" name="years" value="20" required><br>
+        <input type="submit" value="Calculate">
+    </form>
+    {% if recommended_cover %}
+    <h2>Results</h2>
+    <p>Recommended Life Cover: {{ recommended_cover }}</p>
+    {% endif %}
+</body>
+</html>

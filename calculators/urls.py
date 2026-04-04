@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+    path('', views.home, name='home'),
     path('sip/', views.sip_calculator, name='sip_calculator'),
     path('lumpsum/', views.lumpsum_calculator, name='lumpsum_calculator'),
     path('step-up-sip/', views.step_up_sip, name='step_up_sip'),

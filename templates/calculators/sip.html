@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SIP Calculator</title>
+</head>
+<body>
+    <h1>SIP Calculator</h1>
+    <form method="post">
+        {% csrf_token %}
+        Monthly Investment: <input type="number" name="investment" step="0.01" required><br>
+        Annual Interest Rate (%): <input type="number" name="rate" step="0.01" required><br>
+        Number of Years: <input type="number" name="years" required><br>
+        <input type="submit" value="Calculate">
+    </form>
+    {% if fv %}
+    <h2>Results</h2>
+    <p>Future Value: {{ fv }}</p>
+    <p>Total Invested: {{ invested }}</p>
+    <p>Wealth Gained: {{ wealth_gained }}</p>
+    {% endif %}
+</body>
+</html>

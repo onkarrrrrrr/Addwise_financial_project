@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>STP Calculator</title>
+</head>
+<body>
+    <h1>Systematic Transfer Plan Calculator</h1>
+    <form method="post">
+        {% csrf_token %}
+        Lumpsum Amount: <input type="number" name="lumpsum" step="0.01" required><br>
+        Monthly Transfer Amount: <input type="number" name="transfer_amount" step="0.01" required><br>
+        Debt Fund Rate (%): <input type="number" name="debt_rate" step="0.01" required><br>
+        Equity Fund Rate (%): <input type="number" name="equity_rate" step="0.01" required><br>
+        Number of Months: <input type="number" name="months" required><br>
+        <input type="submit" value="Calculate">
+    </form>
+    {% if total_value %}
+    <h2>Results</h2>
+    <p>Final Debt Balance: {{ final_debt_balance }}</p>
+    <p>Final Equity Balance: {{ final_equity_balance }}</p>
+    <p>Total Value: {{ total_value }}</p>
+    {% endif %}
+</body>
+</html>

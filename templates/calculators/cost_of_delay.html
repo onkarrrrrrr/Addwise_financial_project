@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cost of Delay SIP</title>
+</head>
+<body>
+    <h1>Cost of Delay SIP Calculator</h1>
+    <form method="post">
+        {% csrf_token %}
+        Monthly Investment: <input type="number" name="investment" step="0.01" required><br>
+        Annual Interest Rate (%): <input type="number" name="rate" step="0.01" required><br>
+        Number of Years: <input type="number" name="years" required><br>
+        Delay in Years: <input type="number" name="delay_years" required><br>
+        <input type="submit" value="Calculate">
+    </form>
+    {% if fv_now %}
+    <h2>Results</h2>
+    <p>Future Value if Started Now: {{ fv_now }}</p>
+    <p>Future Value if Delayed: {{ fv_delayed }}</p>
+    <p>Cost of Delay: {{ cost_of_delay }}</p>
+    {% endif %}
+</body>
+</html>
