@@ -1,0 +1,1 @@
+from vercel_django import handler
