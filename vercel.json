@@ -19,7 +19,7 @@
     "DJANGO_SETTINGS_MODULE": "core.settings",
     "DEBUG": "False",
     "SECRET_KEY": "django-insecure-u%*d^3c!_^2e)j(x108hme_f6xoas45-!now)p*1w-p&1w_-o2",
-    "ALLOWED_HOSTS": "addwise-financial-project-u7oa.vercel.app",
+    "ALLOWED_HOSTS": "*",
     "DATABASE_URL": "sqlite:///db.sqlite3"
   }
 }
