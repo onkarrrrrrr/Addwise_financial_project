@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'portal',
     'leads',
-    'calculators',
+    # 'calculators', <-- Isko hata do
 ]
 
 MIDDLEWARE = [

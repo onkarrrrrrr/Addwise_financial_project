@@ -20,5 +20,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('appointment/', include('leads.urls')),
-    path('', include('calculators.urls')),
+    # path('', include('calculators.urls')),  <-- Isko delete ya comment kar do
 ]

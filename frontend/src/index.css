@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Humne base font aur background color set kar diya hai */
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: #f8fafc;
+}
