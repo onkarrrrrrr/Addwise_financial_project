@@ -5,5 +5,6 @@ urlpatterns = [
     path('', views.home_view, name='home'),
     path('services/', views.services_view, name='services'),
     path('about/', views.about_view, name='about'),
-    path('appointment/', views.appointment_view, name='appointment'), # Tumhara form page
+    # Yahan maine 'appointment_view' ko hata kar sirf 'appointment' kar diya hai 👇
+    path('appointment/', views.appointment, name='appointment'), 
 ]

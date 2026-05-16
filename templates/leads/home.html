@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div x-data="{ 
+        activeSlide: 0, 
+        slides: [
+            { 
+                image: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=1920&q=80', 
+                tag: '18+ Years of Financial Excellence',
+                title: 'Smart Financial Solutions', 
+                highlight: 'For Your Future',
+                desc: 'Expert guidance on Mutual Funds, Corporate Deposits, and wealth creation assets tailored perfectly for you.'
+            },
+            { 
+                image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1920&q=80', 
+                tag: 'Trusted Loan Advisors in Pune',
+                title: 'Secure Your Dream Spaces', 
+                highlight: 'With Easy Loans',
+                desc: 'Get customized layouts and lowest interest rates on Home Loans, Business Loans, and Loan Against Property.'
+            },
+            { 
+                image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1920&q=80', 
+                tag: 'Comprehensive Wealth Ecosystem',
+                title: 'Protect What Matters Most', 
+                highlight: 'Grow Wisely',
+                desc: 'Safeguard your family\'s long term milestones with premium Health and Life Insurance roadmaps.'
+            }
+        ] 
+     }" 
+     x-init="setInterval(() => { activeSlide = (activeSlide + 1) % slides.length }, 6000)" 
+     class="relative min-h-[85vh] flex items-center bg-slate-900 text-white overflow-hidden">
+
+    <template x-for="(slide, index) in slides" :key="index">
+        <div x-show="activeSlide === index" 
+             x-transition:enter="transition ease-out duration-1000 transform"
+             x-transition:enter-start="opacity-0 scale-105"
+             x-transition:enter-end="opacity-100 scale-100"
+             x-transition:leave="transition ease-in duration-500 absolute"
+             x-transition:leave-start="opacity-100"
+             x-transition:leave-end="opacity-0"
+             class="absolute inset-0 w-full h-full">
+            <div class="absolute inset-0 bg-gradient-to-r from-brand-navy/95 via-brand-navy/80 to-transparent z-10"></div>
+            <img :src="slide.image" class="w-full h-full object-cover" alt="Financial Growth Visual">
+        </div>
+    </template>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-20">
+        <div class="max-w-3xl text-left space-y-6">
+            
+            <div class="inline-flex items-center px-4 py-1.5 rounded-full bg-brand-yellow/20 text-brand-yellow border border-brand-yellow/30 text-xs font-bold uppercase tracking-wider">
+                ✨ <span x-text="slides[activeSlide].tag" class="ml-2"></span>
+            </div>
+
+            <h1 class="text-4xl sm:text-6xl font-black text-white leading-tight tracking-tight">
+                <span x-text="slides[activeSlide].title block"></span>
+                <span class="text-brand-yellow block mt-1" x-text="slides[activeSlide].highlight"></span>
+            </h1>
+
+            <p class="text-lg text-slate-300 font-medium max-w-2xl leading-relaxed" x-text="slides[activeSlide].desc"></p>
+
+            <div class="pt-4 flex flex-col sm:flex-row gap-4">
+                <a href="{% url 'appointment' %}" class="px-8 py-4 bg-brand-yellow text-white font-bold rounded-xl hover:bg-yellow-600 shadow-xl text-center transition-all duration-300 transform hover:-translate-y-0.5">
+                    Book Free Consultation
+                </a>
+                <a href="https://addwisefin.investorcorner.co.in/clients/dashboard" target="_blank" class="px-8 py-4 border-2 border-white text-white font-bold rounded-xl hover:bg-white hover:text-brand-navy text-center transition-all duration-300 transform hover:-translate-y-0.5">
+                    Access Smart Calculators
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex gap-3">
+        <template x-for="(slide, index) in slides" :key="index">
+            <button @click="activeSlide = index" 
+                    :class="activeSlide === index ? 'w-8 bg-brand-yellow' : 'w-3 bg-white/40'" 
+                    class="h-3 rounded-full transition-all duration-300 outline-none"></button>
+        </template>
+    </div>
+</div>
+
+<section class="py-12 bg-slate-50 border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center divide-y sm:divide-y-0 sm:divide-x divide-slate-200">
+            <div class="p-4">
+                <div class="text-4xl font-black text-brand-navy">18+</div>
+                <div class="text-sm font-bold text-brand-grey uppercase tracking-widest mt-2">Years of Legacy</div>
+            </div>
+            <div class="p-4">
+                <div class="text-4xl font-black text-brand-navy">400+</div>
+                <div class="text-sm font-bold text-brand-grey uppercase tracking-widest mt-2">Wealthy Families</div>
+            </div>
+            <div class="p-4">
+                <div class="text-4xl font-black text-brand-navy">100%</div>
+                <div class="text-sm font-bold text-brand-grey uppercase tracking-widest mt-2">Personalized Strategy</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-3xl sm:text-4xl font-black text-brand-navy">Complete Financial Solutions Ecosystem</h2>
+            <div class="w-16 h-1 bg-brand-yellow mx-auto mt-4 rounded-full"></div>
+            <p class="mt-4 text-base text-brand-grey font-medium leading-relaxed">We sync your investment goals with real financial engines to maximize structural security and dynamic growth parameters.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:shadow-xl transition-all duration-300">
+                <div class="text-3xl mb-4">📈</div>
+                <h3 class="text-xl font-bold text-brand-navy mb-2">Mutual Funds & SIP</h3>
+                <p class="text-sm text-brand-grey font-medium leading-relaxed">Build compounding advantages systematically with deeply researched multi-cap structures.</p>
+            </div>
+            <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:shadow-xl transition-all duration-300">
+                <div class="text-3xl mb-4">🛡️</div>
+                <h3 class="text-xl font-bold text-brand-navy mb-2">Insurance Portfolio</h3>
+                <p class="text-sm text-brand-grey font-medium leading-relaxed">Secure emergency contingencies with premium customized corporate life & health shields.</p>
+            </div>
+            <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:shadow-xl transition-all duration-300">
+                <div class="text-3xl mb-4">🏠</div>
+                <h3 class="text-xl font-bold text-brand-navy mb-2">Comprehensive Loans</h3>
+                <p class="text-sm text-brand-grey font-medium leading-relaxed">Streamline instant execution pathways for Home Loans, Business Lines, and asset leverage options.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-16 bg-slate-50 border-t border-b border-slate-200 overflow-hidden relative">
+    <div class="text-center mb-8">
+        <h4 class="text-xs font-bold uppercase tracking-widest text-slate-400">Our Trusted Banking & Distribution Partners</h4>
+    </div>
+    
+    <div class="relative w-full overflow-hidden flex items-center">
+        <div class="animate-marquee whitespace-nowrap flex items-center gap-16 text-slate-400 font-black tracking-wider text-xl uppercase">
+            <span class="flex items-center gap-2 text-brand-navy"><span class="text-2xl text-brand-yellow">🏛️</span> HDFC BANK</span>
+            <span class="flex items-center gap-2 text-brand-navy"><span class="text-2xl text-brand-yellow">🏛️</span> ICICI BANK</span>
+            <span class="flex items-center gap-2 text-brand-navy"><span class="text-2xl text-brand-yellow">🏛️</span> STATE BANK OF INDIA</span>
+            <span class="flex items-center gap-2 text-brand-navy"><span class="text-2xl text-brand-yellow">🏛️</span> AXIS BANK</span>
+            <span class="flex items-center gap-2 text-brand-navy"><span class="text-2xl text-brand-yellow">🏛️</span> BAJAJ FINANCE</span>
+            <span class="flex items-center gap-2 text-brand-navy"><span class="text-2xl text-brand-yellow">🏛️</span> KOTAK MAHINDRA</span>
+            <span class="flex items-center gap-2 text-brand-navy"><span class="text-2xl text-brand-yellow">🏛️</span> IDFC FIRST BANK</span>
+
+            <span class="flex items-center gap-2 text-brand-navy"><span class="text-2xl text-brand-yellow">🏛️</span> HDFC BANK</span>
+            <span class="flex items-center gap-2 text-brand-navy"><span class="text-2xl text-brand-yellow">🏛️</span> ICICI BANK</span>
+            <span class="flex items-center gap-2 text-brand-navy"><span class="text-2xl text-brand-yellow">🏛️</span> STATE BANK OF INDIA</span>
+            <span class="flex items-center gap-2 text-brand-navy"><span class="text-2xl text-brand-yellow">🏛️</span> AXIS BANK</span>
+            <span class="flex items-center gap-2 text-brand-navy"><span class="text-2xl text-brand-yellow">🏛️</span> BAJAJ FINANCE</span>
+            <span class="flex items-center gap-2 text-brand-navy"><span class="text-2xl text-brand-yellow">🏛️</span> KOTAK MAHINDRA</span>
+            <span class="flex items-center gap-2 text-brand-navy"><span class="text-2xl text-brand-yellow">🏛️</span> IDFC FIRST BANK</span>
+        </div>
+    </div>
+</section>
+{% endblock %}
