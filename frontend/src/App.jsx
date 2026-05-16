@@ -1,12 +1,12 @@
-import React from 'react'
-import Hero from './components/Hero'
+import React from 'react';
+import Hero from './components/Hero';
 
 function App() {
   return (
-    <div>
+    <div className="min-h-screen">
       <Hero />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

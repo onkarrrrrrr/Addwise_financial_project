@@ -1,54 +1,71 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Calculator } from 'lucide-react';
+import { ArrowRight, Calculator, ShieldCheck, TrendingUp } from 'lucide-react';
 
 const Hero = () => {
   return (
-    <div className="relative bg-white overflow-hidden min-h-screen flex items-center">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="text-center">
+    <div className="relative bg-white overflow-hidden min-h-screen flex items-center pt-10">
+      
+      {/* Background Glowing Effects */}
+      <div className="absolute top-0 right-0 -mr-32 -mt-32 w-96 h-96 rounded-full bg-brand-yellow opacity-10 blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-0 left-0 -ml-32 -mb-32 w-96 h-96 rounded-full bg-brand-navy opacity-10 blur-3xl"></div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+        <div className="text-center max-w-4xl mx-auto">
           
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center px-4 py-2 rounded-full bg-slate-50 text-brand-navy font-semibold text-sm mb-8 border border-slate-200 shadow-sm"
+          >
+            <ShieldCheck className="w-4 h-4 mr-2 text-brand-yellow" />
+            Grow Wisely with Trusted Financial Experts
+          </motion.div>
+
           <motion.h1 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl"
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-5xl tracking-tight font-black text-brand-navy sm:text-6xl md:text-7xl leading-tight"
           >
-            <span className="block xl:inline">Smart Financial Solutions</span>{' '}
-            <span className="block text-primary xl:inline">For Your Future</span>
+            Smart Financial Solutions <br className="hidden md:block" />
+            <span className="text-brand-yellow relative inline-block mt-2">
+              For Your Future
+            </span>
           </motion.h1>
           
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl"
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="mt-6 max-w-2xl mx-auto text-lg text-brand-grey sm:text-xl md:mt-8 font-medium"
           >
             Expert guidance on Home Loans, Business Loans, SIPs, and Loan Against Property. Build and secure your wealth with Addwise Financials.
           </motion.p>
           
           <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="mt-10 sm:flex sm:justify-center gap-4"
           >
-            <div className="rounded-md shadow">
-              <a href="#services" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg transition-colors">
-                Explore Services <ArrowRight className="ml-2 w-5 h-5" />
-              </a>
-            </div>
-            <div className="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
-              {/* Yeh raha tumhara external calculator link */}
-              <a 
-                href="http://addwisefin.investorcorner.co.in" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200 md:py-4 md:text-lg transition-colors"
-              >
-                Financial Calculators <Calculator className="ml-2 w-5 h-5" />
-              </a>
-            </div>
+            {/* Primary Button */}
+            <a href="#services" className="group w-full sm:w-auto flex items-center justify-center px-8 py-4 border border-transparent text-lg font-bold rounded-md text-white bg-brand-yellow hover:bg-brand-navy shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+              Explore Services 
+              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </a>
+
+            {/* External Calculator Button */}
+            <a 
+              href="http://addwisefin.investorcorner.co.in" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="mt-3 sm:mt-0 group w-full sm:w-auto flex items-center justify-center px-8 py-4 border-2 border-brand-navy text-lg font-bold rounded-md text-brand-navy bg-transparent hover:bg-brand-navy hover:text-white shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+            >
+              Financial Calculators 
+              <TrendingUp className="ml-2 w-5 h-5 group-hover:scale-110 transition-transform" />
+            </a>
           </motion.div>
 
         </div>
