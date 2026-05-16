@@ -20,4 +20,13 @@ def appointment(request):
         )
         success = True
 
+def home_view(request):
+    return render(request, 'leads/home.html')
+
+def services_view(request):
+    return render(request, 'leads/services.html')
+
+def about_view(request):
+    return render(request, 'leads/about.html')
+
     return render(request, 'leads/appointment.html', {'success': success})
