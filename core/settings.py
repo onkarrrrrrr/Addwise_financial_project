@@ -27,8 +27,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-u%*d^3c!_^2e)j(x108hme_f6x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
-
+ALLOWED_HOSTS = ['187.127.169.16', 'localhost', '127.0.0.1']
 
 # Application definition
 
@@ -120,6 +119,9 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 # core/settings.py (at the end of file)
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -129,3 +131,9 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'support.addwisefinacials@gmail.com' # Aapki Gmail ID
 EMAIL_HOST_PASSWORD = 'rruw wbvj mgvi cwdg' # Gmail se generate kiya hua 16-digit App Password
 DEFAULT_FROM_EMAIL = f"Addwise Financials <{EMAIL_HOST_USER}>"
+
+CAREERS_NOTIFICATION_EMAILS = [
+    email.strip()
+    for email in os.getenv('CAREERS_NOTIFICATION_EMAILS', '').split(',')
+    if email.strip()
+]

@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="pt-32 pb-20 bg-white relative overflow-hidden">
+    <div class="absolute -top-24 right-0 w-[420px] h-[420px] bg-brand-yellow/20 blur-3xl rounded-full" data-parallax="0.06"></div>
+    <div class="absolute -bottom-24 left-0 w-[420px] h-[420px] bg-brand-navy/10 blur-3xl rounded-full" data-parallax="-0.04"></div>
+    <div class="max-w-7xl mx-auto px-6 relative">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <p class="text-xs font-black uppercase tracking-[0.5em] text-slate-400">About Addwise</p>
+                <h1 class="text-4xl md:text-6xl font-black text-slate-900 mt-4 leading-tight">
+                    Wealth decisions built on clarity, discipline, and accountability.
+                </h1>
+                <p class="text-lg text-slate-600 mt-6">
+                    Addwise Financials partners with families and founders to turn financial
+                    goals into measurable plans. We translate complex choices into a roadmap
+                    you can review, track, and refine across every market cycle.
+                </p>
+                <div class="mt-8 flex flex-wrap gap-4">
+                    <div class="px-5 py-3 rounded-full bg-slate-50 border border-slate-100 text-sm font-bold">
+                        6+ years of advisory legacy
+                    </div>
+                    <div class="px-5 py-3 rounded-full bg-slate-50 border border-slate-100 text-sm font-bold">
+                        400+ families served
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white border border-slate-100 rounded-[2.5rem] p-8 shadow-xl">
+                <div class="grid grid-cols-1 gap-6">
+                    <div class="border-b border-slate-100 pb-6">
+                        <div class="text-xs font-black uppercase tracking-[0.4em] text-slate-400">Our Purpose</div>
+                        <p class="text-xl font-semibold text-slate-900 mt-3">
+                            Make wealth decisions transparent and repeatable.
+                        </p>
+                    </div>
+                    <div class="border-b border-slate-100 pb-6">
+                        <div class="text-xs font-black uppercase tracking-[0.4em] text-slate-400">How We Work</div>
+                        <p class="text-slate-600 mt-3">
+                            Diagnose goals and cashflows, design an asset mix, and keep every
+                            portfolio aligned with real-life milestones.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="text-xs font-black uppercase tracking-[0.4em] text-slate-400">Promise</div>
+                        <p class="text-slate-600 mt-3">
+                            No product-first recommendations. Only outcome-first strategies.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-20 bg-slate-50 border-y border-slate-100">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white rounded-3xl p-8 border border-slate-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:border-brand-yellow/40">
+                <div class="text-xs font-black uppercase tracking-[0.4em] text-slate-400">Principle 01</div>
+                <h3 class="text-2xl font-black mt-4">Data before decisions</h3>
+                <p class="text-slate-600 mt-3">
+                    Each plan is anchored on risk capacity, timelines, and funding ratios.
+                </p>
+            </div>
+            <div class="bg-white rounded-3xl p-8 border border-slate-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:border-brand-yellow/40">
+                <div class="text-xs font-black uppercase tracking-[0.4em] text-slate-400">Principle 02</div>
+                <h3 class="text-2xl font-black mt-4">Guardrails over guesses</h3>
+                <p class="text-slate-600 mt-3">
+                    We use checkpoints and review cycles to keep portfolios on track.
+                </p>
+            </div>
+            <div class="bg-white rounded-3xl p-8 border border-slate-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:border-brand-yellow/40">
+                <div class="text-xs font-black uppercase tracking-[0.4em] text-slate-400">Principle 03</div>
+                <h3 class="text-2xl font-black mt-4">Protection alongside growth</h3>
+                <p class="text-slate-600 mt-3">
+                    Every strategy blends growth, stability, and life-event protection.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-12 items-center">
+            <div>
+                <h2 class="text-3xl md:text-5xl font-black text-slate-900">
+                    The Addwise approach in three moves.
+                </h2>
+                <p class="text-slate-600 mt-4 text-lg">
+                    We align advice with the numbers that matter most to you so every
+                    financial decision is measurable and accountable.
+                </p>
+                <div class="mt-8 space-y-6">
+                    <div class="flex gap-4">
+                        <div class="h-12 w-12 rounded-2xl bg-brand-navy text-white flex items-center justify-center font-black">01</div>
+                        <div>
+                            <div class="font-bold text-lg">Discover</div>
+                            <p class="text-slate-600">
+                                Deep-dive into goals, cashflows, and risk tolerance.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="h-12 w-12 rounded-2xl bg-brand-yellow text-white flex items-center justify-center font-black">02</div>
+                        <div>
+                            <div class="font-bold text-lg">Design</div>
+                            <p class="text-slate-600">
+                                Create a portfolio blueprint that balances growth and stability.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="h-12 w-12 rounded-2xl bg-slate-900 text-white flex items-center justify-center font-black">03</div>
+                        <div>
+                            <div class="font-bold text-lg">Review</div>
+                            <p class="text-slate-600">
+                                Monitor progress, rebalance when needed, and stay aligned.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-slate-50 rounded-[2.5rem] p-10 border border-slate-100">
+                <div class="text-xs font-black uppercase tracking-[0.4em] text-slate-400">Legacy Metrics</div>
+                <div class="mt-6 space-y-6">
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold">Client retention</span>
+                        <span class="text-brand-yellow font-black">94%</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold">Average review cadence</span>
+                        <span class="text-brand-yellow font-black">90 days</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold">Plan updates per year</span>
+                        <span class="text-brand-yellow font-black">4</span>
+                    </div>
+                    <div class="pt-4 border-t border-slate-200 text-sm text-slate-500">
+                        Our reporting keeps families in control, even when markets move fast.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-20 bg-slate-900 text-white">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+        <h2 class="text-3xl md:text-5xl font-black">Lets build your next milestone.</h2>
+        <p class="mt-4 text-slate-200 text-lg">
+            Talk to an advisor and get a plan that is built for your timelines.
+        </p>
+        <a href="{% url 'appointment' %}" class="inline-flex mt-8 px-10 py-4 bg-brand-yellow text-white font-black rounded-full hover:bg-yellow-600 transition-all">
+            Book an appointment
+        </a>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="pt-32 pb-20 bg-white relative overflow-hidden">
+    <div class="absolute -top-24 right-0 w-[420px] h-[420px] bg-brand-yellow/15 blur-3xl rounded-full" data-parallax="0.06"></div>
+    <div class="absolute -bottom-24 left-0 w-[420px] h-[420px] bg-brand-navy/10 blur-3xl rounded-full" data-parallax="-0.04"></div>
+    <div class="max-w-7xl mx-auto px-6 relative">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <p class="text-xs font-black uppercase tracking-[0.5em] text-slate-400">Contact</p>
+                <h1 class="text-4xl md:text-6xl font-black text-slate-900 mt-4 leading-tight">
+                    Talk to Addwise Financials.
+                </h1>
+                <p class="text-lg text-slate-600 mt-6">
+                    Reach out for a quick discovery call or visit our office in Pune. We will guide you
+                    through the right next step based on your goals.
+                </p>
+                <div class="mt-8 flex flex-wrap gap-4">
+                    <a href="tel:+919823413161" class="px-6 py-3 rounded-full bg-brand-navy text-white font-bold hover:bg-brand-yellow transition-all">
+                        Call +91 98234 13161
+                    </a>
+                    <a href="mailto:connect@addwisefin.com" class="px-6 py-3 rounded-full border border-slate-200 text-brand-navy font-bold hover:border-brand-yellow hover:text-brand-yellow transition-all">
+                        Email connect@addwisefin.com
+                    </a>
+                </div>
+            </div>
+            <div class="bg-white border border-slate-100 rounded-[2.5rem] p-8 shadow-xl">
+                <div class="grid grid-cols-1 gap-6">
+                    <div class="border-b border-slate-100 pb-6">
+                        <div class="text-xs font-black uppercase tracking-[0.4em] text-slate-400">Office</div>
+                        <p class="text-lg font-semibold text-slate-900 mt-3">
+                            Janki Bldg, Ground floor, Bhandarkar Rd, Opp Bandhan Bank, Adjacent to Kunal Group,
+                            Near Kamla Nehru Park, Pune-411004
+                        </p>
+                    </div>
+                    <div class="border-b border-slate-100 pb-6">
+                        <div class="text-xs font-black uppercase tracking-[0.4em] text-slate-400">Working Hours</div>
+                        <p class="text-slate-600 mt-3">
+                            Monday to Saturday, 10:00 AM - 7:00 PM
+                        </p>
+                    </div>
+                    <div>
+                        <div class="text-xs font-black uppercase tracking-[0.4em] text-slate-400">WhatsApp</div>
+                        <a href="https://wa.me/917447773161" target="_blank" rel="noopener noreferrer" class="text-brand-navy font-bold mt-3 inline-flex">
+                            Message +91 74477 73161
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-20 bg-slate-50 border-t border-slate-100">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:border-brand-yellow/40">
+                <div class="text-xs font-black uppercase tracking-[0.4em] text-slate-400">Quick Help</div>
+                <h3 class="text-2xl font-black mt-4 text-slate-900">Need advice fast?</h3>
+                <p class="text-slate-600 mt-3">
+                    Share your requirement and we will point you to the right advisor and service.
+                </p>
+                <a href="{% url 'appointment' %}" class="inline-flex mt-6 px-6 py-3 rounded-full bg-brand-navy text-white font-bold hover:bg-brand-yellow transition-all">
+                    Book an appointment
+                </a>
+            </div>
+            <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:border-brand-yellow/40">
+                <div class="text-xs font-black uppercase tracking-[0.4em] text-slate-400">Client Portals</div>
+                <ul class="mt-6 space-y-4 text-slate-700 font-semibold">
+                    <li>
+                        <a href="https://addwisefin.investorcorner.co.in/clients/dashboard" target="_blank" rel="noopener noreferrer" class="hover:text-brand-navy transition-all">
+                            Investor Corner Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://addwisefin.investwell.app/app/#/login" target="_blank" rel="noopener noreferrer" class="hover:text-brand-navy transition-all">
+                            Portfolio Login
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:border-brand-yellow/40">
+                <div class="text-xs font-black uppercase tracking-[0.4em] text-slate-400">Compliance</div>
+                <p class="text-slate-600 mt-3">
+                    Mutual fund investments are subject to market risks. Read all scheme related documents
+                    carefully before investing. Past performance does not guarantee future returns.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-20 bg-white border-t border-slate-100">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+            <div>
+                <h2 class="text-3xl md:text-5xl font-black text-slate-900">Visit our office</h2>
+                <p class="text-slate-600 mt-4 text-lg">
+                    If you prefer meeting in person, drop by our Deccan Gymkhana office for a guided discussion.
+                </p>
+            </div>
+            <div class="rounded-3xl overflow-hidden border border-slate-100 shadow-sm">
+                <iframe
+                    title="Addwise Financials Map"
+                    src="https://www.google.com/maps?q=Addwise%20Financials%20Pune&output=embed"
+                    class="w-full h-80"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

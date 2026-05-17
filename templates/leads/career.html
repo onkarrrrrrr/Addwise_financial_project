@@ -1,0 +1,346 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="pt-32 pb-20 bg-white relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-[420px] h-[420px] bg-brand-yellow/20 blur-3xl rounded-full translate-x-1/3 -translate-y-1/3" data-parallax="0.07"></div>
+    <div class="absolute bottom-0 left-0 w-[420px] h-[420px] bg-brand-navy/10 blur-3xl rounded-full -translate-x-1/3 translate-y-1/3" data-parallax="-0.05"></div>
+    <div class="max-w-7xl mx-auto px-6 relative">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            <div>
+                <p class="text-xs font-black uppercase tracking-[0.5em] text-slate-400">Careers</p>
+                <h1 class="text-4xl md:text-6xl font-black text-slate-900 mt-4">
+                    Join a team that builds financial clarity.
+                </h1>
+                <p class="text-lg text-slate-600 mt-6">
+                    We are always looking for talent that blends empathy with analytical rigor.
+                    Share your profile and we will reach out when your role matches our needs.
+                </p>
+                <div class="mt-8 flex flex-wrap gap-4">
+                    <a href="#career-form" class="px-6 py-3 rounded-full bg-brand-navy text-white font-bold hover:bg-brand-yellow transition-all">
+                        Apply now
+                    </a>
+                    <a href="#opportunities" class="px-6 py-3 rounded-full border border-slate-200 text-brand-navy font-bold hover:border-brand-yellow hover:text-brand-yellow transition-all">
+                        View roles
+                    </a>
+                </div>
+                <div class="mt-10 space-y-6">
+                    <div class="bg-slate-50 border border-slate-100 rounded-2xl p-6">
+                        <div class="text-sm font-bold text-brand-navy">What we value</div>
+                        <p class="text-slate-600 mt-2">
+                            Curiosity, ownership, and a client-first mindset in every decision.
+                        </p>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-100 rounded-2xl p-6">
+                        <div class="text-sm font-bold text-brand-navy">How we work</div>
+                        <p class="text-slate-600 mt-2">
+                            Structured reviews, measurable outcomes, and thoughtful collaboration.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white border border-slate-100 rounded-[2.5rem] p-8 shadow-xl">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <div class="text-xs font-black uppercase tracking-[0.4em] text-slate-400">Hiring Snapshot</div>
+                        <h2 class="text-2xl font-black text-slate-900 mt-3">What we look for</h2>
+                    </div>
+                    <div class="h-12 w-12 rounded-2xl bg-brand-navy text-white flex items-center justify-center text-xl">✦</div>
+                </div>
+                <div class="mt-6 space-y-4 text-slate-600 font-medium">
+                    <div class="flex items-start gap-3">
+                        <span class="h-2.5 w-2.5 mt-2 rounded-full bg-brand-yellow"></span>
+                        <p>Strong analytical thinking with empathy for client goals.</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="h-2.5 w-2.5 mt-2 rounded-full bg-brand-yellow"></span>
+                        <p>Comfort with measurable outcomes, reviews, and documentation.</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="h-2.5 w-2.5 mt-2 rounded-full bg-brand-yellow"></span>
+                        <p>Ownership mindset with a bias for clear communication.</p>
+                    </div>
+                </div>
+                <div class="mt-8 bg-slate-50 border border-slate-100 rounded-2xl p-6">
+                    <div class="text-sm font-bold text-brand-navy">Quick response</div>
+                    <p class="text-slate-600 mt-2">
+                        We acknowledge every application and share the next step within 5 working days.
+                    </p>
+                </div>
+                <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="bg-white border border-slate-100 rounded-2xl p-4 text-center">
+                        <div class="text-xs font-black uppercase tracking-[0.3em] text-slate-400">Rounds</div>
+                        <div class="text-2xl font-black text-slate-900 mt-2">2-3</div>
+                        <div class="text-xs text-slate-500 mt-1">Typical steps</div>
+                    </div>
+                    <div class="bg-white border border-slate-100 rounded-2xl p-4 text-center">
+                        <div class="text-xs font-black uppercase tracking-[0.3em] text-slate-400">Response</div>
+                        <div class="text-2xl font-black text-slate-900 mt-2">5 days</div>
+                        <div class="text-xs text-slate-500 mt-1">Avg follow up</div>
+                    </div>
+                    <div class="bg-white border border-slate-100 rounded-2xl p-4 text-center">
+                        <div class="text-xs font-black uppercase tracking-[0.3em] text-slate-400">Feedback</div>
+                        <div class="text-2xl font-black text-slate-900 mt-2">Shared</div>
+                        <div class="text-xs text-slate-500 mt-1">Post review</div>
+                    </div>
+                </div>
+                <div class="mt-6 space-y-4">
+                    <div>
+                        <div class="flex items-center justify-between text-sm font-semibold text-slate-600">
+                            <span>Analytical thinking</span>
+                            <span>High</span>
+                        </div>
+                        <div class="mt-2 h-2 rounded-full bg-slate-100 overflow-hidden">
+                            <div class="h-full rounded-full bg-brand-navy" style="width: 78%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-between text-sm font-semibold text-slate-600">
+                            <span>Client empathy</span>
+                            <span>High</span>
+                        </div>
+                        <div class="mt-2 h-2 rounded-full bg-slate-100 overflow-hidden">
+                            <div class="h-full rounded-full bg-brand-yellow" style="width: 72%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-between text-sm font-semibold text-slate-600">
+                            <span>Communication</span>
+                            <span>Strong</span>
+                        </div>
+                        <div class="mt-2 h-2 rounded-full bg-slate-100 overflow-hidden">
+                            <div class="h-full rounded-full bg-slate-900" style="width: 68%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="opportunities" class="py-20 bg-slate-50 border-y border-slate-100">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-12">
+            <p class="text-xs font-black uppercase tracking-[0.5em] text-slate-400">Opportunities</p>
+            <h2 class="text-3xl md:text-5xl font-black text-slate-900 mt-4">Where you can contribute</h2>
+            <p class="text-slate-600 mt-3">
+                We hire across advisory, operations, and client experience. If you do not see your role,
+                apply anyway and tell us where you add the most value.
+            </p>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <div class="bg-white rounded-[2.5rem] p-10 border border-slate-100 shadow-sm">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <div class="text-xs font-black uppercase tracking-[0.4em] text-slate-400">Advisory</div>
+                        <h3 class="text-2xl font-black mt-3">Wealth Analyst</h3>
+                    </div>
+                    <div class="h-12 w-12 rounded-2xl bg-brand-navy text-white flex items-center justify-center text-xl">01</div>
+                </div>
+                <p class="text-slate-600 mt-4">
+                    Support portfolio reviews, goal planning, and client reporting.
+                </p>
+                <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm text-slate-600 font-semibold">
+                    <span class="px-3 py-2 rounded-full bg-slate-50 border border-slate-100">Goal mapping</span>
+                    <span class="px-3 py-2 rounded-full bg-slate-50 border border-slate-100">Research notes</span>
+                    <span class="px-3 py-2 rounded-full bg-slate-50 border border-slate-100">Review packs</span>
+                </div>
+            </div>
+            <div class="bg-white rounded-[2.5rem] p-10 border border-slate-100 shadow-sm">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <div class="text-xs font-black uppercase tracking-[0.4em] text-slate-400">Client Experience</div>
+                        <h3 class="text-2xl font-black mt-3">Relationship Manager</h3>
+                    </div>
+                    <div class="h-12 w-12 rounded-2xl bg-brand-yellow text-white flex items-center justify-center text-xl">02</div>
+                </div>
+                <p class="text-slate-600 mt-4">
+                    Own the client journey and ensure timely follow-ups and updates.
+                </p>
+                <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm text-slate-600 font-semibold">
+                    <span class="px-3 py-2 rounded-full bg-slate-50 border border-slate-100">Onboarding</span>
+                    <span class="px-3 py-2 rounded-full bg-slate-50 border border-slate-100">Review cadence</span>
+                    <span class="px-3 py-2 rounded-full bg-slate-50 border border-slate-100">Issue resolution</span>
+                </div>
+            </div>
+            <div class="bg-white rounded-[2.5rem] p-10 border border-slate-100 shadow-sm lg:col-span-2">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <div class="text-xs font-black uppercase tracking-[0.4em] text-slate-400">Operations</div>
+                        <h3 class="text-2xl font-black mt-3">Operations Executive</h3>
+                    </div>
+                    <div class="h-12 w-12 rounded-2xl bg-slate-900 text-white flex items-center justify-center text-xl">03</div>
+                </div>
+                <p class="text-slate-600 mt-4">
+                    Keep documentation, compliance, and process execution precise.
+                </p>
+                <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm text-slate-600 font-semibold">
+                    <span class="px-3 py-2 rounded-full bg-slate-50 border border-slate-100">Compliance logs</span>
+                    <span class="px-3 py-2 rounded-full bg-slate-50 border border-slate-100">Back-office sync</span>
+                    <span class="px-3 py-2 rounded-full bg-slate-50 border border-slate-100">Reporting cadence</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <p class="text-xs font-black uppercase tracking-[0.5em] text-slate-400">Process</p>
+                <h2 class="text-3xl md:text-5xl font-black text-slate-900 mt-4">How we hire</h2>
+                <p class="text-slate-600 mt-4 text-lg">
+                    We keep the process transparent and fast, focused on role fit and long-term potential.
+                </p>
+            </div>
+            <div class="bg-slate-50 rounded-[2.5rem] p-10 border border-slate-100">
+                <div class="space-y-6">
+                    <div class="flex items-start gap-4">
+                        <div class="h-10 w-10 rounded-2xl bg-brand-navy text-white flex items-center justify-center font-black">1</div>
+                        <div>
+                            <div class="font-bold text-lg">Profile review</div>
+                            <p class="text-slate-600">We assess alignment on skills, values, and location.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="h-10 w-10 rounded-2xl bg-brand-yellow text-white flex items-center justify-center font-black">2</div>
+                        <div>
+                            <div class="font-bold text-lg">Conversation round</div>
+                            <p class="text-slate-600">A structured discussion on role fit and problem solving.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="h-10 w-10 rounded-2xl bg-slate-900 text-white flex items-center justify-center font-black">3</div>
+                        <div>
+                            <div class="font-bold text-lg">Offer and onboarding</div>
+                            <p class="text-slate-600">Clear expectations, documented growth plan, and training.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-20 bg-slate-50 border-t border-slate-100">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-12">
+            <p class="text-xs font-black uppercase tracking-[0.5em] text-slate-400">Life At Addwise</p>
+            <h2 class="text-3xl md:text-5xl font-black text-slate-900 mt-4">Growth, ownership, and learning</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
+                <div class="text-xs font-black uppercase tracking-[0.4em] text-slate-400">Growth</div>
+                <h3 class="text-2xl font-black mt-4">Structured learning</h3>
+                <p class="text-slate-600 mt-3">
+                    Role-based training, playbooks, and direct mentorship from senior advisors.
+                </p>
+            </div>
+            <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
+                <div class="text-xs font-black uppercase tracking-[0.4em] text-slate-400">Ownership</div>
+                <h3 class="text-2xl font-black mt-4">Meaningful accountability</h3>
+                <p class="text-slate-600 mt-3">
+                    We trust you with outcomes and support you with clear guardrails.
+                </p>
+            </div>
+            <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
+                <div class="text-xs font-black uppercase tracking-[0.4em] text-slate-400">Culture</div>
+                <h3 class="text-2xl font-black mt-4">Client-first always</h3>
+                <p class="text-slate-600 mt-3">
+                    Decisions are made with long-term client outcomes at the center.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="career-form" class="py-24 bg-white border-t border-slate-100">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-12 items-start">
+            <div>
+                <p class="text-xs font-black uppercase tracking-[0.5em] text-slate-400">Apply</p>
+                <h2 class="text-3xl md:text-5xl font-black text-slate-900 mt-4">Submit your application</h2>
+                <p class="text-slate-600 mt-4 text-lg">
+                    Share your details and resume. We will acknowledge every application and follow up with the next step.
+                </p>
+                <div class="mt-8 space-y-4 text-slate-600 font-medium">
+                    <div class="flex items-start gap-3">
+                        <span class="h-2.5 w-2.5 mt-2 rounded-full bg-brand-yellow"></span>
+                        <p>PDF resumes only, up to 5 MB.</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="h-2.5 w-2.5 mt-2 rounded-full bg-brand-yellow"></span>
+                        <p>We respond within 5 working days with the next step.</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="h-2.5 w-2.5 mt-2 rounded-full bg-brand-yellow"></span>
+                        <p>Shortlisted candidates receive role-specific assessments.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white border border-slate-100 rounded-[2.5rem] p-8 shadow-xl">
+                {% if submitted %}
+                <div class="mb-6 p-4 bg-green-50 border border-green-200 text-green-800 rounded-xl font-semibold">
+                    Thank you for applying. Your application has been submitted and is under review.
+                </div>
+                {% endif %}
+
+                <p class="text-sm text-slate-500">PDF resume only. Max file size 5 MB.</p>
+
+                <form method="POST" enctype="multipart/form-data" class="mt-6 space-y-6">
+                    {% csrf_token %}
+
+                    {% if form.non_field_errors %}
+                        <div class="p-4 bg-red-50 border border-red-200 text-red-700 rounded-xl">
+                            {{ form.non_field_errors }}
+                        </div>
+                    {% endif %}
+
+                    <div>
+                        <label class="text-xs font-bold uppercase tracking-wider text-brand-grey mb-2 block">Full Name</label>
+                        {{ form.full_name }}
+                        {% if form.full_name.errors %}
+                        <p class="text-sm text-red-600 mt-2">{{ form.full_name.errors|striptags }}</p>
+                        {% endif %}
+                    </div>
+                    <div>
+                        <label class="text-xs font-bold uppercase tracking-wider text-brand-grey mb-2 block">Email Address</label>
+                        {{ form.email }}
+                        {% if form.email.errors %}
+                        <p class="text-sm text-red-600 mt-2">{{ form.email.errors|striptags }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="text-xs font-bold uppercase tracking-wider text-brand-grey mb-2 block">Location</label>
+                            {{ form.location }}
+                            {% if form.location.errors %}
+                            <p class="text-sm text-red-600 mt-2">{{ form.location.errors|striptags }}</p>
+                            {% endif %}
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold uppercase tracking-wider text-brand-grey mb-2 block">College or University</label>
+                            {{ form.college }}
+                            {% if form.college.errors %}
+                            <p class="text-sm text-red-600 mt-2">{{ form.college.errors|striptags }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div>
+                        <label class="text-xs font-bold uppercase tracking-wider text-brand-grey mb-2 block">Resume (PDF)</label>
+                        {{ form.resume }}
+                        {% if form.resume.errors %}
+                        <p class="text-sm text-red-600 mt-2">{{ form.resume.errors|striptags }}</p>
+                        {% endif %}
+                    </div>
+
+                    <button type="submit" class="w-full py-4 bg-brand-navy text-white font-bold rounded-xl shadow-lg hover:bg-brand-yellow transition-all duration-300">
+                        Submit application
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

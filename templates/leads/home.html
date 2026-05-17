@@ -5,9 +5,9 @@
 <div x-data="{ 
     activeSlide: 0, 
     slides: [
-        { image: 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=1920&q=80', title: 'Plan with signal, not noise', highlight: '18-Year Evidence Base', desc: 'We model goals, cashflows, and risk to build portfolios that are measurable, reviewable, and resilient.' },
-        { image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1920&q=80', title: 'Capital for milestones', highlight: 'Loans with total-cost clarity', desc: 'We compare rate, tenure, and prepayment impact to optimize real cost and flexibility.' },
-        { image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1920&q=80', title: 'Resilience by design', highlight: 'SIP + Protection stack', desc: 'Growth, stability, and protection work together so progress continues across cycles.' }
+        { image: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1920&q=80', title: 'Plan with signal, not noise', highlight: '6-Year Evidence Base', desc: 'We model goals, cashflows, and risk to build portfolios that are measurable, reviewable, and resilient.' },
+        { image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1920&q=80', title: 'Capital for milestones', highlight: 'Loans with total-cost clarity', desc: 'We compare rate, tenure, and prepayment impact to optimize real cost and flexibility.' },
+        { image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1920&q=80', title: 'Resilience by design', highlight: 'SIP + Protection stack', desc: 'Growth, stability, and protection work together so progress continues across cycles.' }
     ] 
 }" x-init="setInterval(() => { activeSlide = (activeSlide + 1) % slides.length }, 6000)" class="relative h-screen bg-slate-900 overflow-hidden">
     
@@ -32,7 +32,7 @@
                 <p class="text-xl text-slate-200 max-w-3xl mx-auto font-medium" x-text="slides[activeSlide].desc"></p>
                 <div class="flex flex-col sm:flex-row justify-center gap-5 pt-4">
                     <a href="{% url 'appointment' %}" class="px-10 py-5 bg-brand-yellow text-white font-black rounded-2xl hover:bg-yellow-600 shadow-2xl transition-all transform hover:-translate-y-1">Book Appointment</a>
-                    <a href="https://addwisefin.investwell.app/app/#/login" target="_blank" rel="noopener noreferrer" class="px-10 py-5 bg-white/10 backdrop-blur-md text-white border border-white/20 font-black rounded-2xl hover:bg-white hover:text-brand-navy transition-all">Portfolio Login</a>
+                    <a href="{% url 'career' %}" target="_blank" rel="noopener noreferrer" class="px-10 py-5 bg-white/10 backdrop-blur-md text-white border border-white/20 font-black rounded-2xl hover:bg-white hover:text-brand-navy transition-all">View Careers</a>
                 </div>
             </div>
         </div>
@@ -43,7 +43,7 @@
     obs: null, 
     legacy: 0, families: 0, strategy: 0,
     animate() {
-        let l = setInterval(() => { if(this.legacy < 18) this.legacy++; else clearInterval(l); }, 50);
+        let l = setInterval(() => { if(this.legacy < 6) this.legacy++; else clearInterval(l); }, 50);
         let f = setInterval(() => { if(this.families < 400) this.families += 5; else clearInterval(f); }, 10);
         let s = setInterval(() => { if(this.strategy < 100) this.strategy++; else clearInterval(s); }, 20);
     }
@@ -115,7 +115,7 @@
             <div class="bg-brand-navy text-white rounded-2xl p-6">
                 <div class="text-xs uppercase tracking-[0.3em] opacity-70">Metric</div>
                 <div class="text-3xl font-black mt-2">Goal Funding</div>
-                <div class="text-sm opacity-80 mt-1">Target $\ge 85\%$</div>
+                <div class="text-sm opacity-80 mt-1">Target &ge; 85%</div>
             </div>
             <div class="bg-white rounded-2xl p-6 border border-slate-100">
                 <div class="text-xs uppercase tracking-[0.3em] text-slate-400">Metric</div>
@@ -259,6 +259,54 @@
                 <div x-show="active === 2" x-collapse class="p-8 pt-0 text-slate-500 font-medium">
                     Every plan has clear checkpoints: goal funding ratio, emergency runway, and post-tax returns.
                     We review these quarterly and rebalance when drift exceeds your agreed guardrails.
+                </div>
+            </div>
+
+            <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100">
+                <button @click="active = (active === 3 ? 0 : 3)" class="w-full flex justify-between items-center p-8">
+                    <span class="text-lg font-bold">How quickly can a loan get approved?</span>
+                    <span x-show="active !== 3" class="text-2xl">+</span>
+                    <span x-show="active === 3" class="text-2xl">−</span>
+                </button>
+                <div x-show="active === 3" x-collapse class="p-8 pt-0 text-slate-500 font-medium">
+                    Approval timelines depend on profile and documentation, but we prioritize clear eligibility checks
+                    so you get realistic timelines from the start.
+                </div>
+            </div>
+
+            <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100">
+                <button @click="active = (active === 4 ? 0 : 4)" class="w-full flex justify-between items-center p-8">
+                    <span class="text-lg font-bold">What documents should I keep ready?</span>
+                    <span x-show="active !== 4" class="text-2xl">+</span>
+                    <span x-show="active === 4" class="text-2xl">−</span>
+                </button>
+                <div x-show="active === 4" x-collapse class="p-8 pt-0 text-slate-500 font-medium">
+                    Typically, we start with income proofs, identity/address documents, bank statements, and existing
+                    loan details. We will share a checklist after the first call.
+                </div>
+            </div>
+
+            <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100">
+                <button @click="active = (active === 5 ? 0 : 5)" class="w-full flex justify-between items-center p-8">
+                    <span class="text-lg font-bold">Is there a minimum investment or SIP amount?</span>
+                    <span x-show="active !== 5" class="text-2xl">+</span>
+                    <span x-show="active === 5" class="text-2xl">−</span>
+                </button>
+                <div x-show="active === 5" x-collapse class="p-8 pt-0 text-slate-500 font-medium">
+                    We align the starting amount with your cashflow and goals. The focus is consistency and suitability,
+                    not a fixed entry threshold.
+                </div>
+            </div>
+
+            <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100">
+                <button @click="active = (active === 6 ? 0 : 6)" class="w-full flex justify-between items-center p-8">
+                    <span class="text-lg font-bold">How often do you review portfolios?</span>
+                    <span x-show="active !== 6" class="text-2xl">+</span>
+                    <span x-show="active === 6" class="text-2xl">−</span>
+                </button>
+                <div x-show="active === 6" x-collapse class="p-8 pt-0 text-slate-500 font-medium">
+                    We schedule quarterly reviews and intervene earlier if market moves or life events require
+                    rebalancing your plan.
                 </div>
             </div>
         </div>

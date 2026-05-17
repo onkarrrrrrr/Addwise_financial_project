@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="pt-32 pb-20 bg-slate-50 min-h-screen">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+            <div>
+                <p class="text-xs font-black uppercase tracking-[0.5em] text-slate-400">Applications</p>
+                <h1 class="text-3xl md:text-5xl font-black text-slate-900 mt-3">Career applications</h1>
+                <p class="text-slate-600 mt-2">Review, shortlist, or reject incoming applications.</p>
+            </div>
+            <div class="flex flex-wrap gap-3">
+                <a href="?status=all" class="px-4 py-2 rounded-full text-sm font-bold border {% if status == 'all' %}bg-brand-navy text-white border-brand-navy{% else %}bg-white border-slate-200 text-slate-600{% endif %}">
+                    All ({{ status_counts.all }})
+                </a>
+                <a href="?status=NEW" class="px-4 py-2 rounded-full text-sm font-bold border {% if status == 'NEW' %}bg-brand-navy text-white border-brand-navy{% else %}bg-white border-slate-200 text-slate-600{% endif %}">
+                    New ({{ status_counts.NEW }})
+                </a>
+                <a href="?status=HOLD" class="px-4 py-2 rounded-full text-sm font-bold border {% if status == 'HOLD' %}bg-brand-navy text-white border-brand-navy{% else %}bg-white border-slate-200 text-slate-600{% endif %}">
+                    Hold ({{ status_counts.HOLD }})
+                </a>
+                <a href="?status=ACCEPTED" class="px-4 py-2 rounded-full text-sm font-bold border {% if status == 'ACCEPTED' %}bg-brand-navy text-white border-brand-navy{% else %}bg-white border-slate-200 text-slate-600{% endif %}">
+                    Accepted ({{ status_counts.ACCEPTED }})
+                </a>
+                <a href="?status=REJECTED" class="px-4 py-2 rounded-full text-sm font-bold border {% if status == 'REJECTED' %}bg-brand-navy text-white border-brand-navy{% else %}bg-white border-slate-200 text-slate-600{% endif %}">
+                    Rejected ({{ status_counts.REJECTED }})
+                </a>
+            </div>
+        </div>
+
+        <div class="mt-10 bg-white border border-slate-100 rounded-3xl shadow-sm overflow-hidden">
+            <div class="grid grid-cols-12 gap-4 px-6 py-4 text-xs font-bold uppercase tracking-[0.3em] text-slate-400 bg-slate-50">
+                <div class="col-span-4">Candidate</div>
+                <div class="col-span-3">Location</div>
+                <div class="col-span-3">College</div>
+                <div class="col-span-2">Status</div>
+            </div>
+            {% if applications %}
+                {% for application in applications %}
+                <a href="{% url 'application_detail' application.pk %}" class="grid grid-cols-12 gap-4 px-6 py-5 border-t border-slate-100 hover:bg-slate-50 transition-all">
+                    <div class="col-span-4">
+                        <div class="font-bold text-slate-900">{{ application.full_name }}</div>
+                        <div class="text-sm text-slate-500">{{ application.email }}</div>
+                    </div>
+                    <div class="col-span-3 text-slate-600">{{ application.location }}</div>
+                    <div class="col-span-3 text-slate-600">{{ application.college }}</div>
+                    <div class="col-span-2">
+                        <span class="inline-flex px-3 py-1 rounded-full text-xs font-bold
+                            {% if application.status == 'NEW' %}bg-blue-50 text-blue-700
+                            {% elif application.status == 'HOLD' %}bg-yellow-50 text-yellow-700
+                            {% elif application.status == 'ACCEPTED' %}bg-green-50 text-green-700
+                            {% else %}bg-red-50 text-red-700{% endif %}">
+                            {{ application.get_status_display }}
+                        </span>
+                    </div>
+                </a>
+                {% endfor %}
+            {% else %}
+                <div class="px-6 py-10 text-center text-slate-500">
+                    No applications found for this filter.
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}
