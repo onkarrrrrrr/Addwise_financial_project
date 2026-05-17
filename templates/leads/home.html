@@ -5,9 +5,9 @@
 <div x-data="{ 
     activeSlide: 0, 
     slides: [
-        { image: 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=1920&q=80', title: 'Legacy of Trust', highlight: '18 Years of Expertise', desc: 'Managed by professionals who understand wealth creation beyond simple numbers.' },
-        { image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1920&q=80', title: 'Smart Funding', highlight: 'Home & Business Loans', desc: 'Securing your dream spaces with the lowest interest rates in the market.' },
-        { image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1920&q=80', title: 'Future Secure', highlight: 'SIP & Insurance', desc: 'Join 400+ wealthy families who rely on our personalized roadmap for growth.' }
+        { image: 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=1920&q=80', title: 'Plan with signal, not noise', highlight: '18-Year Evidence Base', desc: 'We model goals, cashflows, and risk to build portfolios that are measurable, reviewable, and resilient.' },
+        { image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1920&q=80', title: 'Capital for milestones', highlight: 'Loans with total-cost clarity', desc: 'We compare rate, tenure, and prepayment impact to optimize real cost and flexibility.' },
+        { image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1920&q=80', title: 'Resilience by design', highlight: 'SIP + Protection stack', desc: 'Growth, stability, and protection work together so progress continues across cycles.' }
     ] 
 }" x-init="setInterval(() => { activeSlide = (activeSlide + 1) % slides.length }, 6000)" class="relative h-screen bg-slate-900 overflow-hidden">
     
@@ -29,10 +29,10 @@
                     <span x-text="slides[activeSlide].title" class="opacity-80"></span><br>
                     <span class="text-brand-yellow" x-text="slides[activeSlide].highlight"></span>
                 </h1>
-                <p class="text-xl text-slate-200 max-w-2xl mx-auto font-medium" x-text="slides[activeSlide].desc"></p>
+                <p class="text-xl text-slate-200 max-w-3xl mx-auto font-medium" x-text="slides[activeSlide].desc"></p>
                 <div class="flex flex-col sm:flex-row justify-center gap-5 pt-4">
-                    <a href="{% url 'appointment' %}" class="px-10 py-5 bg-brand-yellow text-white font-black rounded-2xl hover:bg-yellow-600 shadow-2xl transition-all transform hover:-translate-y-1">Start Your Wise Step</a>
-                    <a href="https://addwisefin.investorcorner.co.in/clients/dashboard" target="_blank" class="px-10 py-5 bg-white/10 backdrop-blur-md text-white border border-white/20 font-black rounded-2xl hover:bg-white hover:text-brand-navy transition-all">Use Calculators</a>
+                    <a href="{% url 'appointment' %}" class="px-10 py-5 bg-brand-yellow text-white font-black rounded-2xl hover:bg-yellow-600 shadow-2xl transition-all transform hover:-translate-y-1">Book Appointment</a>
+                    <a href="https://addwisefin.investwell.app/app/#/login" target="_blank" rel="noopener noreferrer" class="px-10 py-5 bg-white/10 backdrop-blur-md text-white border border-white/20 font-black rounded-2xl hover:bg-white hover:text-brand-navy transition-all">Portfolio Login</a>
                 </div>
             </div>
         </div>
@@ -71,50 +71,194 @@
     </div>
 </section>
 
+<section class="py-24 bg-slate-50 border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="max-w-3xl">
+            <h2 class="text-4xl md:text-6xl font-black tracking-tighter">A logical, measurable
+                <span class="text-brand-yellow">wealth system</span></h2>
+            <p class="text-slate-600 mt-4 text-lg">
+                We replace gut-feel decisions with a clear framework. Every recommendation ties back to a number you can track.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mt-12">
+            <div class="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm">
+                <div class="text-xs font-black uppercase tracking-[0.3em] text-slate-400">Diagnose</div>
+                <h3 class="text-2xl font-black mt-3">Cashflow + Risk Map</h3>
+                <ul class="mt-4 space-y-2 text-slate-600 font-medium">
+                    <li>Income, expense, and surplus model</li>
+                    <li>Goal timelines with funding ratios</li>
+                    <li>Risk capacity vs risk behavior</li>
+                </ul>
+            </div>
+            <div class="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm">
+                <div class="text-xs font-black uppercase tracking-[0.3em] text-slate-400">Design</div>
+                <h3 class="text-2xl font-black mt-3">Portfolio Blueprint</h3>
+                <ul class="mt-4 space-y-2 text-slate-600 font-medium">
+                    <li>Asset mix for growth and stability</li>
+                    <li>Tax-efficient instrument selection</li>
+                    <li>Protection layer for life events</li>
+                </ul>
+            </div>
+            <div class="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm">
+                <div class="text-xs font-black uppercase tracking-[0.3em] text-slate-400">Discipline</div>
+                <h3 class="text-2xl font-black mt-3">Review + Rebalance</h3>
+                <ul class="mt-4 space-y-2 text-slate-600 font-medium">
+                    <li>Quarterly performance checkpoints</li>
+                    <li>Goal drift and risk guardrails</li>
+                    <li>Action plan for market cycles</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-12">
+            <div class="bg-brand-navy text-white rounded-2xl p-6">
+                <div class="text-xs uppercase tracking-[0.3em] opacity-70">Metric</div>
+                <div class="text-3xl font-black mt-2">Goal Funding</div>
+                <div class="text-sm opacity-80 mt-1">Target $\ge 85\%$</div>
+            </div>
+            <div class="bg-white rounded-2xl p-6 border border-slate-100">
+                <div class="text-xs uppercase tracking-[0.3em] text-slate-400">Metric</div>
+                <div class="text-3xl font-black mt-2">Runway</div>
+                <div class="text-sm text-slate-500 mt-1">6-9 months expenses</div>
+            </div>
+            <div class="bg-white rounded-2xl p-6 border border-slate-100">
+                <div class="text-xs uppercase tracking-[0.3em] text-slate-400">Metric</div>
+                <div class="text-3xl font-black mt-2">Debt Cost</div>
+                <div class="text-sm text-slate-500 mt-1">Total interest impact</div>
+            </div>
+            <div class="bg-white rounded-2xl p-6 border border-slate-100">
+                <div class="text-xs uppercase tracking-[0.3em] text-slate-400">Metric</div>
+                <div class="text-3xl font-black mt-2">Risk Fit</div>
+                <div class="text-sm text-slate-500 mt-1">Capacity vs behavior</div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <section class="py-16 bg-white overflow-hidden relative">
     <div class="text-center mb-10">
         <h4 class="text-[10px] font-black uppercase tracking-[0.5em] text-slate-300">Institutional Banking Partners</h4>
     </div>
     <div class="flex items-center">
         <div class="animate-marquee gap-16 flex items-center">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/4/48/HDFC_Bank_Logo.svg" class="h-8 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/1/12/ICICI_Bank_Logo.svg" class="h-8 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all">
-            <img src="https://upload.wikimedia.org/wikipedia/en/5/58/State_Bank_of_India_logo.svg" class="h-8 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Axis_Bank_logo.svg" class="h-6 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Kotak_Mahindra_Bank_logo.svg" class="h-8 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/d/df/Bajaj_Finserv_Logo.svg" class="h-6 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/4/48/HDFC_Bank_Logo.svg" class="h-8 grayscale opacity-40">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/1/12/ICICI_Bank_Logo.svg" class="h-8 grayscale opacity-40">
-            <img src="https://upload.wikimedia.org/wikipedia/en/5/58/State_Bank_of_India_logo.svg" class="h-8 grayscale opacity-40">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Axis_Bank_logo.svg" class="h-6 grayscale opacity-40">
+            <img src="{% static 'images/partners/partner-1.png' %}" alt="Partner 1" class="h-12">
+            <img src="{% static 'images/partners/partner-2.png' %}" alt="Partner 2" class="h-12">
+            <img src="{% static 'images/partners/partner-3.png' %}" alt="Partner 3" class="h-12">
+            <img src="{% static 'images/partners/partner-4.png' %}" alt="Partner 4" class="h-12">
+            <img src="{% static 'images/partners/partner-5.png' %}" alt="Partner 5" class="h-12">
+            <img src="{% static 'images/partners/partner-6.png' %}" alt="Partner 6" class="h-12">
+            <img src="{% static 'images/partners/partner-7.png' %}" alt="Partner 7" class="h-12">
+            <img src="{% static 'images/partners/partner-1.png' %}" alt="Partner 1" class="h-12">
+            <img src="{% static 'images/partners/partner-2.png' %}" alt="Partner 2" class="h-12">
+            <img src="{% static 'images/partners/partner-3.png' %}" alt="Partner 3" class="h-12">
+            <img src="{% static 'images/partners/partner-4.png' %}" alt="Partner 4" class="h-12">
+        </div>
+    </div>
+</section>
+
+<section class="py-24 bg-white border-t border-slate-100">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-10">
+            <h2 class="text-3xl md:text-4xl font-black text-slate-900">What Our Customers Say</h2>
+            <p class="text-sm text-slate-500 mt-2">Addwise Financials · Deccan Gymkhana, Pune</p>
+            <a href="https://www.google.com/search?sca_esv=1547c3fcb5ab963b&rlz=1C1CHBF_enIN1129IN1129&sxsrf=ANbL-n6wMOvMeTlghny7Qe1Min3vn5RXpQ:1779015704540&kgmid=/g/11k664vcg7&q=Addwise+Financials&shem=rimspwouoe&shndl=30&source=sh/x/loc/uni/m1/1&kgs=44179f0b404f61bd&utm_source=rimspwouoe,sh/x/loc/uni/m1/1#lrd=0x3bc2bfc43d3a9eab:0x386c680a8bd2da02,3,,,," target="_blank" rel="noopener noreferrer" class="inline-flex items-center mt-4 px-6 py-3 rounded-full bg-brand-navy text-white font-bold hover:bg-brand-yellow transition-all">Write a Review</a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-slate-50 border border-slate-100 rounded-2xl p-6">
+                <div class="flex items-center gap-3">
+                    <div class="h-12 w-12 rounded-full bg-slate-200 flex items-center justify-center font-bold">H</div>
+                    <div>
+                        <div class="font-bold text-slate-900">Harshad Deodhar</div>
+                        <div class="text-xs text-slate-500">5 months ago</div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-1 mt-4">
+                    <span class="text-yellow-400">★</span><span class="text-yellow-400">★</span><span class="text-yellow-400">★</span><span class="text-yellow-400">★</span><span class="text-yellow-400">★</span>
+                </div>
+                <p class="text-sm text-slate-600 mt-3">
+                    I had an excellent experience with this finance company. The team is knowledgeable, transparent,
+                    and very supportive throughout the process. All my queries were answered clearly, and the overall
+                    service was quick and hassle-free. I truly appreciate their professionalism and would highly
+                    recommend them. Thank you Mr Darshan Kurdukar Sir.
+                </p>
+                <a href="https://share.google/txBU9dDnZauMmByKk" target="_blank" rel="noopener noreferrer" class="text-sm font-bold text-brand-navy mt-4 inline-block">View on Google</a>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-100 rounded-2xl p-6">
+                <div class="flex items-center gap-3">
+                    <div class="h-12 w-12 rounded-full bg-slate-200 flex items-center justify-center font-bold">D</div>
+                    <div>
+                        <div class="font-bold text-slate-900">Digambar Deshpande</div>
+                        <div class="text-xs text-slate-500">3 years ago</div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-1 mt-4">
+                    <span class="text-yellow-400">★</span><span class="text-yellow-400">★</span><span class="text-yellow-400">★</span><span class="text-yellow-400">★</span><span class="text-yellow-400">★</span>
+                </div>
+                <p class="text-sm text-slate-600 mt-3">
+                    First and foremost I have not taken the Health insurance from him, got reference from friend, and
+                    still he helped me without any expectations! Because of the 360 degree guidance given by Darshan,
+                    it helps me to get almost 18Lakhs settled health claim! He knows the processes thoroughly and also
+                    knows what not to do. I strongly recommend Darshan! Thanks.
+                </p>
+                <div class="mt-4 border-l-2 border-brand-yellow pl-4 text-xs text-slate-600">
+                    <span class="font-bold">Addwise Financials (owner)</span> · 3 years ago<br>
+                    Digambar Ji, Thank you so much for your kind words!
+                </div>
+                <a href="https://share.google/tUjcQQc7MjRsc8RIA" target="_blank" rel="noopener noreferrer" class="text-sm font-bold text-brand-navy mt-4 inline-block">View on Google</a>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-100 rounded-2xl p-6">
+                <div class="flex items-center gap-3">
+                    <div class="h-12 w-12 rounded-full bg-slate-200 flex items-center justify-center font-bold">D</div>
+                    <div>
+                        <div class="font-bold text-slate-900">Deepak Pawar</div>
+                        <div class="text-xs text-slate-500">5 years ago</div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-1 mt-4">
+                    <span class="text-yellow-400">★</span><span class="text-yellow-400">★</span><span class="text-yellow-400">★</span><span class="text-yellow-400">★</span><span class="text-yellow-400">★</span>
+                </div>
+                <p class="text-sm text-slate-600 mt-3">Positive. Professionalism.</p>
+                <div class="mt-4 border-l-2 border-brand-yellow pl-4 text-xs text-slate-600">
+                    <span class="font-bold">Addwise Financials (owner)</span> · 3 years ago<br>
+                    Thank you so much for your kind feedback!
+                </div>
+                <a href="https://share.google/QGm60ELRHD5RLqqHz" target="_blank" rel="noopener noreferrer" class="text-sm font-bold text-brand-navy mt-4 inline-block">View on Google</a>
+            </div>
         </div>
     </div>
 </section>
 
 <section class="py-32 bg-slate-50">
     <div class="max-w-4xl mx-auto px-6">
-        <h2 class="text-4xl md:text-6xl font-black tracking-tighter text-center mb-16">Common <span class="text-brand-yellow">Queries</span></h2>
+        <h2 class="text-4xl md:text-6xl font-black tracking-tighter text-center mb-16">Smart, practical
+            <span class="text-brand-yellow">answers</span></h2>
         
         <div x-data="{ active: 1 }" class="space-y-4 text-left">
             <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100">
                 <button @click="active = (active === 1 ? 0 : 1)" class="w-full flex justify-between items-center p-8">
-                    <span class="text-lg font-bold">What is Addwise's investment philosophy?</span>
+                    <span class="text-lg font-bold">How do you decide the right asset mix?</span>
                     <span x-show="active !== 1" class="text-2xl">+</span>
                     <span x-show="active === 1" class="text-2xl">−</span>
                 </button>
                 <div x-show="active === 1" x-collapse class="p-8 pt-0 text-slate-500 font-medium">
-                    We believe in a "You-Centric" approach. Every financial roadmap is custom-built after analyzing your risk profile, tax implications, and emotional biases.
+                    We map your goal timelines, cashflow stability, and risk capacity. The mix is adjusted to keep the
+                    probability of goal completion high without taking unnecessary volatility.
                 </div>
             </div>
 
             <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100">
                 <button @click="active = (active === 2 ? 0 : 2)" class="w-full flex justify-between items-center p-8">
-                    <span class="text-lg font-bold">Can you help with tax-efficient wealth management?</span>
+                    <span class="text-lg font-bold">What makes your advice measurable?</span>
                     <span x-show="active !== 2" class="text-2xl">+</span>
                     <span x-show="active === 2" class="text-2xl">−</span>
                 </button>
                 <div x-show="active === 2" x-collapse class="p-8 pt-0 text-slate-500 font-medium">
-                    Absolutely. We focus on post-tax returns to ensure that the wealth you build actually stays with you through optimized SIPs and Insurance instruments.
+                    Every plan has clear checkpoints: goal funding ratio, emergency runway, and post-tax returns.
+                    We review these quarterly and rebalance when drift exceeds your agreed guardrails.
                 </div>
             </div>
         </div>

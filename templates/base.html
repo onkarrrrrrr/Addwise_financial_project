@@ -27,32 +27,61 @@
     <style>
         [x-cloak] { display: none !important; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #ffffff; scroll-behavior: smooth; }
-        .glass-nav { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .glass-nav { background: #ffffff; border-bottom: 1px solid rgba(0,0,0,0.05); }
+        :root {
+            --brand-navy: #153769;
+            --brand-yellow: #F38D1E;
+            --brand-grey: #4C4C4C;
+        }
+        .text-slate-900 { color: var(--brand-navy) !important; }
+        .text-slate-800 { color: rgba(21, 55, 105, 0.9) !important; }
+        .text-slate-700 { color: rgba(76, 76, 76, 0.9) !important; }
+        .text-slate-600 { color: rgba(76, 76, 76, 0.85) !important; }
+        .text-slate-500 { color: rgba(76, 76, 76, 0.75) !important; }
+        .text-slate-400 { color: rgba(76, 76, 76, 0.65) !important; }
+        .text-slate-300 { color: rgba(76, 76, 76, 0.55) !important; }
+        .text-slate-200 { color: rgba(255, 255, 255, 0.85) !important; }
+        .bg-slate-900 { background-color: var(--brand-navy) !important; }
+        .bg-slate-100 { background-color: rgba(21, 55, 105, 0.06) !important; }
+        .bg-slate-50 { background-color: rgba(21, 55, 105, 0.04) !important; }
+        .border-slate-200 { border-color: rgba(21, 55, 105, 0.16) !important; }
+        .border-slate-100 { border-color: rgba(21, 55, 105, 0.12) !important; }
+        .animate-marquee {
+            display: flex;
+            width: max-content;
+            animation: marquee 24s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .animate-marquee { animation: none; }
+        }
     </style>
 </head>
 <body class="antialiased text-brand-navy">
 
     <nav x-data="{ isScrolled: false }" 
          @scroll.window="isScrolled = (window.pageYOffset > 20) ? true : false"
-         :class="isScrolled ? 'glass-nav py-2 shadow-sm' : 'bg-transparent py-5'"
+         :class="isScrolled ? 'glass-nav py-2 shadow-sm' : 'bg-white py-5'"
          class="fixed w-full z-50 transition-all duration-500 top-0 left-0">
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex justify-between items-center h-16">
                 <a href="{% url 'home' %}" class="flex items-center gap-3 group">
-                    <img src="{% static 'images/logo.png' %}" alt="Addwise Logo" class="h-12 w-auto object-contain transition-transform group-hover:scale-105">
-                    
-                    <div class="flex flex-col border-l border-slate-200 pl-3">
-                        <span class="text-xl font-extrabold tracking-tighter leading-none">ADDWISE</span>
-                        <span class="text-[9px] font-bold text-brand-yellow uppercase tracking-[0.2em] mt-1">Financials</span>
-                    </div>
+                    <img src="{% static 'images/logo-mark.png' %}" alt="Addwise Logo" class="h-10 w-auto object-contain transition-transform group-hover:scale-105">
+                    <span class="h-9 w-px bg-slate-200"></span>
+                    <img src="{% static 'images/logo-text.png' %}" alt="Addwise Financials" class="h-10 w-auto object-contain">
                 </a>
 
                 <div class="hidden md:flex items-center space-x-10">
                     <a href="{% url 'home' %}" class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest">Home</a>
-                    <a href="{% url 'services' %}" class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest">Services</a>
-                    <a href="{% url 'about' %}" class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest">Legacy</a>
-                    <a href="https://addwisefin.investorcorner.co.in/clients/dashboard" target="_blank" class="text-sm font-bold px-5 py-2 bg-slate-100 rounded-full hover:bg-brand-yellow hover:text-white transition-all uppercase tracking-widest">Calculators</a>
-                    <a href="{% url 'appointment' %}" class="text-sm font-bold bg-brand-navy text-white px-8 py-4 rounded-full hover:bg-brand-yellow hover:shadow-2xl transition-all transform hover:-translate-y-1">Book Consultation</a>
+                    <a href="{% url 'services' %}" class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest">Our Services</a>
+                    <a href="{% url 'about' %}" class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest">About</a>
+                    <a href="{% url 'appointment' %}" class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest">Contact</a>
+                    <a href="https://addwisefin.investorcorner.co.in/clients/dashboard" target="_blank" class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest">Calculators</a>
+                    <a href="{% url 'appointment' %}" class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest">Book Appointment</a>
+                    <a href="https://addwisefin.investwell.app/app/#/login" target="_blank" rel="noopener noreferrer" class="text-sm font-bold uppercase tracking-widest bg-brand-navy text-white rounded-full px-4 py-2 hover:bg-brand-yellow transition-all">Portfolio Login</a>
                 </div>
             </div>
         </div>
@@ -63,28 +92,50 @@
     <footer class="bg-slate-50 pt-24 pb-12 border-t border-slate-200 mt-20">
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 text-center md:text-left">
             <div class="col-span-2">
-                <img src="{% static 'images/logo.png' %}" alt="Logo" class="h-10 mb-6 mx-auto md:mx-0 grayscale opacity-80">
-                <p class="text-brand-grey max-w-sm leading-relaxed mb-8">Crafting Personalized wealth strategies for 18+ years. 400+ families empower their future through Addwise Financials.</p>
+                <div class="flex items-center gap-3 mb-6 justify-center md:justify-start">
+                    <img src="{% static 'images/logo-mark.png' %}" alt="Addwise Logo" class="h-9 w-auto object-contain">
+                    <span class="h-7 w-px bg-slate-200"></span>
+                    <img src="{% static 'images/logo-text.png' %}" alt="Addwise Financials" class="h-9 w-auto object-contain">
+                </div>
+                <p class="text-brand-grey max-w-sm leading-relaxed mb-6">
+                    Janki Bldg,<br>
+                    Ground floor, Bhandarkar Rd, Opp Bandhan Bank, Adjacent to Kunal Group, Near Kamla Nehru Park<br>
+                    Pune-411004
+                </p>
+                <p class="text-sm text-slate-500 leading-relaxed max-w-lg">
+                    Mutual fund investments are subject to market risks. Read all scheme related documents carefully
+                    before investing. Past performance does not guarantee future returns.
+                </p>
+                <div class="mt-4 text-xs font-semibold text-slate-500">
+                    Disclaimer | Disclosure | Privacy Policy | SID/SAI | KIM | Code of Conduct
+                </div>
             </div>
             <div>
-                <h4 class="font-black mb-6 text-xs uppercase tracking-[0.3em] text-brand-yellow">Ecosystem</h4>
+                <h4 class="font-black mb-6 text-xs uppercase tracking-[0.3em] text-brand-yellow">Quick Links</h4>
                 <ul class="space-y-4 text-sm font-bold text-slate-500 uppercase tracking-wider">
-                    <li><a href="{% url 'home' %}" class="hover:text-brand-navy transition-all">Dashboard</a></li>
-                    <li><a href="{% url 'services' %}" class="hover:text-brand-navy transition-all">Portfolio</a></li>
-                    <li><a href="{% url 'about' %}" class="hover:text-brand-navy transition-all">History</a></li>
+                    <li><a href="{% url 'home' %}" class="hover:text-brand-navy transition-all">Home</a></li>
+                    <li><a href="{% url 'about' %}" class="hover:text-brand-navy transition-all">About</a></li>
+                    <li><a href="{% url 'services' %}" class="hover:text-brand-navy transition-all">Our Services</a></li>
+                    <li><a href="https://addwisefin.investorcorner.co.in/clients/dashboard" target="_blank" rel="noopener noreferrer" class="hover:text-brand-navy transition-all">Calculators</a></li>
+                    <li><a href="{% url 'appointment' %}" class="hover:text-brand-navy transition-all">Book Call</a></li>
                 </ul>
             </div>
             <div>
                 <h4 class="font-black mb-6 text-xs uppercase tracking-[0.3em] text-brand-yellow">Contact</h4>
                 <ul class="space-y-4 text-sm font-bold text-slate-500 uppercase tracking-wider leading-loose">
-                    <li>📞 +91 74477 73161</li>
+                    <li>📞 +91 98234 13161</li>
                     <li>✉️ connect@addwisefin.com</li>
-                    <li>📍 Kothrud, Pune</li>
                 </ul>
+                <div class="mt-4 flex flex-wrap items-center gap-2 text-xs font-bold text-slate-500">
+                    <a href="https://wa.me/917447773161" target="_blank" rel="noopener noreferrer" class="px-3 py-2 rounded-full border border-slate-200 hover:border-brand-yellow hover:text-brand-yellow transition-all">WhatsApp</a>
+                    <a href="https://www.instagram.com/addwisefinancials/" target="_blank" rel="noopener noreferrer" class="px-3 py-2 rounded-full border border-slate-200 hover:border-brand-yellow hover:text-brand-yellow transition-all">Instagram</a>
+                    <a href="https://www.linkedin.com/company/addwise-financials%C2%AE/" target="_blank" rel="noopener noreferrer" class="px-3 py-2 rounded-full border border-slate-200 hover:border-brand-yellow hover:text-brand-yellow transition-all">LinkedIn</a>
+                    <a href="https://x.com/addwisefin" target="_blank" rel="noopener noreferrer" class="px-3 py-2 rounded-full border border-slate-200 hover:border-brand-yellow hover:text-brand-yellow transition-all">Twitter</a>
+                </div>
             </div>
         </div>
         <div class="text-center mt-12 pt-8 border-t border-slate-200 text-sm text-slate-400 font-medium">
-            &copy; 2026 Addwise Financials. Built with Extreme Elegance.
+            Read all scheme related documents carefully before investing. | &copy; 2026 Addwise Financials. All rights reserved.
         </div>
     </footer>
 </body>
