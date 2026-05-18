@@ -151,7 +151,7 @@
                     <a href="{% url 'services' %}" class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest {% if request.resolver_match.url_name == 'services' %}underline decoration-brand-yellow decoration-2 underline-offset-4 font-extrabold{% endif %}">Our Services</a>
                     <a href="{% url 'about' %}" class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest {% if request.resolver_match.url_name == 'about' %}underline decoration-brand-yellow decoration-2 underline-offset-4 font-extrabold{% endif %}">About</a>
                     <a href="{% url 'career' %}" class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest {% if request.resolver_match.url_name == 'career' %}underline decoration-brand-yellow decoration-2 underline-offset-4 font-extrabold{% endif %}">Careers</a>
-                    <a href="https://addwisefin.investorcorner.co.in/clients/dashboard" target="_blank" class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest">Calculators</a>
+                    <a href="{% url 'calculators' %}" class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest">Calculators</a>
                     <a href="{% url 'appointment' %}" class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest {% if request.resolver_match.url_name == 'appointment' %}underline decoration-brand-yellow decoration-2 underline-offset-4 font-extrabold{% endif %}">Book Appointment</a>
                     <a href="https://addwisefin.investwell.app/app/#/login" target="_blank" rel="noopener noreferrer" class="text-sm font-bold uppercase tracking-widest bg-brand-navy text-white rounded-full px-4 py-2 hover:bg-brand-yellow transition-all">Portfolio Login</a>
                 </div>
@@ -190,7 +190,7 @@
                     <li><a href="{% url 'services' %}" class="hover:text-brand-navy transition-all">Our Services</a></li>
                     <li><a href="{% url 'career' %}" class="hover:text-brand-navy transition-all">Careers</a></li>
                     <li><a href="{% url 'contact' %}" class="hover:text-brand-navy transition-all">Contact</a></li>
-                    <li><a href="https://addwisefin.investorcorner.co.in/clients/dashboard" target="_blank" rel="noopener noreferrer" class="hover:text-brand-navy transition-all">Calculators</a></li>
+                    <li><a href="{% url 'calculators' %}" class="hover:text-brand-navy transition-all">Calculators</a></li>
                     <li><a href="{% url 'appointment' %}" class="hover:text-brand-navy transition-all">Book Call</a></li>
                 </ul>
             </div>

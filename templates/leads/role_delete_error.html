@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="pt-32 pb-20 bg-white min-h-screen">
+    <div class="max-w-2xl mx-auto px-6">
+        <div class="mb-10">
+            <p class="text-xs font-black uppercase tracking-[0.5em] text-slate-400">Error</p>
+            <h1 class="text-3xl md:text-5xl font-black text-slate-900 mt-3">Cannot Delete Role</h1>
+        </div>
+
+        <div class="bg-white border border-red-200 rounded-3xl p-8 shadow-sm">
+            <div class="bg-red-50 border border-red-200 rounded-xl p-6 mb-8">
+                <h2 class="text-lg font-bold text-red-900">Active Applications Exist</h2>
+                <p class="text-red-800 mt-2">
+                    The role <strong>{{ role.name }}</strong> has <strong>{{ applications_count }}</strong> active application{{ applications_count|pluralize }}.
+                    You must delete or reassign all applications before removing this role.
+                </p>
+            </div>
+
+            <div class="space-y-4">
+                <a href="{% url 'applications_list' %}" class="block w-full px-6 py-3 rounded-full bg-brand-navy text-white font-bold text-center hover:bg-brand-yellow transition-all">
+                    Manage Applications
+                </a>
+                <a href="{% url 'role_detail' role.pk %}" class="block w-full px-6 py-3 rounded-full border border-slate-200 text-brand-navy font-bold text-center hover:border-brand-yellow transition-all">
+                    Back to Role
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

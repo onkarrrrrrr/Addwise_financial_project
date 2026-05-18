@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="pt-32 pb-20 bg-white min-h-screen">
+    <div class="max-w-5xl mx-auto px-6">
+        <div class="flex items-center justify-between gap-6 mb-8">
+            <div>
+                <p class="text-xs font-black uppercase tracking-[0.5em] text-slate-400">Role</p>
+                <h1 class="text-3xl md:text-5xl font-black text-slate-900 mt-3">{{ role.name }}</h1>
+                <p class="text-slate-500 mt-2">
+                    Created {{ role.created_at|date:"M d, Y" }}
+                    {% if role.updated_at != role.created_at %}
+                        • Updated {{ role.updated_at|date:"M d, Y" }}
+                    {% endif %}
+                </p>
+            </div>
+            <span class="inline-flex px-4 py-2 rounded-full text-sm font-bold {% if role.is_active %}bg-green-50 text-green-700{% else %}bg-slate-100 text-slate-600{% endif %}">
+                {% if role.is_active %}Active{% else %}Inactive{% endif %}
+            </span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="lg:col-span-2 space-y-6">
+                <!-- Job Description -->
+                <div class="bg-slate-50 border border-slate-100 rounded-3xl p-8">
+                    <h2 class="text-xl font-bold text-slate-900 mb-4">Job Description</h2>
+                    <div class="text-slate-700 whitespace-pre-wrap leading-relaxed">{{ role.job_description }}</div>
+                </div>
+
+                <!-- Requirements -->
+                {% if role.requirements %}
+                    <div class="bg-slate-50 border border-slate-100 rounded-3xl p-8">
+                        <h2 class="text-xl font-bold text-slate-900 mb-4">Requirements</h2>
+                        <div class="text-slate-700 whitespace-pre-wrap leading-relaxed">{{ role.requirements }}</div>
+                    </div>
+                {% endif %}
+
+                <!-- Responsibilities -->
+                {% if role.responsibilities %}
+                    <div class="bg-slate-50 border border-slate-100 rounded-3xl p-8">
+                        <h2 class="text-xl font-bold text-slate-900 mb-4">Responsibilities</h2>
+                        <div class="text-slate-700 whitespace-pre-wrap leading-relaxed">{{ role.responsibilities }}</div>
+                    </div>
+                {% endif %}
+
+                <!-- Benefits -->
+                {% if role.benefits %}
+                    <div class="bg-slate-50 border border-slate-100 rounded-3xl p-8">
+                        <h2 class="text-xl font-bold text-slate-900 mb-4">Benefits</h2>
+                        <div class="text-slate-700 whitespace-pre-wrap leading-relaxed">{{ role.benefits }}</div>
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="space-y-6">
+                <!-- Applications Card -->
+                <div class="bg-white border border-slate-100 rounded-3xl p-8 shadow-sm sticky top-24">
+                    <h3 class="text-xl font-bold text-slate-900">Applications</h3>
+                    <p class="text-3xl font-black text-brand-navy mt-4">{{ applications_count }}</p>
+                    <p class="text-sm text-slate-500 mt-1">Candidate{{ applications_count|pluralize }} for this role</p>
+                    
+                    {% if applications_count > 0 %}
+                        <a href="{% url 'applications_list' %}?role={{ role.id }}" class="mt-6 block w-full px-4 py-3 rounded-xl bg-slate-100 text-slate-900 font-bold text-center hover:bg-slate-200 transition-all">
+                            View Applications
+                        </a>
+                    {% endif %}
+                </div>
+
+                <!-- Actions Card -->
+                <div class="bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
+                    <h3 class="text-xl font-bold text-slate-900">Actions</h3>
+                    <div class="mt-4 space-y-3">
+                        <a href="{% url 'role_edit' role.pk %}" class="block w-full px-4 py-3 rounded-xl bg-brand-navy text-white font-bold text-center hover:bg-brand-yellow transition-all">
+                            Edit Role
+                        </a>
+                        <a href="{% url 'role_delete' role.pk %}" class="block w-full px-4 py-3 rounded-xl bg-red-50 text-red-600 font-bold text-center hover:bg-red-100 transition-all">
+                            Delete Role
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-12 pt-8 border-t border-slate-100">
+            <a href="{% url 'roles_list' %}" class="text-brand-navy font-bold hover:underline">← Back to Roles</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -7,8 +7,30 @@ from django.utils import timezone
 
 def career_resume_upload_path(instance, filename):
     safe_name = f"{uuid.uuid4().hex}_{filename}"
-    role_folder = instance.role.lower().replace(' ', '_') if instance.role else 'general'
+    role_folder = instance.role.name.lower().replace(' ', '_') if instance.role else 'general'
     return f"career/resumes/{role_folder}/{safe_name}"
+
+
+class Role(models.Model):
+    """
+    Represents a job role/position that the company is hiring for.
+    Has a complete job description that is mandatory.
+    """
+    name = models.CharField(max_length=100, unique=True)
+    job_description = models.TextField(help_text="Complete job description (mandatory)")
+    requirements = models.TextField(blank=True, help_text="Technical and soft skills requirements")
+    responsibilities = models.TextField(blank=True, help_text="Key responsibilities")
+    benefits = models.TextField(blank=True, help_text="Benefits and perks")
+    is_active = models.BooleanField(default=True, help_text="If unchecked, this role won't appear on careers page")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return self.name
+
 
 class Appointment(models.Model):
     # Dropdown choices for services
@@ -43,15 +65,6 @@ class Appointment(models.Model):
 
 
 class CareerApplication(models.Model):
-    ROLE_WEALTH_ANALYST = 'Wealth Analyst'
-    ROLE_RELATIONSHIP_MANAGER = 'Relationship Manager'
-    ROLE_OPERATIONS_EXECUTIVE = 'Operations Executive'
-    ROLE_CHOICES = [
-        (ROLE_WEALTH_ANALYST, 'Wealth Analyst'),
-        (ROLE_RELATIONSHIP_MANAGER, 'Relationship Manager'),
-        (ROLE_OPERATIONS_EXECUTIVE, 'Operations Executive'),
-        ('Other', 'Other'),
-    ]
     
     STATUS_NEW = 'NEW'
     STATUS_HOLD = 'HOLD'
@@ -68,7 +81,7 @@ class CareerApplication(models.Model):
     email = models.EmailField()
     location = models.CharField(max_length=120)
     college = models.CharField(max_length=160)
-    role = models.CharField(max_length=50, choices=ROLE_CHOICES, default=ROLE_WEALTH_ANALYST)
+    role = models.ForeignKey(Role, on_delete=models.PROTECT, related_name='applications')
     resume = models.FileField(
         upload_to=career_resume_upload_path,
         validators=[FileExtensionValidator(['pdf'])],
@@ -77,6 +90,9 @@ class CareerApplication(models.Model):
     reviewed_at = models.DateTimeField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-created_at']
 
     def __str__(self):
         return f"{self.full_name} - {self.status}"

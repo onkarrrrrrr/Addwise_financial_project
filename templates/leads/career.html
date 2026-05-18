@@ -128,68 +128,44 @@
                 apply anyway and tell us where you add the most value.
             </p>
         </div>
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-            <div class="bg-white rounded-[2.5rem] p-10 border border-slate-100 shadow-sm">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <div class="text-xs font-black uppercase tracking-[0.4em] text-slate-400">Advisory</div>
-                        <h3 class="text-2xl font-black mt-3">Wealth Analyst</h3>
+        
+        {% if active_roles %}
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                {% for role in active_roles %}
+                    <div class="bg-white rounded-[2.5rem] p-10 border border-slate-100 shadow-sm {% if forloop.last and forloop.counter|divisibleby:2 == False %}lg:col-span-2{% endif %}">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <div class="text-xs font-black uppercase tracking-[0.4em] text-slate-400">Open Position</div>
+                                <h3 class="text-2xl font-black mt-3">{{ role.name }}</h3>
+                            </div>
+                            <div class="h-12 w-12 rounded-2xl bg-brand-navy text-white flex items-center justify-center text-xl">✦</div>
+                        </div>
+                        <p class="text-slate-600 mt-4 line-clamp-3">
+                            {{ role.job_description }}
+                        </p>
+                        
+                        {% if role.responsibilities_list %}
+                            <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                {% for item in role.responsibilities_list %}
+                                    <span class="px-4 py-2 rounded-full bg-slate-100 text-slate-700 font-semibold text-sm border border-slate-200">
+                                        {{ item }}
+                                    </span>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        
+                        <a href="{% url 'career' %}?role={{ role.id }}#career-form" class="inline-block mt-6 px-6 py-2 bg-brand-navy text-white font-bold rounded-full hover:bg-brand-yellow transition-all">
+                            Apply for this role
+                        </a>
                     </div>
-                    <div class="h-12 w-12 rounded-2xl bg-brand-navy text-white flex items-center justify-center text-xl">01</div>
-                </div>
-                <p class="text-slate-600 mt-4">
-                    Support portfolio reviews, goal planning, and client reporting.
-                </p>
-                <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm text-slate-600 font-semibold">
-                    <span class="px-3 py-2 rounded-full bg-slate-50 border border-slate-100">Goal mapping</span>
-                    <span class="px-3 py-2 rounded-full bg-slate-50 border border-slate-100">Research notes</span>
-                    <span class="px-3 py-2 rounded-full bg-slate-50 border border-slate-100">Review packs</span>
-                </div>
-                <a href="{% url 'career' %}?role=Wealth%20Analyst#career-form" class="inline-block mt-6 px-6 py-2 bg-brand-navy text-white font-bold rounded-full hover:bg-brand-yellow transition-all">
-                    Apply for this role
-                </a>
+                {% endfor %}
             </div>
-            <div class="bg-white rounded-[2.5rem] p-10 border border-slate-100 shadow-sm">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <div class="text-xs font-black uppercase tracking-[0.4em] text-slate-400">Client Experience</div>
-                        <h3 class="text-2xl font-black mt-3">Relationship Manager</h3>
-                    </div>
-                    <div class="h-12 w-12 rounded-2xl bg-brand-yellow text-white flex items-center justify-center text-xl">02</div>
-                </div>
-                <p class="text-slate-600 mt-4">
-                    Own the client journey and ensure timely follow-ups and updates.
-                </p>
-                <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm text-slate-600 font-semibold">
-                    <span class="px-3 py-2 rounded-full bg-slate-50 border border-slate-100">Onboarding</span>
-                    <span class="px-3 py-2 rounded-full bg-slate-50 border border-slate-100">Review cadence</span>
-                    <span class="px-3 py-2 rounded-full bg-slate-50 border border-slate-100">Issue resolution</span>
-                </div>
-                <a href="{% url 'career' %}?role=Relationship%20Manager#career-form" class="inline-block mt-6 px-6 py-2 bg-brand-navy text-white font-bold rounded-full hover:bg-brand-yellow transition-all">
-                    Apply for this role
-                </a>
+        {% else %}
+            <div class="text-center py-12 bg-white rounded-3xl border border-slate-100">
+                <p class="text-slate-600 text-lg font-semibold">No open positions at the moment.</p>
+                <p class="text-slate-500 mt-2">Please check back soon or reach out to us directly.</p>
             </div>
-            <div class="bg-white rounded-[2.5rem] p-10 border border-slate-100 shadow-sm lg:col-span-2">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <div class="text-xs font-black uppercase tracking-[0.4em] text-slate-400">Operations</div>
-                        <h3 class="text-2xl font-black mt-3">Operations Executive</h3>
-                    </div>
-                    <div class="h-12 w-12 rounded-2xl bg-slate-900 text-white flex items-center justify-center text-xl">03</div>
-                </div>
-                <p class="text-slate-600 mt-4">
-                    Keep documentation, compliance, and process execution precise.
-                </p>
-                <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm text-slate-600 font-semibold">
-                    <span class="px-3 py-2 rounded-full bg-slate-50 border border-slate-100">Compliance logs</span>
-                    <span class="px-3 py-2 rounded-full bg-slate-50 border border-slate-100">Back-office sync</span>
-                    <span class="px-3 py-2 rounded-full bg-slate-50 border border-slate-100">Reporting cadence</span>
-                </div>
-                <a href="{% url 'career' %}?role=Operations%20Executive#career-form" class="inline-block mt-6 px-6 py-2 bg-slate-900 text-white font-bold rounded-full hover:bg-brand-yellow transition-all">
-                    Apply for this role
-                </a>
-            </div>
-        </div>
+        {% endif %}
     </div>
 </section>
 

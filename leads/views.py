@@ -11,8 +11,8 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils import timezone
 
-from .forms import CareerApplicationForm
-from .models import Appointment, CareerApplication
+from .forms import CareerApplicationForm, RoleForm
+from .models import Appointment, CareerApplication, Role
 
 _GOOGLE_REVIEWS_CACHE = {"expires": 0, "data": None}
 _GOOGLE_REVIEWS_TTL_SECONDS = 60 * 60
@@ -220,9 +220,23 @@ def contact_view(request):
     return render(request, 'leads/contact.html')
 
 
+def calculators_view(request):
+    """Display calculators page with embedded external site"""
+    return render(request, 'leads/calculators.html')
+
+
 def career_view(request):
     submitted = request.GET.get('submitted') == '1'
-    role = request.GET.get('role', '')
+    role_id = request.GET.get('role', '')
+    active_roles = Role.objects.filter(is_active=True).order_by('name')
+    
+    # Process responsibilities to split by newlines
+    for role in active_roles:
+        if role.responsibilities:
+            role.responsibilities_list = [r.strip() for r in role.responsibilities.split('\n') if r.strip()]
+        else:
+            role.responsibilities_list = []
+    
     if request.method == 'POST':
         form = CareerApplicationForm(request.POST, request.FILES)
         if form.is_valid():
@@ -231,15 +245,20 @@ def career_view(request):
             return redirect(f"{reverse('career')}?submitted=1")
     else:
         initial_data = {}
-        if role:
-            initial_data['role'] = role
+        if role_id:
+            try:
+                initial_data['role'] = int(role_id)
+            except (ValueError, TypeError):
+                pass
         form = CareerApplicationForm(initial=initial_data)
+    
     return render(
         request,
         'leads/career.html',
         {
             'form': form,
             'submitted': submitted,
+            'active_roles': active_roles,
         },
     )
 
@@ -248,7 +267,7 @@ def career_view(request):
 def applications_list(request):
     from itertools import groupby
     status = request.GET.get('status', 'all')
-    applications = CareerApplication.objects.all().order_by('role', '-created_at')
+    applications = CareerApplication.objects.all().select_related('role').order_by('role__name', '-created_at')
     if status != 'all':
         applications = applications.filter(status=status)
     status_counts = {
@@ -344,6 +363,79 @@ def application_delete(request, pk):
         application.delete()
         return redirect('applications_list')
     return redirect('application_detail', pk=pk)
+
+
+# ========== ROLE MANAGEMENT CRUD VIEWS ==========
+
+@login_required(login_url='applications_login')
+def roles_list(request):
+    """List all roles with management options"""
+    roles = Role.objects.all().order_by('-created_at')
+    return render(request, 'leads/roles_list.html', {'roles': roles})
+
+
+@login_required(login_url='applications_login')
+def role_create(request):
+    """Create a new role"""
+    if request.method == 'POST':
+        form = RoleForm(request.POST)
+        if form.is_valid():
+            role = form.save()
+            return redirect('role_detail', pk=role.pk)
+    else:
+        form = RoleForm()
+    return render(request, 'leads/role_form.html', {'form': form, 'action': 'Create'})
+
+
+@login_required(login_url='applications_login')
+def role_detail(request, pk):
+    """View role details"""
+    role = get_object_or_404(Role, pk=pk)
+    applications_count = role.applications.count()
+    return render(
+        request,
+        'leads/role_detail.html',
+        {'role': role, 'applications_count': applications_count}
+    )
+
+
+@login_required(login_url='applications_login')
+def role_edit(request, pk):
+    """Edit an existing role"""
+    role = get_object_or_404(Role, pk=pk)
+    if request.method == 'POST':
+        form = RoleForm(request.POST, instance=role)
+        if form.is_valid():
+            form.save()
+            return redirect('role_detail', pk=role.pk)
+    else:
+        form = RoleForm(instance=role)
+    return render(
+        request,
+        'leads/role_form.html',
+        {'form': form, 'action': 'Edit', 'role': role}
+    )
+
+
+@login_required(login_url='applications_login')
+def role_delete(request, pk):
+    """Delete a role"""
+    role = get_object_or_404(Role, pk=pk)
+    applications_count = role.applications.count()
+    
+    if applications_count > 0:
+        # Can't delete role with active applications
+        return render(
+            request,
+            'leads/role_delete_error.html',
+            {'role': role, 'applications_count': applications_count}
+        )
+    
+    if request.method == 'POST':
+        role.delete()
+        return redirect('roles_list')
+    
+    return render(request, 'leads/role_confirm_delete.html', {'role': role})
 
 
 def _send_career_submission_emails(application):

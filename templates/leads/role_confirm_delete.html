@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="pt-32 pb-20 bg-white min-h-screen">
+    <div class="max-w-2xl mx-auto px-6">
+        <div class="mb-10">
+            <p class="text-xs font-black uppercase tracking-[0.5em] text-slate-400">Confirm</p>
+            <h1 class="text-3xl md:text-5xl font-black text-slate-900 mt-3">Delete Role</h1>
+        </div>
+
+        <div class="bg-white border border-red-200 rounded-3xl p-8 shadow-sm">
+            <div class="bg-red-50 border border-red-200 rounded-xl p-6 mb-8">
+                <h2 class="text-lg font-bold text-red-900">Are you sure?</h2>
+                <p class="text-red-800 mt-2">This action cannot be undone. The role <strong>{{ role.name }}</strong> will be permanently deleted.</p>
+            </div>
+
+            <form method="POST" class="space-y-4">
+                {% csrf_token %}
+                <div class="flex gap-4">
+                    <button type="submit" class="flex-1 px-6 py-3 rounded-full bg-red-600 text-white font-bold hover:bg-red-700 transition-all">
+                        Delete Permanently
+                    </button>
+                    <a href="{% url 'role_detail' role.pk %}" class="flex-1 px-6 py-3 rounded-full border border-slate-200 text-brand-navy font-bold text-center hover:border-brand-yellow transition-all">
+                        Cancel
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
