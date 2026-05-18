@@ -10,6 +10,6 @@ class AppointmentAdmin(admin.ModelAdmin):
 
 @admin.register(CareerApplication)
 class CareerApplicationAdmin(admin.ModelAdmin):
-    list_display = ('full_name', 'email', 'location', 'college', 'status', 'created_at')
-    list_filter = ('status', 'created_at')
-    search_fields = ('full_name', 'email', 'location', 'college')
+    list_display = ('full_name', 'email', 'role', 'location', 'college', 'status', 'created_at')
+    list_filter = ('status', 'role', 'created_at')
+    search_fields = ('full_name', 'email', 'location', 'college', 'role')

@@ -179,6 +179,7 @@ def contact_view(request):
 
 def career_view(request):
     submitted = request.GET.get('submitted') == '1'
+    role = request.GET.get('role', '')
     if request.method == 'POST':
         form = CareerApplicationForm(request.POST, request.FILES)
         if form.is_valid():
@@ -186,7 +187,10 @@ def career_view(request):
             _send_career_submission_emails(application)
             return redirect(f"{reverse('career')}?submitted=1")
     else:
-        form = CareerApplicationForm()
+        initial_data = {}
+        if role:
+            initial_data['role'] = role
+        form = CareerApplicationForm(initial=initial_data)
     return render(
         request,
         'leads/career.html',
@@ -199,8 +203,9 @@ def career_view(request):
 
 @login_required(login_url='applications_login')
 def applications_list(request):
+    from itertools import groupby
     status = request.GET.get('status', 'all')
-    applications = CareerApplication.objects.all().order_by('-created_at')
+    applications = CareerApplication.objects.all().order_by('role', '-created_at')
     if status != 'all':
         applications = applications.filter(status=status)
     status_counts = {
@@ -218,15 +223,43 @@ def applications_list(request):
             status=CareerApplication.STATUS_REJECTED
         ).count(),
     }
+    # Group applications by role
+    grouped_applications = {}
+    for role, group in groupby(applications, key=lambda x: x.role):
+        grouped_applications[role] = list(group)
+    
     return render(
         request,
         'leads/applications_list.html',
         {
-            'applications': applications,
+            'grouped_applications': grouped_applications,
             'status': status,
             'status_counts': status_counts,
         },
     )
+
+
+@login_required(login_url='applications_login')
+def applications_delete_by_role(request):
+    if request.method == 'POST':
+        role = request.POST.get('role')
+        applications = CareerApplication.objects.filter(role=role)
+        for application in applications:
+            if application.resume:
+                application.resume.delete(save=False)
+        applications.delete()
+    return redirect('applications_list')
+
+
+@login_required(login_url='applications_login')
+def applications_delete_all(request):
+    if request.method == 'POST':
+        applications = CareerApplication.objects.all()
+        for application in applications:
+            if application.resume:
+                application.resume.delete(save=False)
+        applications.delete()
+    return redirect('applications_list')
 
 
 @login_required(login_url='applications_login')
@@ -256,6 +289,18 @@ def application_detail(request, pk):
         'leads/application_detail.html',
         {'application': application},
     )
+
+
+@login_required(login_url='applications_login')
+def application_delete(request, pk):
+    application = get_object_or_404(CareerApplication, pk=pk)
+    if request.method == 'POST':
+        # Delete the stored PDF file
+        if application.resume:
+            application.resume.delete(save=False)
+        application.delete()
+        return redirect('applications_list')
+    return redirect('application_detail', pk=pk)
 
 
 def _send_career_submission_emails(application):

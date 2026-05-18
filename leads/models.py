@@ -6,9 +6,9 @@ from django.utils import timezone
 
 
 def career_resume_upload_path(instance, filename):
-    timestamp = timezone.now().strftime('%Y/%m/%d')
     safe_name = f"{uuid.uuid4().hex}_{filename}"
-    return f"career/resumes/{timestamp}/{safe_name}"
+    role_folder = instance.role.lower().replace(' ', '_') if instance.role else 'general'
+    return f"career/resumes/{role_folder}/{safe_name}"
 
 class Appointment(models.Model):
     # Dropdown choices for services
@@ -31,6 +31,16 @@ class Appointment(models.Model):
 
 
 class CareerApplication(models.Model):
+    ROLE_WEALTH_ANALYST = 'Wealth Analyst'
+    ROLE_RELATIONSHIP_MANAGER = 'Relationship Manager'
+    ROLE_OPERATIONS_EXECUTIVE = 'Operations Executive'
+    ROLE_CHOICES = [
+        (ROLE_WEALTH_ANALYST, 'Wealth Analyst'),
+        (ROLE_RELATIONSHIP_MANAGER, 'Relationship Manager'),
+        (ROLE_OPERATIONS_EXECUTIVE, 'Operations Executive'),
+        ('Other', 'Other'),
+    ]
+    
     STATUS_NEW = 'NEW'
     STATUS_HOLD = 'HOLD'
     STATUS_ACCEPTED = 'ACCEPTED'
@@ -46,6 +56,7 @@ class CareerApplication(models.Model):
     email = models.EmailField()
     location = models.CharField(max_length=120)
     college = models.CharField(max_length=160)
+    role = models.CharField(max_length=50, choices=ROLE_CHOICES, default=ROLE_WEALTH_ANALYST)
     resume = models.FileField(
         upload_to=career_resume_upload_path,
         validators=[FileExtensionValidator(['pdf'])],

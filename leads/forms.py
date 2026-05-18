@@ -9,7 +9,7 @@ MAX_RESUME_BYTES = MAX_RESUME_MB * 1024 * 1024
 class CareerApplicationForm(forms.ModelForm):
     class Meta:
         model = CareerApplication
-        fields = ['full_name', 'email', 'location', 'college', 'resume']
+        fields = ['full_name', 'email', 'location', 'college', 'role', 'resume']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -33,6 +33,9 @@ class CareerApplicationForm(forms.ModelForm):
         self.fields['college'].widget.attrs.update({
             'class': base_classes,
             'placeholder': 'College or university',
+        })
+        self.fields['role'].widget.attrs.update({
+            'class': base_classes,
         })
         self.fields['resume'].widget.attrs.update({
             'class': (

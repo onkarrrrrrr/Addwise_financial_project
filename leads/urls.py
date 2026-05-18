@@ -15,6 +15,9 @@ urlpatterns = [
     ),
     path('applications/', views.applications_list, name='applications_list'),
     path('applications/<int:pk>/', views.application_detail, name='application_detail'),
+    path('applications/<int:pk>/delete/', views.application_delete, name='application_delete'),
+    path('applications/delete-by-role/', views.applications_delete_by_role, name='applications_delete_by_role'),
+    path('applications/delete-all/', views.applications_delete_all, name='applications_delete_all'),
     # Yahan maine 'appointment_view' ko hata kar sirf 'appointment' kar diya hai 👇
     path('appointment/', views.appointment, name='appointment'), 
 ]

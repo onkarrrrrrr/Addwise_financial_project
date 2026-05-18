@@ -26,34 +26,73 @@
                     Rejected ({{ status_counts.REJECTED }})
                 </a>
             </div>
+            {% if grouped_applications|length > 0 %}
+            <form method="post" action="{% url 'applications_delete_all' %}" style="display:inline;" onsubmit="return confirm('Delete ALL applications? This cannot be undone.');">  
+                {% csrf_token %}
+                <button type="submit" class="mt-4 px-4 py-2 text-sm font-bold bg-red-600 text-white rounded-lg hover:bg-red-700 transition-all">
+                    Delete All Applications
+                </button>
+            </form>
+            {% endif %}
         </div>
 
         <div class="mt-10 bg-white border border-slate-100 rounded-3xl shadow-sm overflow-hidden">
-            <div class="grid grid-cols-12 gap-4 px-6 py-4 text-xs font-bold uppercase tracking-[0.3em] text-slate-400 bg-slate-50">
-                <div class="col-span-4">Candidate</div>
-                <div class="col-span-3">Location</div>
-                <div class="col-span-3">College</div>
-                <div class="col-span-2">Status</div>
-            </div>
-            {% if applications %}
-                {% for application in applications %}
-                <a href="{% url 'application_detail' application.pk %}" class="grid grid-cols-12 gap-4 px-6 py-5 border-t border-slate-100 hover:bg-slate-50 transition-all">
-                    <div class="col-span-4">
-                        <div class="font-bold text-slate-900">{{ application.full_name }}</div>
-                        <div class="text-sm text-slate-500">{{ application.email }}</div>
+            {% if grouped_applications %}
+                {% for role, applications_by_role in grouped_applications.items %}
+                    {% if applications_by_role %}
+                    <div>
+                        <div class="sticky top-0 bg-brand-navy text-white px-6 py-4 flex items-center justify-between">
+                            <div>
+                                <h2 class="text-lg font-bold">{{ role }}</h2>
+                                <p class="text-sm text-slate-300">{{ applications_by_role|length }} application{{ applications_by_role|length|pluralize }}</p>
+                            </div>
+                            <form method="post" action="{% url 'applications_delete_by_role' %}" style="display:inline;" onsubmit="return confirm('Delete all {{ role }} applications? This cannot be undone.');">
+                                {% csrf_token %}
+                                <input type="hidden" name="role" value="{{ role }}">
+                                <button type="submit" class="px-3 py-1.5 text-xs font-bold bg-red-500 text-white rounded-lg hover:bg-red-700 transition-all whitespace-nowrap">
+                                    Delete All
+                                </button>
+                            </form>
+                        </div>
+                        <div class="grid grid-cols-12 gap-4 px-6 py-4 text-xs font-bold uppercase tracking-[0.3em] text-slate-400 bg-slate-50">
+                            <div class="col-span-3">Candidate</div>
+                            <div class="col-span-2">Location</div>
+                            <div class="col-span-2">College</div>
+                            <div class="col-span-2">Status</div>
+                            <div class="col-span-3">Actions</div>
+                        </div>
+                        {% for application in applications_by_role %}
+                        <div class="grid grid-cols-12 gap-4 px-6 py-5 border-t border-slate-100 hover:bg-slate-50 transition-all items-center">
+                            <a href="{% url 'application_detail' application.pk %}" class="col-span-3 hover:text-brand-yellow">
+                                <div class="font-bold text-slate-900">{{ application.full_name }}</div>
+                                <div class="text-sm text-slate-500">{{ application.email }}</div>
+                            </a>
+                            <a href="{% url 'application_detail' application.pk %}" class="col-span-2 text-slate-600 hover:text-brand-yellow">{{ application.location }}</a>
+                            <a href="{% url 'application_detail' application.pk %}" class="col-span-2 text-slate-600 hover:text-brand-yellow">{{ application.college }}</a>
+                            <a href="{% url 'application_detail' application.pk %}" class="col-span-2">
+                                <span class="inline-flex px-3 py-1 rounded-full text-xs font-bold
+                                    {% if application.status == 'NEW' %}bg-blue-50 text-blue-700
+                                    {% elif application.status == 'HOLD' %}bg-yellow-50 text-yellow-700
+                                    {% elif application.status == 'ACCEPTED' %}bg-green-50 text-green-700
+                                    {% else %}bg-red-50 text-red-700{% endif %}">
+                                    {{ application.get_status_display }}
+                                </span>
+                            </a>
+                            <div class="col-span-3 flex gap-2">
+                                <a href="{% url 'application_detail' application.pk %}" class="px-3 py-1 text-xs font-bold bg-brand-navy text-white rounded-lg hover:bg-brand-yellow transition-all">
+                                    View
+                                </a>
+                                <form method="post" action="{% url 'application_delete' application.pk %}" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this application?');">
+                                    {% csrf_token %}
+                                    <button type="submit" class="px-3 py-1 text-xs font-bold bg-red-500 text-white rounded-lg hover:bg-red-700 transition-all">
+                                        Delete
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        {% endfor %}
                     </div>
-                    <div class="col-span-3 text-slate-600">{{ application.location }}</div>
-                    <div class="col-span-3 text-slate-600">{{ application.college }}</div>
-                    <div class="col-span-2">
-                        <span class="inline-flex px-3 py-1 rounded-full text-xs font-bold
-                            {% if application.status == 'NEW' %}bg-blue-50 text-blue-700
-                            {% elif application.status == 'HOLD' %}bg-yellow-50 text-yellow-700
-                            {% elif application.status == 'ACCEPTED' %}bg-green-50 text-green-700
-                            {% else %}bg-red-50 text-red-700{% endif %}">
-                            {{ application.get_status_display }}
-                        </span>
-                    </div>
-                </a>
+                    {% endif %}
                 {% endfor %}
             {% else %}
                 <div class="px-6 py-10 text-center text-slate-500">

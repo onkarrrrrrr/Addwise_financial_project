@@ -145,6 +145,9 @@
                     <span class="px-3 py-2 rounded-full bg-slate-50 border border-slate-100">Research notes</span>
                     <span class="px-3 py-2 rounded-full bg-slate-50 border border-slate-100">Review packs</span>
                 </div>
+                <a href="{% url 'career' %}?role=Wealth%20Analyst#career-form" class="inline-block mt-6 px-6 py-2 bg-brand-navy text-white font-bold rounded-full hover:bg-brand-yellow transition-all">
+                    Apply for this role
+                </a>
             </div>
             <div class="bg-white rounded-[2.5rem] p-10 border border-slate-100 shadow-sm">
                 <div class="flex items-center justify-between">
@@ -162,6 +165,9 @@
                     <span class="px-3 py-2 rounded-full bg-slate-50 border border-slate-100">Review cadence</span>
                     <span class="px-3 py-2 rounded-full bg-slate-50 border border-slate-100">Issue resolution</span>
                 </div>
+                <a href="{% url 'career' %}?role=Relationship%20Manager#career-form" class="inline-block mt-6 px-6 py-2 bg-brand-navy text-white font-bold rounded-full hover:bg-brand-yellow transition-all">
+                    Apply for this role
+                </a>
             </div>
             <div class="bg-white rounded-[2.5rem] p-10 border border-slate-100 shadow-sm lg:col-span-2">
                 <div class="flex items-center justify-between">
@@ -179,6 +185,9 @@
                     <span class="px-3 py-2 rounded-full bg-slate-50 border border-slate-100">Back-office sync</span>
                     <span class="px-3 py-2 rounded-full bg-slate-50 border border-slate-100">Reporting cadence</span>
                 </div>
+                <a href="{% url 'career' %}?role=Operations%20Executive#career-form" class="inline-block mt-6 px-6 py-2 bg-slate-900 text-white font-bold rounded-full hover:bg-brand-yellow transition-all">
+                    Apply for this role
+                </a>
             </div>
         </div>
     </div>
@@ -326,6 +335,13 @@
                             <p class="text-sm text-red-600 mt-2">{{ form.college.errors|striptags }}</p>
                             {% endif %}
                         </div>
+                    </div>
+                    <div>
+                        <label class="text-xs font-bold uppercase tracking-wider text-brand-grey mb-2 block">Role</label>
+                        {{ form.role }}
+                        {% if form.role.errors %}
+                        <p class="text-sm text-red-600 mt-2">{{ form.role.errors|striptags }}</p>
+                        {% endif %}
                     </div>
                     <div>
                         <label class="text-xs font-bold uppercase tracking-wider text-brand-grey mb-2 block">Resume (PDF)</label>

@@ -14,7 +14,7 @@
             theme: {
                 extend: {
                     colors: {
-                        'brand-navy': '#153769',
+                            'brand-navy': '#153769',
                         'brand-yellow': '#F38D1E',
                         'brand-grey': '#4C4C4C',
                     },
@@ -51,12 +51,13 @@
             transform: translate3d(0, 0, 0);
         }
         body::before {
+            /* stronger yellow accents to balance navy */
             background:
-                radial-gradient(40% 40% at 10% 20%, rgba(243, 141, 30, 0.35), transparent 60%),
+                radial-gradient(40% 40% at 10% 20%, rgba(243, 141, 30, 0.45), transparent 60%),
                 radial-gradient(35% 35% at 80% 10%, rgba(21, 55, 105, 0.35), transparent 60%),
                 radial-gradient(45% 45% at 60% 80%, rgba(21, 55, 105, 0.25), transparent 60%),
-                radial-gradient(35% 35% at 20% 80%, rgba(243, 141, 30, 0.28), transparent 60%);
-            filter: blur(22px) saturate(120%);
+                radial-gradient(35% 35% at 20% 80%, rgba(243, 141, 30, 0.32), transparent 60%);
+            filter: blur(22px) saturate(130%);
             animation: meshShift 22s ease-in-out infinite;
         }
         body::after {
@@ -64,9 +65,9 @@
             inset: -30%;
             background:
                 radial-gradient(50% 50% at 30% 30%, rgba(21, 55, 105, 0.22), transparent 70%),
-                radial-gradient(40% 40% at 70% 60%, rgba(243, 141, 30, 0.22), transparent 70%);
+                radial-gradient(40% 40% at 70% 60%, rgba(243, 141, 30, 0.28), transparent 70%);
             filter: blur(55px);
-            opacity: 0.8;
+            opacity: 0.85;
             animation: meshShiftAlt 30s ease-in-out infinite;
         }
         .scroll-reveal {
@@ -144,12 +145,12 @@
                 </a>
 
                 <div class="hidden md:flex items-center space-x-10">
-                    <a href="{% url 'home' %}" class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest">Home</a>
-                    <a href="{% url 'services' %}" class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest">Our Services</a>
-                    <a href="{% url 'about' %}" class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest">About</a>
-                    <a href="{% url 'contact' %}" class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest">Contact</a>
+                    <a href="{% url 'home' %}" class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest {% if request.resolver_match.url_name == 'home' %}underline decoration-brand-yellow decoration-2 underline-offset-4 font-extrabold{% endif %}">Home</a>
+                    <a href="{% url 'services' %}" class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest {% if request.resolver_match.url_name == 'services' %}underline decoration-brand-yellow decoration-2 underline-offset-4 font-extrabold{% endif %}">Our Services</a>
+                    <a href="{% url 'about' %}" class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest {% if request.resolver_match.url_name == 'about' %}underline decoration-brand-yellow decoration-2 underline-offset-4 font-extrabold{% endif %}">About</a>
+                    <a href="{% url 'career' %}" class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest {% if request.resolver_match.url_name == 'career' %}underline decoration-brand-yellow decoration-2 underline-offset-4 font-extrabold{% endif %}">Careers</a>
                     <a href="https://addwisefin.investorcorner.co.in/clients/dashboard" target="_blank" class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest">Calculators</a>
-                    <a href="{% url 'appointment' %}" class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest">Book Appointment</a>
+                    <a href="{% url 'appointment' %}" class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest {% if request.resolver_match.url_name == 'appointment' %}underline decoration-brand-yellow decoration-2 underline-offset-4 font-extrabold{% endif %}">Book Appointment</a>
                     <a href="https://addwisefin.investwell.app/app/#/login" target="_blank" rel="noopener noreferrer" class="text-sm font-bold uppercase tracking-widest bg-brand-navy text-white rounded-full px-4 py-2 hover:bg-brand-yellow transition-all">Portfolio Login</a>
                 </div>
             </div>
