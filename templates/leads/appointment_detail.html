@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="pt-32 pb-20 bg-white min-h-screen">
+    <div class="max-w-4xl mx-auto px-6">
+        <div class="flex items-center justify-between gap-6">
+            <div>
+                <p class="text-xs font-black uppercase tracking-[0.5em] text-slate-400">Appointment</p>
+                <h1 class="text-3xl md:text-5xl font-black text-slate-900 mt-3">{{ appointment.full_name }}</h1>
+                <p class="text-slate-500 mt-2">Submitted {{ appointment.created_at|date:"M d, Y" }}</p>
+            </div>
+            <span class="inline-flex px-4 py-2 rounded-full text-sm font-bold
+                {% if appointment.status == 'NEW' %}bg-blue-50 text-blue-700
+                {% elif appointment.status == 'COMPLETED' %}bg-green-50 text-green-700
+                {% else %}bg-red-50 text-red-700{% endif %}">
+                {{ appointment.get_status_display }}
+            </span>
+        </div>
+
+        <div class="mt-10 grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="lg:col-span-2 bg-slate-50 border border-slate-100 rounded-3xl p-8">
+                <div class="space-y-4">
+                    <div>
+                        <div class="text-xs font-black uppercase tracking-[0.3em] text-slate-400">Email</div>
+                        <div class="text-lg font-semibold text-slate-900 mt-2">{{ appointment.email }}</div>
+                    </div>
+                    <div>
+                        <div class="text-xs font-black uppercase tracking-[0.3em] text-slate-400">Phone</div>
+                        <div class="text-lg font-semibold text-slate-900 mt-2">{{ appointment.phone }}</div>
+                    </div>
+                    <div>
+                        <div class="text-xs font-black uppercase tracking-[0.3em] text-slate-400">Service</div>
+                        <div class="text-lg font-semibold text-slate-900 mt-2">{{ appointment.get_service_display }}</div>
+                    </div>
+                    <div>
+                        <div class="text-xs font-black uppercase tracking-[0.3em] text-slate-400">Message</div>
+                        <div class="text-sm text-slate-600 mt-2">{% if appointment.message %}{{ appointment.message }}{% else %}<span class="text-slate-400">No message provided</span>{% endif %}</div>
+                    </div>
+                    <div>
+                        <div class="text-xs font-black uppercase tracking-[0.3em] text-slate-400">Note</div>
+                        <div class="text-sm text-slate-600 mt-2">{% if appointment.note %}{{ appointment.note }}{% else %}<span class="text-slate-400">No notes yet</span>{% endif %}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
+                <h2 class="text-xl font-black text-slate-900">Manage</h2>
+                <p class="text-sm text-slate-500 mt-2">Add an internal note or mark this appointment completed.</p>
+                <form method="POST" class="mt-6 space-y-4">
+                    {% csrf_token %}
+                    <textarea name="note" rows="4" placeholder="Add internal note..." class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl"></textarea>
+                    <div class="flex gap-2">
+                        <button name="save_note" value="1" class="flex-1 px-4 py-3 rounded-xl bg-brand-navy text-white font-bold">Save Note</button>
+                        <button name="save_note" value="1" formaction="" class="px-4 py-3 rounded-xl bg-green-600 text-white font-bold" onclick="this.form.mark.value='completed'">Mark Completed</button>
+                    </div>
+                    <input type="hidden" name="mark" value="">
+                </form>
+
+                <form method="POST" action="{% url 'appointment_delete' appointment.pk %}" class="mt-4" onsubmit="return confirm('Delete this appointment?');">{% csrf_token %}
+                    <button name="delete" value="1" class="w-full px-4 py-3 rounded-xl bg-red-600 text-white font-bold">Delete Appointment</button>
+                </form>
+
+                <a href="{% url 'appointments_list' %}" class="inline-flex mt-6 text-sm font-bold text-brand-navy">Back to list</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

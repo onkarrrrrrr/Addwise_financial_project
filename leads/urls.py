@@ -20,4 +20,7 @@ urlpatterns = [
     path('applications/delete-all/', views.applications_delete_all, name='applications_delete_all'),
     # Yahan maine 'appointment_view' ko hata kar sirf 'appointment' kar diya hai 👇
     path('appointment/', views.appointment, name='appointment'), 
+    path('appointments/', views.appointments_list, name='appointments_list'),
+    path('appointments/<int:pk>/', views.appointment_detail, name='appointment_detail'),
+    path('appointments/<int:pk>/delete/', views.appointment_delete, name='appointment_delete'),
 ]

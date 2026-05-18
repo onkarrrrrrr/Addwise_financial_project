@@ -155,6 +155,49 @@ def appointment(request):
         success = True
     return render(request, 'leads/appointment.html', {'success': success})
 
+
+@login_required(login_url='applications_login')
+def appointments_list(request):
+    status = request.GET.get('status', 'all')
+    appointments = Appointment.objects.all().order_by('-created_at')
+    if status != 'all':
+        appointments = appointments.filter(status=status)
+    status_counts = {
+        'all': Appointment.objects.count(),
+        Appointment.STATUS_NEW: Appointment.objects.filter(status=Appointment.STATUS_NEW).count(),
+        Appointment.STATUS_COMPLETED: Appointment.objects.filter(status=Appointment.STATUS_COMPLETED).count(),
+        Appointment.STATUS_CANCELED: Appointment.objects.filter(status=Appointment.STATUS_CANCELED).count(),
+    }
+    return render(request, 'leads/appointments_list.html', {'appointments': appointments, 'status': status, 'status_counts': status_counts})
+
+
+@login_required(login_url='applications_login')
+def appointment_detail(request, pk):
+    appointment_obj = get_object_or_404(Appointment, pk=pk)
+    if request.method == 'POST':
+        # Handle marking completed and adding a note or deleting
+        if 'save_note' in request.POST:
+            note = request.POST.get('note', '')
+            appointment_obj.note = note
+            if request.POST.get('mark') == 'completed':
+                appointment_obj.status = Appointment.STATUS_COMPLETED
+                appointment_obj.reviewed_at = timezone.now()
+            appointment_obj.save(update_fields=['note', 'status', 'reviewed_at'])
+            return redirect('appointment_detail', pk=appointment_obj.pk)
+        elif 'delete' in request.POST:
+            appointment_obj.delete()
+            return redirect('appointments_list')
+    return render(request, 'leads/appointment_detail.html', {'appointment': appointment_obj})
+
+
+@login_required(login_url='applications_login')
+def appointment_delete(request, pk):
+    appointment_obj = get_object_or_404(Appointment, pk=pk)
+    if request.method == 'POST':
+        appointment_obj.delete()
+        return redirect('appointments_list')
+    return redirect('appointment_detail', pk=pk)
+
 def home_view(request):
     reviews_data = _get_google_reviews() or _get_fallback_reviews()
     place_id = os.getenv("GOOGLE_PLACE_ID")

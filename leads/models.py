@@ -24,6 +24,18 @@ class Appointment(models.Model):
     phone = models.CharField(max_length=15)
     service = models.CharField(max_length=10, choices=SERVICE_CHOICES)
     message = models.TextField(blank=True)
+    # Management fields
+    STATUS_NEW = 'NEW'
+    STATUS_COMPLETED = 'COMPLETED'
+    STATUS_CANCELED = 'CANCELED'
+    STATUS_CHOICES = [
+        (STATUS_NEW, 'New'),
+        (STATUS_COMPLETED, 'Completed'),
+        (STATUS_CANCELED, 'Canceled'),
+    ]
+    status = models.CharField(max_length=12, choices=STATUS_CHOICES, default=STATUS_NEW)
+    note = models.TextField(blank=True)
+    reviewed_at = models.DateTimeField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True) # Kab book kiya
 
     def __str__(self):

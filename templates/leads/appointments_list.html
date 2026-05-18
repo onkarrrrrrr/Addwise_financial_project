@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="pt-32 pb-20 bg-slate-50 min-h-screen">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="flex items-center justify-between gap-6">
+            <div>
+                <p class="text-xs font-black uppercase tracking-[0.5em] text-slate-400">Appointments</p>
+                <h1 class="text-3xl md:text-5xl font-black text-slate-900 mt-3">Manage appointments</h1>
+                <p class="text-slate-600 mt-2">View, add notes, mark completed, or delete appointment requests.</p>
+            </div>
+            <div class="flex gap-2">
+                <a href="?status=all" class="px-4 py-2 rounded-full text-sm font-bold border {% if status == 'all' %}bg-brand-navy text-white border-brand-navy{% else %}bg-white border-slate-200 text-slate-600{% endif %}">All ({{ status_counts.all }})</a>
+                <a href="?status=NEW" class="px-4 py-2 rounded-full text-sm font-bold border {% if status == 'NEW' %}bg-brand-navy text-white border-brand-navy{% else %}bg-white border-slate-200 text-slate-600{% endif %}">New ({{ status_counts.NEW }})</a>
+                <a href="?status=COMPLETED" class="px-4 py-2 rounded-full text-sm font-bold border {% if status == 'COMPLETED' %}bg-brand-navy text-white border-brand-navy{% else %}bg-white border-slate-200 text-slate-600{% endif %}">Completed ({{ status_counts.COMPLETED }})</a>
+                <a href="?status=CANCELED" class="px-4 py-2 rounded-full text-sm font-bold border {% if status == 'CANCELED' %}bg-brand-navy text-white border-brand-navy{% else %}bg-white border-slate-200 text-slate-600{% endif %}">Canceled ({{ status_counts.CANCELED }})</a>
+            </div>
+        </div>
+
+        <div class="mt-8 bg-white border border-slate-100 rounded-3xl shadow-sm overflow-hidden">
+            <div class="grid grid-cols-12 gap-4 px-6 py-4 text-xs font-bold uppercase tracking-[0.3em] text-slate-400 bg-slate-50">
+                <div class="col-span-3">Name</div>
+                <div class="col-span-2">Service</div>
+                <div class="col-span-3">Contact</div>
+                <div class="col-span-2">Submitted</div>
+                <div class="col-span-2">Actions</div>
+            </div>
+
+            {% if appointments %}
+                {% for appt in appointments %}
+                <div class="grid grid-cols-12 gap-4 px-6 py-5 border-t border-slate-100 hover:bg-slate-50 transition-all items-center">
+                    <a href="{% url 'appointment_detail' appt.pk %}" class="col-span-3 hover:text-brand-yellow">
+                        <div class="font-bold text-slate-900">{{ appt.full_name }}</div>
+                        <div class="text-sm text-slate-500">{{ appt.email }}</div>
+                    </a>
+                    <div class="col-span-2 text-slate-600">{{ appt.get_service_display }}</div>
+                    <div class="col-span-3 text-slate-600">{{ appt.phone }}</div>
+                    <div class="col-span-2 text-slate-600">{{ appt.created_at|date:"M d, Y" }}</div>
+                    <div class="col-span-2 flex gap-2">
+                        <a href="{% url 'appointment_detail' appt.pk %}" class="px-3 py-1 text-xs font-bold bg-brand-navy text-white rounded-lg hover:bg-brand-yellow transition-all">View</a>
+                        <form method="post" action="{% url 'appointment_delete' appt.pk %}" style="display:inline;" onsubmit="return confirm('Delete this appointment?');">{% csrf_token %}
+                            <button type="submit" class="px-3 py-1 text-xs font-bold bg-red-500 text-white rounded-lg hover:bg-red-700 transition-all">Delete</button>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="px-6 py-10 text-center text-slate-500">No appointments found.</div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}
