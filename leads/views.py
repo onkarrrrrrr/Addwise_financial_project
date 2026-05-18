@@ -220,6 +220,26 @@ def contact_view(request):
     return render(request, 'leads/contact.html')
 
 
+def disclaimer_view(request):
+    """Display disclaimer page"""
+    return render(request, 'leads/disclaimer.html')
+
+
+def privacy_policy_view(request):
+    """Display privacy policy page"""
+    return render(request, 'leads/privacy_policy.html')
+
+
+def disclosure_view(request):
+    """Display disclosure and regulatory information"""
+    return render(request, 'leads/disclosure.html')
+
+
+def code_of_conduct_view(request):
+    """Redirect to AMFI Code of Conduct PDF"""
+    return redirect('https://resources.investwellonline.com/due-diligence/AMFI_Code-of-Conduct.pdf')
+
+
 def calculators_view(request):
     """Display calculators page with embedded external site"""
     return render(request, 'leads/calculators.html')
