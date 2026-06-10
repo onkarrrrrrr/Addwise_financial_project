@@ -124,13 +124,23 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 # core/settings.py (at the end of file)
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'support.addwisefinacials@gmail.com' # Aapki Gmail ID
-EMAIL_HOST_PASSWORD = 'rruw wbvj mgvi cwdg' # Gmail se generate kiya hua 16-digit App Password
-DEFAULT_FROM_EMAIL = f"Addwise Financials <{EMAIL_HOST_USER}>"
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = 'support.addwisefinacials@gmail.com' # Aapki Gmail ID
+# EMAIL_HOST_PASSWORD = 'rruw wbvj mgvi cwdg' # Gmail se generate kiya hua 16-digit App Password
+# DEFAULT_FROM_EMAIL = f"Addwise Financials <{EMAIL_HOST_USER}>"
+
+# Email Configuration
+EMAIL_BACKEND = 'core.email_backend.InsecureEmailBackend'
+EMAIL_HOST = 'smtpout.secureserver.net' # Official GoDaddy/Titan SMTP gateway
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+EMAIL_USE_TLS = False # Set to False when using SSL (Port 465)
+EMAIL_HOST_USER = 'noreply@addwisefin.com'
+EMAIL_HOST_PASSWORD = 'Emailnoreply@1' # Use app password if 2FA is active
+DEFAULT_FROM_EMAIL = 'noreply@addwisefin.com'
 
 CAREERS_NOTIFICATION_EMAILS = [
     email.strip()

@@ -138,6 +138,7 @@ def _get_fallback_reviews():
 
 def appointment(request):
     success = False
+    error = None
     if request.method == 'POST':
         full_name = request.POST.get('full_name', '')
         email = request.POST.get('email', '')
@@ -145,15 +146,20 @@ def appointment(request):
         service = request.POST.get('service', '')
         message = request.POST.get('message', '')
 
-        Appointment.objects.create(
-            full_name=full_name,
-            email=email,
-            phone=phone,
-            service=service,
-            message=message,
-        )
-        success = True
-    return render(request, 'leads/appointment.html', {'success': success})
+        email_clean = email.lower().strip()
+        blacklist = ['bncinema.com', 'fxzig.com', 'bwmyga.com']
+        if any(email_clean.endswith(f'@{domain}') or email_clean == domain for domain in blacklist):
+            error = "Emails from this domain are not accepted."
+        else:
+            Appointment.objects.create(
+                full_name=full_name,
+                email=email,
+                phone=phone,
+                service=service,
+                message=message,
+            )
+            success = True
+    return render(request, 'leads/appointment.html', {'success': success, 'error': error})
 
 
 @login_required(login_url='applications_login')

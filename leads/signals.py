@@ -33,7 +33,8 @@ def send_appointment_emails(sender, instance, created, **kwargs):
                 f"Name: {instance.full_name}\n"
                 f"Phone: {instance.phone}\n"
                 f"Email: {instance.email}\n"
-                f"Service: {instance.get_service_display()}\n\n"
+                f"Service: {instance.get_service_display()}\n"
+                f"Message: {instance.message}\n\n"
                 f"Please log in to the admin panel for more details."
             )
             
@@ -41,7 +42,7 @@ def send_appointment_emails(sender, instance, created, **kwargs):
                 subject=admin_subject,
                 message=admin_message,
                 from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=['satyampathrikar2007@gmail.com'], 
+                recipient_list=['connect@addwisefin.com'], 
                 fail_silently=False,
             )
             

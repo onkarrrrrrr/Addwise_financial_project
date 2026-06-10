@@ -85,6 +85,15 @@ class CareerApplicationForm(forms.ModelForm):
             'accept': 'application/pdf',
         })
 
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if email:
+            email_lower = email.lower().strip()
+            blacklist = ['bncinema.com', 'fxzig.com', 'bwmyga.com']
+            if any(email_lower.endswith(f'@{domain}') or email_lower == domain for domain in blacklist):
+                raise forms.ValidationError("Emails from this domain are not accepted.")
+        return email
+
     def clean_resume(self):
         resume = self.cleaned_data.get('resume')
         if not resume:
