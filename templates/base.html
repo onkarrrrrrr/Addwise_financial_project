@@ -221,9 +221,10 @@
 
 <body class="antialiased text-brand-navy">
 
-    <nav x-data="{ isScrolled: false }" @scroll.window="isScrolled = (window.pageYOffset > 20) ? true : false"
+    <nav x-data="{ isScrolled: false, mobileMenuOpen: false }" @scroll.window="isScrolled = (window.pageYOffset > 20) ? true : false"
         :class="isScrolled ? 'glass-nav py-2 shadow-sm' : 'bg-white py-5'"
-        class="fixed w-full z-50 transition-all duration-500 top-0 left-0">
+        class="fixed w-full z-50 transition-all duration-500 top-0 left-0"
+        @keydown.escape.window="mobileMenuOpen = false">
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex justify-between items-center h-16">
                 <a href="{% url 'home' %}" class="flex items-center gap-3 group -ml-3">
@@ -234,6 +235,7 @@
                         class="h-10 w-auto object-contain">
                 </a>
 
+                <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-10">
                     <a href="{% url 'home' %}"
                         class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest {% if request.resolver_match.url_name == 'home' %}underline decoration-brand-yellow decoration-2 underline-offset-4 font-extrabold{% endif %}">Home</a>
@@ -253,6 +255,46 @@
                         class="text-sm font-bold uppercase tracking-widest bg-brand-navy text-white rounded-full px-4 py-2 hover:bg-brand-yellow transition-all">Portfolio
                         Login</a>
                 </div>
+
+                <!-- Mobile Menu Button (Hamburger) -->
+                <div class="flex items-center md:hidden">
+                    <button @click="mobileMenuOpen = !mobileMenuOpen" type="button"
+                        class="inline-flex items-center justify-center p-2 rounded-md text-brand-navy hover:text-brand-yellow hover:bg-slate-100 transition-all focus:outline-none"
+                        aria-controls="mobile-menu" :aria-expanded="mobileMenuOpen.toString()">
+                        <span class="sr-only">Open main menu</span>
+                        <!-- Hamburger Icon -->
+                        <svg x-show="!mobileMenuOpen" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                        </svg>
+                        <!-- Close Icon -->
+                        <svg x-show="mobileMenuOpen" x-cloak class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu panel -->
+        <div x-show="mobileMenuOpen"
+             x-cloak
+             x-transition:enter="transition ease-out duration-200"
+             x-transition:enter-start="opacity-0 -translate-y-4"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             x-transition:leave="transition ease-in duration-150"
+             x-transition:leave-start="opacity-100 translate-y-0"
+             x-transition:leave-end="opacity-0 -translate-y-4"
+             class="md:hidden bg-white border-t border-slate-100 px-6 py-4 shadow-lg absolute left-0 w-full z-40"
+             id="mobile-menu"
+             @click.away="mobileMenuOpen = false">
+            <div class="space-y-3 flex flex-col font-bold text-sm uppercase tracking-widest text-brand-navy">
+                <a href="{% url 'home' %}" @click="mobileMenuOpen = false" class="py-2 border-b border-slate-50 hover:text-brand-yellow transition-all {% if request.resolver_match.url_name == 'home' %}text-brand-yellow{% endif %}">Home</a>
+                <a href="{% url 'services' %}" @click="mobileMenuOpen = false" class="py-2 border-b border-slate-50 hover:text-brand-yellow transition-all {% if request.resolver_match.url_name == 'services' %}text-brand-yellow{% endif %}">Our Services</a>
+                <a href="{% url 'about' %}" @click="mobileMenuOpen = false" class="py-2 border-b border-slate-50 hover:text-brand-yellow transition-all {% if request.resolver_match.url_name == 'about' %}text-brand-yellow{% endif %}">About</a>
+                <a href="{% url 'career' %}" @click="mobileMenuOpen = false" class="py-2 border-b border-slate-50 hover:text-brand-yellow transition-all {% if request.resolver_match.url_name == 'career' %}text-brand-yellow{% endif %}">Careers</a>
+                <a href="{% url 'calculators' %}" @click="mobileMenuOpen = false" class="py-2 border-b border-slate-50 hover:text-brand-yellow transition-all {% if request.resolver_match.url_name == 'calculators' %}text-brand-yellow{% endif %}">Calculators</a>
+                <a href="{% url 'appointment' %}" @click="mobileMenuOpen = false" class="py-2 border-b border-slate-50 hover:text-brand-yellow transition-all {% if request.resolver_match.url_name == 'appointment' %}text-brand-yellow{% endif %}">Book Appointment</a>
+                <a href="https://addwisefin.investwell.app/app/#/login" target="_blank" rel="noopener noreferrer" class="text-center bg-brand-navy text-white rounded-full py-3 mt-2 hover:bg-brand-yellow transition-all">Portfolio Login</a>
             </div>
         </div>
     </nav>
@@ -261,9 +303,9 @@
 
     <footer class="bg-white pt-24 pb-12 border-t border-slate-200 mt-20 relative overflow-hidden"
         style="background-color: #ffffff;">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 text-center md:text-left">
-            <div class="col-span-2">
-                <div class="flex items-center gap-3 mb-6 justify-center md:justify-start -ml-3">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 text-left">
+            <div class="col-span-1 md:col-span-2">
+                <div class="flex items-center gap-3 mb-6 justify-start -ml-3">
                     <img src="{% static 'images/logo-mark.png' %}" alt="Addwise Logo"
                         class="h-10 w-auto object-contain">
                     <span class="h-9 w-px bg-slate-200"></span>
@@ -308,7 +350,7 @@
             <div>
                 <h4 class="font-black mb-6 text-xs uppercase tracking-[0.3em] text-brand-yellow">Contact</h4>
                 <ul class="space-y-4 text-sm font-bold text-slate-500 uppercase tracking-wider leading-loose">
-                    <li class="flex items-center gap-3 justify-center md:justify-start">
+                    <li class="flex items-center gap-3 justify-start">
                         <span
                             class="h-8 w-8 inline-flex items-center justify-center rounded-full border border-slate-200 text-brand-navy">
                             <svg viewBox="0 0 24 24" aria-hidden="true" class="h-4 w-4 fill-current">
@@ -319,7 +361,7 @@
                         <span><a href="tel:+917447773161" class="hover:text-brand-yellow transition-all">+91 74477
                                 73161</a></span>
                     </li>
-                    <li class="flex items-center gap-3 justify-center md:justify-start">
+                    <li class="flex items-center gap-3 justify-start">
                         <span
                             class="h-8 w-8 inline-flex items-center justify-center rounded-full border border-slate-200 text-brand-navy">
                             <svg viewBox="0 0 24 24" aria-hidden="true" class="h-4 w-4 fill-current">
@@ -330,7 +372,7 @@
                         <span><a href="tel:+919823413161" class="hover:text-brand-yellow transition-all">+91 98234
                                 13161</a></span>
                     </li>
-                    <li class="flex items-center gap-3 justify-center md:justify-start normal-case tracking-normal">
+                    <li class="flex items-center gap-3 justify-start normal-case tracking-normal">
                         <span
                             class="h-8 w-8 inline-flex items-center justify-center rounded-full border border-slate-200 text-brand-navy">
                             <svg viewBox="0 0 24 24" aria-hidden="true" class="h-4 w-4 fill-current">
@@ -367,7 +409,7 @@
                 </div>
             </div>
         </div>
-        <div class="text-center mt-12 pt-8 border-t border-slate-200 text-sm text-slate-400 font-medium">
+        <div class="max-w-7xl mx-auto px-6 text-left mt-12 pt-8 border-t border-slate-200 text-sm text-slate-400 font-medium">
             Read all scheme related documents carefully before investing. | &copy; 2026 Addwise Financials&reg;. All
             rights reserved.
         </div>
