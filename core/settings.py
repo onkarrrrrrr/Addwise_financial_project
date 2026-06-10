@@ -27,7 +27,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-u%*d^3c!_^2e)j(x108hme_f6x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = ['187.127.169.16', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['addwisefin.com', 'www.addwisefin.com', '187.127.169.16', 'localhost', '127.0.0.1']
 
 # Application definition
 
