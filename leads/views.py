@@ -520,3 +520,100 @@ def _send_mail(subject, message, recipients):
         recipients,
         fail_silently=True,
     )
+
+
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.clickjacking import xframe_options_exempt
+from django.http import HttpResponse
+import requests
+
+@csrf_exempt
+@xframe_options_exempt
+def investor_portal_proxy(request, path=''):
+    # Build target URL
+    target_url = f"https://addwisefin.investorcorner.co.in/{path}"
+    if request.META.get('QUERY_STRING'):
+        target_url += f"?{request.META['QUERY_STRING']}"
+
+    # Forward request headers (excluding host, cookie, content-length, accept-encoding)
+    headers = {}
+    for key, value in request.headers.items():
+        if key.lower() not in ['host', 'cookie', 'content-length', 'accept-encoding']:
+            headers[key] = value
+
+    # Forward cookies
+    cookies = request.COOKIES
+
+    # Make request
+    method = request.method
+    try:
+        response = requests.request(
+            method,
+            target_url,
+            headers=headers,
+            cookies=cookies,
+            data=request.body,
+            allow_redirects=False,
+            timeout=20
+        )
+    except Exception as e:
+        return HttpResponse(f"Proxy Error: {str(e)}", status=502)
+
+    # Build response
+    content_type = response.headers.get('Content-Type', '')
+    is_text = any(t in content_type for t in ['text/html', 'application/javascript', 'text/javascript', 'application/json', 'text/css'])
+
+    if is_text:
+        content = response.content.decode('utf-8', errors='ignore')
+        # Replace the domain with our proxy root path
+        content = content.replace('https://addwisefin.investorcorner.co.in', '/investor-portal')
+        content = content.replace('http://addwisefin.investorcorner.co.in', '/investor-portal')
+        # Also replace URL-encoded version if any
+        content = content.replace('https%3A%2F%2Faddwisefin.investorcorner.co.in', '%2Finvestor-portal')
+        encoded_content = content.encode('utf-8')
+    else:
+        encoded_content = response.content
+
+    django_response = HttpResponse(
+        content=encoded_content,
+        status=response.status_code,
+        content_type=content_type
+    )
+
+    # Copy headers (excluding those modified/handled by us)
+    excluded_headers = [
+        'content-encoding',
+        'content-length',
+        'transfer-encoding',
+        'connection',
+        'keep-alive',
+        'proxy-authenticate',
+        'proxy-authorization',
+        'te',
+        'trailers',
+        'upgrade'
+    ]
+    for key, value in response.headers.items():
+        if key.lower() not in excluded_headers:
+            django_response[key] = value
+
+    # Rewrite redirect location header
+    if 'Location' in response.headers:
+        loc = response.headers['Location']
+        loc = loc.replace('https://addwisefin.investorcorner.co.in', '/investor-portal')
+        loc = loc.replace('http://addwisefin.investorcorner.co.in', '/investor-portal')
+        django_response['Location'] = loc
+
+    # Set cookies returned by target server onto our domain
+    for cookie in response.cookies:
+        django_response.set_cookie(
+            cookie.name,
+            cookie.value,
+            domain=None,
+            path=cookie.path or '/',
+            secure=request.is_secure(),
+            httponly=cookie.has_nonstandard_attr('HttpOnly') or True,
+            samesite='Lax'
+        )
+
+    return django_response

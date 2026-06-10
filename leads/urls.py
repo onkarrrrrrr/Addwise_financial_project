@@ -35,4 +35,7 @@ urlpatterns = [
     path('appointments/', views.appointments_list, name='appointments_list'),
     path('appointments/<int:pk>/', views.appointment_detail, name='appointment_detail'),
     path('appointments/<int:pk>/delete/', views.appointment_delete, name='appointment_delete'),
+    # Investor portal proxy routes
+    path('investor-portal/', views.investor_portal_proxy, name='investor_portal_proxy_root'),
+    path('investor-portal/<path:path>', views.investor_portal_proxy, name='investor_portal_proxy'),
 ]

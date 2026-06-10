@@ -2,7 +2,13 @@
 
 {% block content %}
 <!-- offset by header (fixed nav height). adjusted to 96px to place iframe further below header -->
+<style>
+    /* Remove the margin-top gap on the footer so it sits flush with the iframe container */
+    footer {
+        margin-top: 0 !important;
+    }
+</style>
 <div class="calculators-iframe-wrapper" style="padding-top:96px;">
-	<iframe src="https://addwisefin.investorcorner.co.in/clients/dashboard" style="width:100%; height:calc(100vh - 96px); border: none; display: block;" loading="lazy"></iframe>
+	<iframe src="/investor-portal/clients/dashboard" style="width:100%; height:calc(100vh - 96px); border: none; display: block;" allow="otp-credentials; storage-access; publickey-credentials-get; clipboard-write; clipboard-read; camera; microphone; geolocation" loading="lazy"></iframe>
 </div>
 {% endblock %}

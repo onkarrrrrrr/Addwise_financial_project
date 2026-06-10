@@ -1,22 +1,24 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Addwise Financials | Grow Wisely</title>
     <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/png">
     <link rel="apple-touch-icon" href="{% static 'images/logo-mark.png' %}">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                            'brand-navy': '#153769',
+                        'brand-navy': '#153769',
                         'brand-yellow': '#F38D1E',
                         'brand-grey': '#4C4C4C',
                     },
@@ -27,7 +29,10 @@
     </script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <style>
-        [x-cloak] { display: none !important; }
+        [x-cloak] {
+            display: none !important;
+        }
+
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: #f8fafc;
@@ -43,6 +48,7 @@
             background-position: var(--grid-x) var(--grid-y), var(--grid-x) var(--grid-y);
             background-attachment: fixed;
         }
+
         body::before,
         body::after {
             content: '';
@@ -52,6 +58,7 @@
             z-index: -2;
             transform: translate3d(0, 0, 0);
         }
+
         body::before {
             /* stronger yellow accents to balance navy */
             background:
@@ -62,6 +69,7 @@
             filter: blur(22px) saturate(130%);
             animation: meshShift 22s ease-in-out infinite;
         }
+
         body::after {
             z-index: -3;
             inset: -30%;
@@ -72,58 +80,136 @@
             opacity: 0.85;
             animation: meshShiftAlt 30s ease-in-out infinite;
         }
+
         .scroll-reveal {
             opacity: 0;
             transform: translateY(18px);
             transition: opacity 0.7s ease, transform 0.7s ease;
             will-change: opacity, transform;
         }
+
         .scroll-reveal.is-visible {
             opacity: 1;
             transform: translateY(0);
         }
-        .glass-nav { background: #ffffff; border-bottom: 1px solid rgba(0,0,0,0.05); }
+
+        .glass-nav {
+            background: #ffffff;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
         :root {
             --brand-navy: #153769;
             --brand-yellow: #F38D1E;
             --brand-grey: #4C4C4C;
         }
-        .text-slate-900 { color: var(--brand-navy) !important; }
-        .text-slate-800 { color: rgba(21, 55, 105, 0.9) !important; }
-        .text-slate-700 { color: rgba(76, 76, 76, 0.9) !important; }
-        .text-slate-600 { color: rgba(76, 76, 76, 0.85) !important; }
-        .text-slate-500 { color: rgba(76, 76, 76, 0.75) !important; }
-        .text-slate-400 { color: rgba(76, 76, 76, 0.65) !important; }
-        .text-slate-300 { color: rgba(76, 76, 76, 0.55) !important; }
-        .text-slate-200 { color: rgba(255, 255, 255, 0.85) !important; }
-        .bg-slate-900 { background-color: var(--brand-navy) !important; }
-        .bg-slate-100 { background-color: rgba(21, 55, 105, 0.06) !important; }
-        .bg-slate-50 { background-color: rgba(21, 55, 105, 0.04) !important; }
-        .border-slate-200 { border-color: rgba(21, 55, 105, 0.16) !important; }
-        .border-slate-100 { border-color: rgba(21, 55, 105, 0.12) !important; }
+
+        .text-slate-900 {
+            color: var(--brand-navy) !important;
+        }
+
+        .text-slate-800 {
+            color: rgba(21, 55, 105, 0.9) !important;
+        }
+
+        .text-slate-700 {
+            color: rgba(76, 76, 76, 0.9) !important;
+        }
+
+        .text-slate-600 {
+            color: rgba(76, 76, 76, 0.85) !important;
+        }
+
+        .text-slate-500 {
+            color: rgba(76, 76, 76, 0.75) !important;
+        }
+
+        .text-slate-400 {
+            color: rgba(76, 76, 76, 0.65) !important;
+        }
+
+        .text-slate-300 {
+            color: rgba(76, 76, 76, 0.55) !important;
+        }
+
+        .text-slate-200 {
+            color: rgba(255, 255, 255, 0.85) !important;
+        }
+
+        .bg-slate-900 {
+            background-color: var(--brand-navy) !important;
+        }
+
+        .bg-slate-100 {
+            background-color: rgba(21, 55, 105, 0.06) !important;
+        }
+
+        .bg-slate-50 {
+            background-color: rgba(21, 55, 105, 0.04) !important;
+        }
+
+        .border-slate-200 {
+            border-color: rgba(21, 55, 105, 0.16) !important;
+        }
+
+        .border-slate-100 {
+            border-color: rgba(21, 55, 105, 0.12) !important;
+        }
+
         .animate-marquee {
             display: flex;
             width: max-content;
             animation: marquee 24s linear infinite;
         }
+
         @keyframes meshShift {
-            0% { transform: translate3d(0, 0, 0) scale(1); }
-            50% { transform: translate3d(-2%, -3%, 0) scale(1.05); }
-            100% { transform: translate3d(2%, 1%, 0) scale(1); }
+            0% {
+                transform: translate3d(0, 0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate3d(-2%, -3%, 0) scale(1.05);
+            }
+
+            100% {
+                transform: translate3d(2%, 1%, 0) scale(1);
+            }
         }
+
         @keyframes meshShiftAlt {
-            0% { transform: translate3d(0, 0, 0) scale(1); }
-            50% { transform: translate3d(3%, 2%, 0) scale(1.08); }
-            100% { transform: translate3d(-2%, -1%, 0) scale(1); }
+            0% {
+                transform: translate3d(0, 0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate3d(3%, 2%, 0) scale(1.08);
+            }
+
+            100% {
+                transform: translate3d(-2%, -1%, 0) scale(1);
+            }
         }
+
         @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
         }
+
         @media (prefers-reduced-motion: reduce) {
-            .animate-marquee { animation: none; }
+            .animate-marquee {
+                animation: none;
+            }
+
             body::before,
-            body::after { animation: none; }
+            body::after {
+                animation: none;
+            }
+
             .scroll-reveal {
                 opacity: 1;
                 transform: none;
@@ -132,28 +218,40 @@
         }
     </style>
 </head>
+
 <body class="antialiased text-brand-navy">
 
-    <nav x-data="{ isScrolled: false }" 
-         @scroll.window="isScrolled = (window.pageYOffset > 20) ? true : false"
-         :class="isScrolled ? 'glass-nav py-2 shadow-sm' : 'bg-white py-5'"
-         class="fixed w-full z-50 transition-all duration-500 top-0 left-0">
+    <nav x-data="{ isScrolled: false }" @scroll.window="isScrolled = (window.pageYOffset > 20) ? true : false"
+        :class="isScrolled ? 'glass-nav py-2 shadow-sm' : 'bg-white py-5'"
+        class="fixed w-full z-50 transition-all duration-500 top-0 left-0">
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex justify-between items-center h-16">
-                <a href="{% url 'home' %}" class="flex items-center gap-3 group">
-                    <img src="{% static 'images/logo-mark.png' %}" alt="Addwise Logo" class="h-10 w-auto object-contain transition-transform group-hover:scale-105">
+                <a href="{% url 'home' %}" class="flex items-center gap-3 group -ml-3">
+                    <img src="{% static 'images/logo-mark.png' %}" alt="Addwise Logo"
+                        class="h-10 w-auto object-contain transition-transform group-hover:scale-105">
                     <span class="h-9 w-px bg-slate-200"></span>
-                    <img src="{% static 'images/logo-text.png' %}" alt="Addwise Financials" class="h-10 w-auto object-contain"><span class="text-xs font-black text-brand-navy">&reg;</span>
+                    <img src="{% static 'images/logo-text.png' %}" alt="Addwise Financials"
+                        class="h-10 w-auto object-contain">
                 </a>
 
                 <div class="hidden md:flex items-center space-x-10">
-                    <a href="{% url 'home' %}" class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest {% if request.resolver_match.url_name == 'home' %}underline decoration-brand-yellow decoration-2 underline-offset-4 font-extrabold{% endif %}">Home</a>
-                    <a href="{% url 'services' %}" class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest {% if request.resolver_match.url_name == 'services' %}underline decoration-brand-yellow decoration-2 underline-offset-4 font-extrabold{% endif %}">Our Services</a>
-                    <a href="{% url 'about' %}" class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest {% if request.resolver_match.url_name == 'about' %}underline decoration-brand-yellow decoration-2 underline-offset-4 font-extrabold{% endif %}">About</a>
-                    <a href="{% url 'career' %}" class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest {% if request.resolver_match.url_name == 'career' %}underline decoration-brand-yellow decoration-2 underline-offset-4 font-extrabold{% endif %}">Careers</a>
-                    <a href="{% url 'calculators' %}" class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest">Calculators</a>
-                    <a href="{% url 'appointment' %}" class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest {% if request.resolver_match.url_name == 'appointment' %}underline decoration-brand-yellow decoration-2 underline-offset-4 font-extrabold{% endif %}">Book Appointment</a>
-                    <a href="https://addwisefin.investwell.app/app/#/login" target="_blank" rel="noopener noreferrer" class="text-sm font-bold uppercase tracking-widest bg-brand-navy text-white rounded-full px-4 py-2 hover:bg-brand-yellow transition-all">Portfolio Login</a>
+                    <a href="{% url 'home' %}"
+                        class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest {% if request.resolver_match.url_name == 'home' %}underline decoration-brand-yellow decoration-2 underline-offset-4 font-extrabold{% endif %}">Home</a>
+                    <a href="{% url 'services' %}"
+                        class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest {% if request.resolver_match.url_name == 'services' %}underline decoration-brand-yellow decoration-2 underline-offset-4 font-extrabold{% endif %}">Our
+                        Services</a>
+                    <a href="{% url 'about' %}"
+                        class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest {% if request.resolver_match.url_name == 'about' %}underline decoration-brand-yellow decoration-2 underline-offset-4 font-extrabold{% endif %}">About</a>
+                    <a href="{% url 'career' %}"
+                        class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest {% if request.resolver_match.url_name == 'career' %}underline decoration-brand-yellow decoration-2 underline-offset-4 font-extrabold{% endif %}">Careers</a>
+                    <a href="{% url 'calculators' %}"
+                        class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest">Calculators</a>
+                    <a href="{% url 'appointment' %}"
+                        class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest {% if request.resolver_match.url_name == 'appointment' %}underline decoration-brand-yellow decoration-2 underline-offset-4 font-extrabold{% endif %}">Book
+                        Appointment</a>
+                    <a href="https://addwisefin.investwell.app/app/#/login" target="_blank" rel="noopener noreferrer"
+                        class="text-sm font-bold uppercase tracking-widest bg-brand-navy text-white rounded-full px-4 py-2 hover:bg-brand-yellow transition-all">Portfolio
+                        Login</a>
                 </div>
             </div>
         </div>
@@ -161,13 +259,16 @@
 
     <main>{% block content %}{% endblock %}</main>
 
-    <footer class="bg-white pt-24 pb-12 border-t border-slate-200 mt-20 relative overflow-hidden" style="background-color: #ffffff;">
+    <footer class="bg-white pt-24 pb-12 border-t border-slate-200 mt-20 relative overflow-hidden"
+        style="background-color: #ffffff;">
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 text-center md:text-left">
             <div class="col-span-2">
-                <div class="flex items-center gap-3 mb-6 justify-center md:justify-start">
-                    <img src="{% static 'images/logo-mark.png' %}" alt="Addwise Logo" class="h-9 w-auto object-contain">
-                    <span class="h-7 w-px bg-slate-200"></span>
-                    <img src="{% static 'images/logo-text.png' %}" alt="Addwise Financials" class="h-9 w-auto object-contain"><span class="text-xs font-black text-brand-navy">&reg;</span>
+                <div class="flex items-center gap-3 mb-6 justify-center md:justify-start -ml-3">
+                    <img src="{% static 'images/logo-mark.png' %}" alt="Addwise Logo"
+                        class="h-10 w-auto object-contain">
+                    <span class="h-9 w-px bg-slate-200"></span>
+                    <img src="{% static 'images/logo-text.png' %}" alt="Addwise Financials"
+                        class="h-10 w-auto object-contain">
                 </div>
                 <p class="text-brand-grey max-w-sm leading-relaxed mb-6">
                     Janki Bldg,<br>
@@ -180,10 +281,12 @@
                 </p>
                 <div class="mt-4 text-xs font-semibold text-slate-500 space-y-1">
                     <div>
-                        <a href="{% url 'disclaimer' %}" class="hover:text-brand-navy transition-all">Disclaimer</a> | 
-                        <a href="{% url 'disclosure' %}" class="hover:text-brand-navy transition-all">Disclosure</a> | 
-                        <a href="{% url 'privacy_policy' %}" class="hover:text-brand-navy transition-all">Privacy Policy</a> | 
-                        <a href="{% url 'code_of_conduct' %}" class="hover:text-brand-navy transition-all">Code of Conduct</a>
+                        <a href="{% url 'disclaimer' %}" class="hover:text-brand-navy transition-all">Disclaimer</a> |
+                        <a href="{% url 'disclosure' %}" class="hover:text-brand-navy transition-all">Disclosure</a> |
+                        <a href="{% url 'privacy_policy' %}" class="hover:text-brand-navy transition-all">Privacy
+                            Policy</a> |
+                        <a href="{% url 'code_of_conduct' %}" class="hover:text-brand-navy transition-all">Code of
+                            Conduct</a>
                     </div>
                 </div>
             </div>
@@ -192,59 +295,81 @@
                 <ul class="space-y-4 text-sm font-bold text-slate-500 uppercase tracking-wider">
                     <li><a href="{% url 'home' %}" class="hover:text-brand-navy transition-all">Home</a></li>
                     <li><a href="{% url 'about' %}" class="hover:text-brand-navy transition-all">About</a></li>
-                    <li><a href="{% url 'services' %}" class="hover:text-brand-navy transition-all">Our Services</a></li>
+                    <li><a href="{% url 'services' %}" class="hover:text-brand-navy transition-all">Our Services</a>
+                    </li>
                     <li><a href="{% url 'career' %}" class="hover:text-brand-navy transition-all">Careers</a></li>
                     <li><a href="{% url 'contact' %}" class="hover:text-brand-navy transition-all">Contact</a></li>
-                    <li><a href="{% url 'calculators' %}" class="hover:text-brand-navy transition-all">Calculators</a></li>
-                    <li><a href="{% url 'appointment' %}" class="hover:text-brand-navy transition-all">Book Call</a></li>
+                    <li><a href="{% url 'calculators' %}" class="hover:text-brand-navy transition-all">Calculators</a>
+                    </li>
+                    <li><a href="{% url 'appointment' %}" class="hover:text-brand-navy transition-all">Book Call</a>
+                    </li>
                 </ul>
             </div>
             <div>
                 <h4 class="font-black mb-6 text-xs uppercase tracking-[0.3em] text-brand-yellow">Contact</h4>
                 <ul class="space-y-4 text-sm font-bold text-slate-500 uppercase tracking-wider leading-loose">
                     <li class="flex items-center gap-3 justify-center md:justify-start">
-                        <span class="h-8 w-8 inline-flex items-center justify-center rounded-full border border-slate-200 text-brand-navy">
+                        <span
+                            class="h-8 w-8 inline-flex items-center justify-center rounded-full border border-slate-200 text-brand-navy">
                             <svg viewBox="0 0 24 24" aria-hidden="true" class="h-4 w-4 fill-current">
-                                <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.03-.24c1.12.37 2.33.57 3.56.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.85 21 3 13.15 3 3a1 1 0 0 1 1-1h3.49a1 1 0 0 1 1 1c0 1.23.2 2.44.57 3.56a1 1 0 0 1-.24 1.03l-2.2 2.2Z"/>
+                                <path
+                                    d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.03-.24c1.12.37 2.33.57 3.56.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.85 21 3 13.15 3 3a1 1 0 0 1 1-1h3.49a1 1 0 0 1 1 1c0 1.23.2 2.44.57 3.56a1 1 0 0 1-.24 1.03l-2.2 2.2Z" />
                             </svg>
                         </span>
-                        <span>+91 98234 13161</span>
+                        <span><a href="tel:+917447773161" class="hover:text-brand-yellow transition-all">+91 74477
+                                73161</a></span>
                     </li>
                     <li class="flex items-center gap-3 justify-center md:justify-start">
-                        <span class="h-8 w-8 inline-flex items-center justify-center rounded-full border border-slate-200 text-brand-navy">
+                        <span
+                            class="h-8 w-8 inline-flex items-center justify-center rounded-full border border-slate-200 text-brand-navy">
                             <svg viewBox="0 0 24 24" aria-hidden="true" class="h-4 w-4 fill-current">
-                                <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.03-.24c1.12.37 2.33.57 3.56.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.85 21 3 13.15 3 3a1 1 0 0 1 1-1h3.49a1 1 0 0 1 1 1c0 1.23.2 2.44.57 3.56a1 1 0 0 1-.24 1.03l-2.2 2.2Z"/>
+                                <path
+                                    d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.03-.24c1.12.37 2.33.57 3.56.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.85 21 3 13.15 3 3a1 1 0 0 1 1-1h3.49a1 1 0 0 1 1 1c0 1.23.2 2.44.57 3.56a1 1 0 0 1-.24 1.03l-2.2 2.2Z" />
                             </svg>
                         </span>
-                        <span>+91 74477 73161</span>
+                        <span><a href="tel:+919823413161" class="hover:text-brand-yellow transition-all">+91 98234
+                                13161</a></span>
                     </li>
                     <li class="flex items-center gap-3 justify-center md:justify-start normal-case tracking-normal">
-                        <span class="h-8 w-8 inline-flex items-center justify-center rounded-full border border-slate-200 text-brand-navy">
+                        <span
+                            class="h-8 w-8 inline-flex items-center justify-center rounded-full border border-slate-200 text-brand-navy">
                             <svg viewBox="0 0 24 24" aria-hidden="true" class="h-4 w-4 fill-current">
-                                <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm0 4.5V18h16V8.5l-8 5-8-5Zm0-2h16L12 11 4 6.5Z"/>
+                                <path
+                                    d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm0 4.5V18h16V8.5l-8 5-8-5Zm0-2h16L12 11 4 6.5Z" />
                             </svg>
                         </span>
-                        <span>connect@addwisefin.com</span>
+                        <span><a href="mailto:connect@addwisefin.com"
+                                class="hover:text-brand-yellow transition-all">connect@addwisefin.com</a></span>
                     </li>
                 </ul>
                 <div class="mt-4 flex flex-wrap items-center gap-2 text-xs font-bold text-slate-500">
-                    <a href="https://wa.me/917447773161" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="h-10 w-10 inline-flex items-center justify-center rounded-full border border-slate-200 hover:border-brand-yellow hover:text-brand-yellow transition-all">
-                        <img src="https://cdn.simpleicons.org/whatsapp/25D366" alt="WhatsApp logo" class="h-4 w-4 object-contain">
+                    <a href="https://wa.me/917447773161" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"
+                        class="h-10 w-10 inline-flex items-center justify-center rounded-full border border-slate-200 hover:border-brand-yellow hover:text-brand-yellow transition-all">
+                        <img src="https://cdn.simpleicons.org/whatsapp/25D366" alt="WhatsApp logo"
+                            class="h-4 w-4 object-contain">
                     </a>
-                    <a href="https://www.instagram.com/addwisefinancials/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="h-10 w-10 inline-flex items-center justify-center rounded-full border border-slate-200 hover:border-brand-yellow hover:text-brand-yellow transition-all">
-                        <img src="https://cdn.simpleicons.org/instagram/E4405F" alt="Instagram logo" class="h-4 w-4 object-contain">
+                    <a href="https://www.instagram.com/addwisefinancials/" target="_blank" rel="noopener noreferrer"
+                        aria-label="Instagram"
+                        class="h-10 w-10 inline-flex items-center justify-center rounded-full border border-slate-200 hover:border-brand-yellow hover:text-brand-yellow transition-all">
+                        <img src="https://cdn.simpleicons.org/instagram/E4405F" alt="Instagram logo"
+                            class="h-4 w-4 object-contain">
                     </a>
-                    <a href="https://www.linkedin.com/company/addwise-financials%C2%AE/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="h-10 w-10 inline-flex items-center justify-center rounded-full border border-slate-200 hover:border-brand-yellow hover:text-brand-yellow transition-all">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn logo" class="h-5 w-5 object-contain">
+                    <a href="https://www.linkedin.com/company/addwise-financials%C2%AE/" target="_blank"
+                        rel="noopener noreferrer" aria-label="LinkedIn"
+                        class="h-10 w-10 inline-flex items-center justify-center rounded-full border border-slate-200 hover:border-brand-yellow hover:text-brand-yellow transition-all">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png"
+                            alt="LinkedIn logo" class="h-5 w-5 object-contain">
                     </a>
-                    <a href="https://x.com/addwisefin" target="_blank" rel="noopener noreferrer" aria-label="X" class="h-10 w-10 inline-flex items-center justify-center rounded-full border border-slate-200 hover:border-brand-yellow hover:text-brand-yellow transition-all">
+                    <a href="https://x.com/addwisefin" target="_blank" rel="noopener noreferrer" aria-label="X"
+                        class="h-10 w-10 inline-flex items-center justify-center rounded-full border border-slate-200 hover:border-brand-yellow hover:text-brand-yellow transition-all">
                         <img src="https://cdn.simpleicons.org/x/000000" alt="X logo" class="h-4 w-4 object-contain">
                     </a>
                 </div>
             </div>
         </div>
         <div class="text-center mt-12 pt-8 border-t border-slate-200 text-sm text-slate-400 font-medium">
-            Read all scheme related documents carefully before investing. | &copy; 2026 Addwise Financials&reg;. All rights reserved.
+            Read all scheme related documents carefully before investing. | &copy; 2026 Addwise Financials&reg;. All
+            rights reserved.
         </div>
     </footer>
     <script>
@@ -299,4 +424,5 @@
         });
     </script>
 </body>
+
 </html>
