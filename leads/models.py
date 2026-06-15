@@ -35,16 +35,16 @@ class Role(models.Model):
 class Appointment(models.Model):
     # Dropdown choices for services
     SERVICE_CHOICES = [
-        ('HOME', 'Home Loan'),
-        ('BIZ', 'Business Loan'),
-        ('SIP', 'SIP/Investment'),
-        ('LAP', 'Loan Against Property'),
+        ('WEALTH', 'Goal based Wealth creation solutions'),
+        ('TERM', 'Term Insurance'),
+        ('HEALTH', 'Health Insurance'),
+        ('LOANS', 'Loans & Credit Solutions'),
     ]
 
     full_name = models.CharField(max_length=100)
     email = models.EmailField()
     phone = models.CharField(max_length=15)
-    service = models.CharField(max_length=10, choices=SERVICE_CHOICES)
+    service = models.CharField(max_length=50, choices=SERVICE_CHOICES)
     message = models.TextField(blank=True)
     # Management fields
     STATUS_NEW = 'NEW'

@@ -21,97 +21,90 @@
             </p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-14">
+            <!-- Card 1: Investment Solutions (A) -->
             <div
                 class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:border-brand-yellow/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-yellow/60 focus-visible:outline-offset-2"
                 role="button"
                 tabindex="0"
-                @click="activeService = { title: 'Home Loan Optimization', tag: 'Loans', summary: 'Compare rate, tenure, and prepayment impact to reduce total loan cost.', highlights: ['Rate and lender comparison', 'Prepayment strategy modeling', 'End-to-end documentation support'] }"
-                @keydown.enter="activeService = { title: 'Home Loan Optimization', tag: 'Loans', summary: 'Compare rate, tenure, and prepayment impact to reduce total loan cost.', highlights: ['Rate and lender comparison', 'Prepayment strategy modeling', 'End-to-end documentation support'] }"
-                @keydown.space.prevent="activeService = { title: 'Home Loan Optimization', tag: 'Loans', summary: 'Compare rate, tenure, and prepayment impact to reduce total loan cost.', highlights: ['Rate and lender comparison', 'Prepayment strategy modeling', 'End-to-end documentation support'] }"
+                @click="activeService = { title: 'Investment Solutions', tag: 'Growth', summary: 'Build goal-aligned portfolios for Retirement, Child Education & Marriage, and Emergency Funds.', highlights: ['Retirement goal mapping', 'Education & marriage funding', 'Emergency funds setup', 'Tax-efficient mutual funds'] }"
+                @keydown.enter="activeService = { title: 'Investment Solutions', tag: 'Growth', summary: 'Build goal-aligned portfolios for Retirement, Child Education & Marriage, and Emergency Funds.', highlights: ['Retirement goal mapping', 'Education & marriage funding', 'Emergency funds setup', 'Tax-efficient mutual funds'] }"
+                @keydown.space.prevent="activeService = { title: 'Investment Solutions', tag: 'Growth', summary: 'Build goal-aligned portfolios for Retirement, Child Education & Marriage, and Emergency Funds.', highlights: ['Retirement goal mapping', 'Education & marriage funding', 'Emergency funds setup', 'Tax-efficient mutual funds'] }"
+            >
+                <div class="text-xs font-black uppercase tracking-[0.4em] text-slate-400">Growth</div>
+                <h3 class="text-2xl font-black mt-4">Investment Solutions</h3>
+                <p class="text-slate-600 mt-3">
+                    Retirement, Child Education & Marriage, Emergency Funds.
+                </p>
+                <div class="mt-6 text-sm font-bold text-brand-navy">Goal mapping and portfolio review</div>
+            </div>
+
+            <!-- Card 2: Insurance (Protection) (B) -->
+            <div
+                class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:border-brand-yellow/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-yellow/60 focus-visible:outline-offset-2"
+                role="button"
+                tabindex="0"
+                @click="activeService = { title: 'Insurance (Protection)', tag: 'Protection', summary: 'Protect your family, assets, and cashflow with tailored term, health, and motor coverage.', highlights: ['Term Insurance assessment', 'Health Insurance auditing', 'Motor Insurance matching'] }"
+                @keydown.enter="activeService = { title: 'Insurance (Protection)', tag: 'Protection', summary: 'Protect your family, assets, and cashflow with tailored term, health, and motor coverage.', highlights: ['Term Insurance assessment', 'Health Insurance auditing', 'Motor Insurance matching'] }"
+                @keydown.space.prevent="activeService = { title: 'Insurance (Protection)', tag: 'Protection', summary: 'Protect your family, assets, and cashflow with tailored term, health, and motor coverage.', highlights: ['Term Insurance assessment', 'Health Insurance auditing', 'Motor Insurance matching'] }"
+            >
+                <div class="text-xs font-black uppercase tracking-[0.4em] text-slate-400">Protection</div>
+                <h3 class="text-2xl font-black mt-4">Insurance (Protection)</h3>
+                <p class="text-slate-600 mt-3">
+                    Term, Health, Motor.
+                </p>
+                <div class="mt-6 text-sm font-bold text-brand-navy">Life and health protection audits</div>
+            </div>
+
+            <!-- Card 3: Home Loan Optimisation (C) -->
+            <div
+                class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:border-brand-yellow/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-yellow/60 focus-visible:outline-offset-2"
+                role="button"
+                tabindex="0"
+                @click="activeService = { title: 'Home Loan Optimisation', tag: 'Loans', summary: 'Compare rate, tenure, and prepayment impact to reduce total loan cost.', highlights: ['Rate and lender comparison', 'Prepayment strategy modeling', 'End-to-end documentation support'] }"
+                @keydown.enter="activeService = { title: 'Home Loan Optimisation', tag: 'Loans', summary: 'Compare rate, tenure, and prepayment impact to reduce total loan cost.', highlights: ['Rate and lender comparison', 'Prepayment strategy modeling', 'End-to-end documentation support'] }"
+                @keydown.space.prevent="activeService = { title: 'Home Loan Optimisation', tag: 'Loans', summary: 'Compare rate, tenure, and prepayment impact to reduce total loan cost.', highlights: ['Rate and lender comparison', 'Prepayment strategy modeling', 'End-to-end documentation support'] }"
             >
                 <div class="text-xs font-black uppercase tracking-[0.4em] text-slate-400">Loans</div>
-                <h3 class="text-2xl font-black mt-4">Home Loan Optimization</h3>
+                <h3 class="text-2xl font-black mt-4">Home Loan Optimisation</h3>
                 <p class="text-slate-600 mt-3">
                     Compare rates, prepayments, and tenures to reduce total cost while
                     preserving flexibility.
                 </p>
                 <div class="mt-6 text-sm font-bold text-brand-navy">Structured sourcing and documentation</div>
             </div>
+
+            <!-- Card 4: Loan & Credit Solutions (D) -->
             <div
                 class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:border-brand-yellow/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-yellow/60 focus-visible:outline-offset-2"
                 role="button"
                 tabindex="0"
-                @click="activeService = { title: 'SIP and Investment Planning', tag: 'Growth', summary: 'Build a goal-aligned asset mix and automate disciplined investing.', highlights: ['Goal-based asset allocation', 'Tax-efficient product selection', 'Quarterly performance reviews'] }"
-                @keydown.enter="activeService = { title: 'SIP and Investment Planning', tag: 'Growth', summary: 'Build a goal-aligned asset mix and automate disciplined investing.', highlights: ['Goal-based asset allocation', 'Tax-efficient product selection', 'Quarterly performance reviews'] }"
-                @keydown.space.prevent="activeService = { title: 'SIP and Investment Planning', tag: 'Growth', summary: 'Build a goal-aligned asset mix and automate disciplined investing.', highlights: ['Goal-based asset allocation', 'Tax-efficient product selection', 'Quarterly performance reviews'] }"
+                @click="activeService = { title: 'Loan & Credit Solutions', tag: 'Loans', summary: 'Find business funding, working capital, and loan against property options that protect your cashflow.', highlights: ['Business Loan advisory', 'Loan Against Property structures', 'Working capital solutions'] }"
+                @keydown.enter="activeService = { title: 'Loan & Credit Solutions', tag: 'Loans', summary: 'Find business funding, working capital, and loan against property options that protect your cashflow.', highlights: ['Business Loan advisory', 'Loan Against Property structures', 'Working capital solutions'] }"
+                @keydown.space.prevent="activeService = { title: 'Loan & Credit Solutions', tag: 'Loans', summary: 'Find business funding, working capital, and loan against property options that protect your cashflow.', highlights: ['Business Loan advisory', 'Loan Against Property structures', 'Working capital solutions'] }"
             >
-                <div class="text-xs font-black uppercase tracking-[0.4em] text-slate-400">Growth</div>
-                <h3 class="text-2xl font-black mt-4">SIP and Investment Planning</h3>
+                <div class="text-xs font-black uppercase tracking-[0.4em] text-slate-400">Loans</div>
+                <h3 class="text-2xl font-black mt-4">Loan & Credit Solutions</h3>
                 <p class="text-slate-600 mt-3">
-                    Align asset allocation with goal timelines, risk capacity, and tax
-                    efficiency for compounding wealth.
+                    Business loans, loans against property, and credit options tailored to your liquidity needs.
                 </p>
-                <div class="mt-6 text-sm font-bold text-brand-navy">Goal mapping and portfolio review</div>
+                <div class="mt-6 text-sm font-bold text-brand-navy">Lender matching and negotiation</div>
             </div>
+
+            <!-- Card 5: Estate Planning (E) -->
             <div
                 class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:border-brand-yellow/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-yellow/60 focus-visible:outline-offset-2"
                 role="button"
                 tabindex="0"
-                @click="activeService = { title: 'Business Loan Advisory', tag: 'Business', summary: 'Design funding strategies that protect cashflow while enabling growth.', highlights: ['Eligibility and lender matching', 'Working capital structure', 'Negotiation support'] }"
-                @keydown.enter="activeService = { title: 'Business Loan Advisory', tag: 'Business', summary: 'Design funding strategies that protect cashflow while enabling growth.', highlights: ['Eligibility and lender matching', 'Working capital structure', 'Negotiation support'] }"
-                @keydown.space.prevent="activeService = { title: 'Business Loan Advisory', tag: 'Business', summary: 'Design funding strategies that protect cashflow while enabling growth.', highlights: ['Eligibility and lender matching', 'Working capital structure', 'Negotiation support'] }"
+                @click="activeService = { title: 'Estate Planning', tag: 'Estate', summary: 'Design asset transmission blueprints, wills, and private trusts to secure your legacy.', highlights: ['Will drafting guidance', 'Private trusts structure', 'Smooth asset transmission'] }"
+                @keydown.enter="activeService = { title: 'Estate Planning', tag: 'Estate', summary: 'Design asset transmission blueprints, wills, and private trusts to secure your legacy.', highlights: ['Will drafting guidance', 'Private trusts structure', 'Smooth asset transmission'] }"
+                @keydown.space.prevent="activeService = { title: 'Estate Planning', tag: 'Estate', summary: 'Design asset transmission blueprints, wills, and private trusts to secure your legacy.', highlights: ['Will drafting guidance', 'Private trusts structure', 'Smooth asset transmission'] }"
             >
-                <div class="text-xs font-black uppercase tracking-[0.4em] text-slate-400">Business</div>
-                <h3 class="text-2xl font-black mt-4">Business Loan Advisory</h3>
+                <div class="text-xs font-black uppercase tracking-[0.4em] text-slate-400">Estate</div>
+                <h3 class="text-2xl font-black mt-4">Estate Planning</h3>
                 <p class="text-slate-600 mt-3">
-                    Build funding solutions that protect cashflow while enabling expansion.
+                    Ensure smooth transition of assets to the next generation with structured estate solutions.
                 </p>
-                <div class="mt-6 text-sm font-bold text-brand-navy">Quick turnaround and lender matching</div>
-            </div>
-            <div
-                class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:border-brand-yellow/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-yellow/60 focus-visible:outline-offset-2"
-                role="button"
-                tabindex="0"
-                @click="activeService = { title: 'Loan Against Property', tag: 'Assets', summary: 'Unlock property value while keeping your investment blueprint intact.', highlights: ['Property valuation support', 'Flexible repayment options', 'Liquidity without disruption'] }"
-                @keydown.enter="activeService = { title: 'Loan Against Property', tag: 'Assets', summary: 'Unlock property value while keeping your investment blueprint intact.', highlights: ['Property valuation support', 'Flexible repayment options', 'Liquidity without disruption'] }"
-                @keydown.space.prevent="activeService = { title: 'Loan Against Property', tag: 'Assets', summary: 'Unlock property value while keeping your investment blueprint intact.', highlights: ['Property valuation support', 'Flexible repayment options', 'Liquidity without disruption'] }"
-            >
-                <div class="text-xs font-black uppercase tracking-[0.4em] text-slate-400">Assets</div>
-                <h3 class="text-2xl font-black mt-4">Loan Against Property</h3>
-                <p class="text-slate-600 mt-3">
-                    Unlock property value while keeping your investment blueprint intact.
-                </p>
-                <div class="mt-6 text-sm font-bold text-brand-navy">Liquidity without disruption</div>
-            </div>
-            <div
-                class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:border-brand-yellow/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-yellow/60 focus-visible:outline-offset-2"
-                role="button"
-                tabindex="0"
-                @click="activeService = { title: 'Risk and Insurance Review', tag: 'Protection', summary: 'Close protection gaps with coverage built around life events.', highlights: ['Risk gap analysis', 'Coverage rationalization', 'Claims-ready documentation'] }"
-                @keydown.enter="activeService = { title: 'Risk and Insurance Review', tag: 'Protection', summary: 'Close protection gaps with coverage built around life events.', highlights: ['Risk gap analysis', 'Coverage rationalization', 'Claims-ready documentation'] }"
-                @keydown.space.prevent="activeService = { title: 'Risk and Insurance Review', tag: 'Protection', summary: 'Close protection gaps with coverage built around life events.', highlights: ['Risk gap analysis', 'Coverage rationalization', 'Claims-ready documentation'] }"
-            >
-                <div class="text-xs font-black uppercase tracking-[0.4em] text-slate-400">Protection</div>
-                <h3 class="text-2xl font-black mt-4">Risk and Insurance Review</h3>
-                <p class="text-slate-600 mt-3">
-                    Protect cashflow and assets with coverage tailored to life events.
-                </p>
-                <div class="mt-6 text-sm font-bold text-brand-navy">Life and health protection audits</div>
-            </div>
-            <div
-                class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:border-brand-yellow/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-yellow/60 focus-visible:outline-offset-2"
-                role="button"
-                tabindex="0"
-                @click="activeService = { title: 'Quarterly Wealth Reviews', tag: 'Governance', summary: 'Keep goals funded and risk aligned with disciplined review cycles.', highlights: ['Performance checkpoints', 'Goal funding tracking', 'Rebalancing guardrails'] }"
-                @keydown.enter="activeService = { title: 'Quarterly Wealth Reviews', tag: 'Governance', summary: 'Keep goals funded and risk aligned with disciplined review cycles.', highlights: ['Performance checkpoints', 'Goal funding tracking', 'Rebalancing guardrails'] }"
-                @keydown.space.prevent="activeService = { title: 'Quarterly Wealth Reviews', tag: 'Governance', summary: 'Keep goals funded and risk aligned with disciplined review cycles.', highlights: ['Performance checkpoints', 'Goal funding tracking', 'Rebalancing guardrails'] }"
-            >
-                <div class="text-xs font-black uppercase tracking-[0.4em] text-slate-400">Governance</div>
-                <h3 class="text-2xl font-black mt-4">Quarterly Wealth Reviews</h3>
-                <p class="text-slate-600 mt-3">
-                    Review goal progress, rebalance portfolios, and keep decisions on track.
-                </p>
-                <div class="mt-6 text-sm font-bold text-brand-navy">Structured reporting and updates</div>
+                <div class="mt-6 text-sm font-bold text-brand-navy">Wills and asset distribution</div>
             </div>
         </div>
 
@@ -191,8 +184,7 @@
             <div class="group bg-white rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-1">
                 <div class="flex items-start justify-between">
                     <div>
-                        <div class="text-xs font-black uppercase tracking-[0.4em] text-slate-400">Advisory</div>
-                        <div class="text-lg font-black text-slate-900 mt-2">Strategy and guidance</div>
+                        <div class="text-lg font-black text-slate-900">Strategy and guidance</div>
                     </div>
                     <div class="h-12 w-12 rounded-xl border-2 flex items-center justify-center text-xl" style="border-color: rgba(21, 55, 105, 0.35);">🧭</div>
                 </div>
@@ -207,8 +199,7 @@
             <div class="group bg-white rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-1">
                 <div class="flex items-start justify-between">
                     <div>
-                        <div class="text-xs font-black uppercase tracking-[0.4em] text-slate-400">Solutions</div>
-                        <div class="text-lg font-black text-slate-900 mt-2">Investment and protection</div>
+                        <div class="text-lg font-black text-slate-900">Investment and protection</div>
                     </div>
                     <div class="h-12 w-12 rounded-xl border-2 flex items-center justify-center text-xl" style="border-color: rgba(243, 141, 30, 0.55);">🧩</div>
                 </div>
@@ -226,8 +217,7 @@
             <div class="group bg-white rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-1">
                 <div class="flex items-start justify-between">
                     <div>
-                        <div class="text-xs font-black uppercase tracking-[0.4em] text-slate-400">Loans</div>
-                        <div class="text-lg font-black text-slate-900 mt-2">Liquidity and leverage</div>
+                        <div class="text-lg font-black text-slate-900">Liquidity and leverage</div>
                     </div>
                     <div class="h-12 w-12 rounded-xl border-2 flex items-center justify-center text-xl" style="border-color: rgba(21, 55, 105, 0.35);">💳</div>
                 </div>

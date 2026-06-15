@@ -239,11 +239,11 @@
                 <div class="hidden md:flex items-center space-x-10">
                     <a href="{% url 'home' %}"
                         class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest {% if request.resolver_match.url_name == 'home' %}underline decoration-brand-yellow decoration-2 underline-offset-4 font-extrabold{% endif %}">Home</a>
+                    <a href="{% url 'about' %}"
+                        class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest {% if request.resolver_match.url_name == 'about' %}underline decoration-brand-yellow decoration-2 underline-offset-4 font-extrabold{% endif %}">About</a>
                     <a href="{% url 'services' %}"
                         class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest {% if request.resolver_match.url_name == 'services' %}underline decoration-brand-yellow decoration-2 underline-offset-4 font-extrabold{% endif %}">Our
                         Services</a>
-                    <a href="{% url 'about' %}"
-                        class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest {% if request.resolver_match.url_name == 'about' %}underline decoration-brand-yellow decoration-2 underline-offset-4 font-extrabold{% endif %}">About</a>
                     <a href="{% url 'career' %}"
                         class="text-sm font-bold hover:text-brand-yellow transition-all uppercase tracking-widest {% if request.resolver_match.url_name == 'career' %}underline decoration-brand-yellow decoration-2 underline-offset-4 font-extrabold{% endif %}">Careers</a>
                     <a href="{% url 'calculators' %}"
@@ -289,8 +289,8 @@
              @click.away="mobileMenuOpen = false">
             <div class="space-y-3 flex flex-col font-bold text-sm uppercase tracking-widest text-brand-navy">
                 <a href="{% url 'home' %}" @click="mobileMenuOpen = false" class="py-2 border-b border-slate-50 hover:text-brand-yellow transition-all {% if request.resolver_match.url_name == 'home' %}text-brand-yellow{% endif %}">Home</a>
-                <a href="{% url 'services' %}" @click="mobileMenuOpen = false" class="py-2 border-b border-slate-50 hover:text-brand-yellow transition-all {% if request.resolver_match.url_name == 'services' %}text-brand-yellow{% endif %}">Our Services</a>
                 <a href="{% url 'about' %}" @click="mobileMenuOpen = false" class="py-2 border-b border-slate-50 hover:text-brand-yellow transition-all {% if request.resolver_match.url_name == 'about' %}text-brand-yellow{% endif %}">About</a>
+                <a href="{% url 'services' %}" @click="mobileMenuOpen = false" class="py-2 border-b border-slate-50 hover:text-brand-yellow transition-all {% if request.resolver_match.url_name == 'services' %}text-brand-yellow{% endif %}">Our Services</a>
                 <a href="{% url 'career' %}" @click="mobileMenuOpen = false" class="py-2 border-b border-slate-50 hover:text-brand-yellow transition-all {% if request.resolver_match.url_name == 'career' %}text-brand-yellow{% endif %}">Careers</a>
                 <a href="{% url 'calculators' %}" @click="mobileMenuOpen = false" class="py-2 border-b border-slate-50 hover:text-brand-yellow transition-all {% if request.resolver_match.url_name == 'calculators' %}text-brand-yellow{% endif %}">Calculators</a>
                 <a href="{% url 'appointment' %}" @click="mobileMenuOpen = false" class="py-2 border-b border-slate-50 hover:text-brand-yellow transition-all {% if request.resolver_match.url_name == 'appointment' %}text-brand-yellow{% endif %}">Book Appointment</a>
@@ -303,8 +303,9 @@
 
     <footer class="bg-white pt-24 pb-12 border-t border-slate-200 mt-20 relative overflow-hidden"
         style="background-color: #ffffff;">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 text-left">
-            <div class="col-span-1 md:col-span-2">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-12 text-left">
+            <!-- Column 1: Logo & Address -->
+            <div class="col-span-1 md:col-span-3">
                 <div class="flex items-center gap-3 mb-6 justify-start -ml-3">
                     <img src="{% static 'images/logo-mark.png' %}" alt="Addwise Logo"
                         class="h-10 w-auto object-contain">
@@ -312,42 +313,45 @@
                     <img src="{% static 'images/logo-text.png' %}" alt="Addwise Financials"
                         class="h-10 w-auto object-contain">
                 </div>
-                <p class="text-brand-grey max-w-sm leading-relaxed mb-6">
+                <p class="text-brand-grey leading-relaxed mb-6 font-semibold">
                     Janki Bldg,<br>
                     Ground floor, Bhandarkar Rd, Opp Bandhan Bank, Adjacent to Kunal Group, Near Kamla Nehru Park<br>
                     Pune-411004
                 </p>
-                <p class="text-sm text-slate-500 leading-relaxed max-w-lg">
-                    Mutual fund investments are subject to market risks. Read all scheme related documents carefully
-                    before investing. Past performance does not guarantee future returns.
-                </p>
-                <div class="mt-4 text-xs font-semibold text-slate-500 space-y-1">
-                    <div>
-                        <a href="{% url 'disclaimer' %}" class="hover:text-brand-navy transition-all">Disclaimer</a> |
-                        <a href="{% url 'disclosure' %}" class="hover:text-brand-navy transition-all">Disclosure</a> |
-                        <a href="{% url 'privacy_policy' %}" class="hover:text-brand-navy transition-all">Privacy
-                            Policy</a> |
-                        <a href="{% url 'code_of_conduct' %}" class="hover:text-brand-navy transition-all">Code of
-                            Conduct</a>
-                    </div>
+                <div class="text-xs font-semibold text-slate-500 text-left leading-relaxed mt-4">
+                    <a href="{% url 'disclaimer' %}" class="hover:text-brand-navy transition-all">Disclaimer</a> |
+                    <a href="{% url 'disclosure' %}" class="hover:text-brand-navy transition-all">Disclosure</a> |
+                    <a href="{% url 'privacy_policy' %}" class="hover:text-brand-navy transition-all">Privacy Policy</a> |
+                    <a href="https://www.amfiindia.com/research-information/scheme-information-documents" target="_blank" rel="noopener noreferrer" class="hover:text-brand-navy transition-all">SID/SAI/KIM</a> |
+                    <a href="{% url 'code_of_conduct' %}" class="hover:text-brand-navy transition-all">Code of Conduct</a> |
+                    <a href="https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes&sid=1&ssid=7&smid=0" target="_blank" rel="noopener noreferrer" class="hover:text-brand-navy transition-all">SEBI Circulars</a> |
+                    <a href="https://www.amfiindia.com/investor-corner/knowledge-center/risks-in-mutual-funds" target="_blank" rel="noopener noreferrer" class="hover:text-brand-navy transition-all">AMFI Risk Factors</a>
                 </div>
             </div>
-            <div>
+
+            <!-- Column 2: Disclaimer & Compliance Links -->
+            <div class="col-span-1 md:col-span-4">
+                <p class="text-xs text-slate-500 leading-relaxed text-justify">
+                    Investments in Mutual Funds are subject to Market Risks including the loss of principal and fluctuations in Net Asset Value (NAV). Read all scheme related documents carefully before investing such as the Key Information Memorandum and Offer Document. Mutual Fund Schemes do not assure or guarantee any returns. Past performances of any Mutual Fund Scheme may or may not be sustained in future. There is no guarantee that the investment objective of any suggested scheme shall be achieved. All existing and prospective investors are advised to check and evaluate the Exit loads and other cost structure (TER) applicable at the time of making the investment before finalizing on any investment decision for Mutual Funds schemes. We deal in Regular Plans only for Mutual Fund Schemes and earn a Trailing Commission on client investments.
+                </p>
+            </div>
+
+            <!-- Column 3: Quick Links -->
+            <div class="col-span-1 md:col-span-2">
                 <h4 class="font-black mb-6 text-xs uppercase tracking-[0.3em] text-brand-yellow">Quick Links</h4>
-                <ul class="space-y-4 text-sm font-bold text-slate-500 uppercase tracking-wider">
+                <ul class="space-y-4 text-sm font-bold text-slate-500 uppercase tracking-wider list-disc list-inside">
                     <li><a href="{% url 'home' %}" class="hover:text-brand-navy transition-all">Home</a></li>
                     <li><a href="{% url 'about' %}" class="hover:text-brand-navy transition-all">About</a></li>
-                    <li><a href="{% url 'services' %}" class="hover:text-brand-navy transition-all">Our Services</a>
-                    </li>
+                    <li><a href="{% url 'services' %}" class="hover:text-brand-navy transition-all">Our Services</a></li>
                     <li><a href="{% url 'career' %}" class="hover:text-brand-navy transition-all">Careers</a></li>
                     <li><a href="{% url 'contact' %}" class="hover:text-brand-navy transition-all">Contact</a></li>
-                    <li><a href="{% url 'calculators' %}" class="hover:text-brand-navy transition-all">Calculators</a>
-                    </li>
-                    <li><a href="{% url 'appointment' %}" class="hover:text-brand-navy transition-all">Book Call</a>
-                    </li>
+                    <li><a href="{% url 'calculators' %}" class="hover:text-brand-navy transition-all">Calculators</a></li>
+                    <li><a href="{% url 'appointment' %}" class="hover:text-brand-navy transition-all">Book Call</a></li>
                 </ul>
             </div>
-            <div>
+
+            <!-- Column 4: Contact Us -->
+            <div class="col-span-1 md:col-span-3">
                 <h4 class="font-black mb-6 text-xs uppercase tracking-[0.3em] text-brand-yellow">Contact</h4>
                 <ul class="space-y-4 text-sm font-bold text-slate-500 uppercase tracking-wider leading-loose">
                     <li class="flex items-center gap-3 justify-start">
@@ -358,19 +362,7 @@
                                     d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.03-.24c1.12.37 2.33.57 3.56.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.85 21 3 13.15 3 3a1 1 0 0 1 1-1h3.49a1 1 0 0 1 1 1c0 1.23.2 2.44.57 3.56a1 1 0 0 1-.24 1.03l-2.2 2.2Z" />
                             </svg>
                         </span>
-                        <span><a href="tel:+917447773161" class="hover:text-brand-yellow transition-all">+91 74477
-                                73161</a></span>
-                    </li>
-                    <li class="flex items-center gap-3 justify-start">
-                        <span
-                            class="h-8 w-8 inline-flex items-center justify-center rounded-full border border-slate-200 text-brand-navy">
-                            <svg viewBox="0 0 24 24" aria-hidden="true" class="h-4 w-4 fill-current">
-                                <path
-                                    d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.03-.24c1.12.37 2.33.57 3.56.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.85 21 3 13.15 3 3a1 1 0 0 1 1-1h3.49a1 1 0 0 1 1 1c0 1.23.2 2.44.57 3.56a1 1 0 0 1-.24 1.03l-2.2 2.2Z" />
-                            </svg>
-                        </span>
-                        <span><a href="tel:+919823413161" class="hover:text-brand-yellow transition-all">+91 98234
-                                13161</a></span>
+                        <span><a href="tel:+917447773161" class="hover:text-brand-yellow transition-all">+91 74477 73161</a></span>
                     </li>
                     <li class="flex items-center gap-3 justify-start normal-case tracking-normal">
                         <span
@@ -384,7 +376,7 @@
                                 class="hover:text-brand-yellow transition-all">connect@addwisefin.com</a></span>
                     </li>
                 </ul>
-                <div class="mt-4 flex flex-wrap items-center gap-2 text-xs font-bold text-slate-500">
+                <div class="mt-6 flex flex-wrap items-center gap-2 text-xs font-bold text-slate-500">
                     <a href="https://wa.me/917447773161" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"
                         class="h-10 w-10 inline-flex items-center justify-center rounded-full border border-slate-200 hover:border-brand-yellow hover:text-brand-yellow transition-all">
                         <img src="https://cdn.simpleicons.org/whatsapp/25D366" alt="WhatsApp logo"
@@ -409,9 +401,14 @@
                 </div>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto px-6 text-left mt-12 pt-8 border-t border-slate-200 text-sm text-slate-400 font-medium">
-            Read all scheme related documents carefully before investing. | &copy; 2026 Addwise Financials&reg;. All
-            rights reserved.
+
+        <div class="max-w-7xl mx-auto px-6 text-left mt-12 pt-8 border-t border-slate-200 text-sm text-slate-400 font-medium space-y-1">
+            <div>
+                AMFI Registered Mutual Fund Distributor | ARN 171239 | ARN Valid till 30 June 2029
+            </div>
+            <div>
+                Read all scheme related documents carefully before investing. | &copy; 2026 Addwise Financials&reg;. All rights reserved.
+            </div>
         </div>
     </footer>
     <script>
