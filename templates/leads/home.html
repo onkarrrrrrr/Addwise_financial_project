@@ -6,7 +6,7 @@
     activeSlide: 0, 
     slides: [
         '{% static "images/slide-1.png" %}', '{% static "images/slide-2.png" %}' , '{% static "images/slide-3.png" %}'
-    , '{% static "images/slide-4.png" %}' , '{% static "images/slide-5.png" %}' ] }"
+    , '{% static "images/slide-4.png" %}' ] }"
     x-init="setInterval(() => { activeSlide = (activeSlide + 1) % slides.length }, 6000)"
     class="relative mt-[104px] h-[calc(100vh-104px)] bg-slate-900 overflow-hidden">
 
@@ -24,10 +24,9 @@
         <div class="max-w-7xl mx-auto px-6 w-full text-center">
             <div class="flex flex-col sm:flex-row justify-center gap-5 pt-4">
                 <a href="{% url 'appointment' %}"
-                    class="px-10 py-5 text-white font-black rounded-2xl shadow-2xl transition-all transform hover:-translate-y-1 hover:shadow-lg"
-                    style="background: linear-gradient(to right, #b45309, #F38D1E, #b45309);">Book Appointment</a>
+                    class="px-10 py-5 bg-gradient-to-r from-amber-700 via-brand-yellow to-amber-700 text-white border border-transparent font-black rounded-2xl hover:bg-none hover:bg-brand-navy transition-all">Book Appointment</a>
                 <a href="https://addwisefin.investwell.app/app/#/login" target="_blank" rel="noopener noreferrer"
-                    class="px-10 py-5 bg-white/10 backdrop-blur-md text-white border border-white/20 font-black rounded-2xl hover:bg-white hover:text-brand-navy transition-all">Portfolio
+                    class="px-10 py-5 bg-gradient-to-r from-amber-700 via-brand-yellow to-amber-700 text-white border border-transparent font-black rounded-2xl hover:bg-none hover:bg-brand-navy transition-all">Portfolio
                     Login</a>
             </div>
         </div>
@@ -119,19 +118,32 @@
     <div class="text-center mb-10">
         <h4 class="text-[10px] font-black uppercase tracking-[0.5em] text-slate-300">Institutional Banking Partners</h4>
     </div>
-    <div class="flex items-center">
-        <div class="animate-marquee gap-16 flex items-center">
-            <img src="{% static 'images/partners/partner-1.png' %}" alt="Partner 1" class="h-12">
-            <img src="{% static 'images/partners/partner-2.png' %}" alt="Partner 2" class="h-12">
-            <img src="{% static 'images/partners/partner-3.png' %}" alt="Partner 3" class="h-12">
-            <img src="{% static 'images/partners/partner-4.png' %}" alt="Partner 4" class="h-12">
-            <img src="{% static 'images/partners/partner-5.png' %}" alt="Partner 5" class="h-12">
-            <img src="{% static 'images/partners/partner-6.png' %}" alt="Partner 6" class="h-12">
-            <img src="{% static 'images/partners/partner-7.png' %}" alt="Partner 7" class="h-12">
-            <img src="{% static 'images/partners/partner-1.png' %}" alt="Partner 1" class="h-12">
-            <img src="{% static 'images/partners/partner-2.png' %}" alt="Partner 2" class="h-12">
-            <img src="{% static 'images/partners/partner-3.png' %}" alt="Partner 3" class="h-12">
-            <img src="{% static 'images/partners/partner-4.png' %}" alt="Partner 4" class="h-12">
+    <div class="flex items-center overflow-hidden w-full relative">
+        <div class="animate-marquee flex shrink-0 items-center">
+            <img src="{% static 'images/partners/partner-1.png' %}" alt="Partner 1" class="h-12 mr-16">
+            <img src="{% static 'images/partners/partner-2.png' %}" alt="Partner 2" class="h-12 mr-16">
+            <img src="{% static 'images/partners/partner-3.png' %}" alt="Partner 3" class="h-12 mr-16">
+            <img src="{% static 'images/partners/partner-4.png' %}" alt="Partner 4" class="h-12 mr-16">
+            <img src="{% static 'images/partners/partner-5.png' %}" alt="Partner 5" class="h-12 mr-16">
+            <img src="{% static 'images/partners/partner-6.png' %}" alt="Partner 6" class="h-12 mr-16">
+            <img src="{% static 'images/partners/partner-7.png' %}" alt="Partner 7" class="h-12 mr-16">
+            <img src="{% static 'images/partners/partner-8.png' %}" alt="Partner 8" class="h-12 mr-16">
+            <img src="{% static 'images/partners/partner-9.png' %}" alt="Partner 9" class="h-12 mr-16">
+            <img src="{% static 'images/partners/partner-10.png' %}" alt="Partner 10" class="h-12 mr-16">
+            <img src="{% static 'images/partners/partner-11.png' %}" alt="Partner 11" class="h-12 mr-16">
+        </div>
+        <div class="animate-marquee flex shrink-0 items-center" aria-hidden="true">
+            <img src="{% static 'images/partners/partner-1.png' %}" alt="Partner 1" class="h-12 mr-16">
+            <img src="{% static 'images/partners/partner-2.png' %}" alt="Partner 2" class="h-12 mr-16">
+            <img src="{% static 'images/partners/partner-3.png' %}" alt="Partner 3" class="h-12 mr-16">
+            <img src="{% static 'images/partners/partner-4.png' %}" alt="Partner 4" class="h-12 mr-16">
+            <img src="{% static 'images/partners/partner-5.png' %}" alt="Partner 5" class="h-12 mr-16">
+            <img src="{% static 'images/partners/partner-6.png' %}" alt="Partner 6" class="h-12 mr-16">
+            <img src="{% static 'images/partners/partner-7.png' %}" alt="Partner 7" class="h-12 mr-16">
+            <img src="{% static 'images/partners/partner-8.png' %}" alt="Partner 8" class="h-12 mr-16">
+            <img src="{% static 'images/partners/partner-9.png' %}" alt="Partner 9" class="h-12 mr-16">
+            <img src="{% static 'images/partners/partner-10.png' %}" alt="Partner 10" class="h-12 mr-16">
+            <img src="{% static 'images/partners/partner-11.png' %}" alt="Partner 11" class="h-12 mr-16">
         </div>
     </div>
 </section>
@@ -223,7 +235,7 @@
     </div>
 </section>
 
-<section class="py-32 bg-slate-50">
+<section class="pt-24 pb-16 bg-slate-50">
     <div class="max-w-4xl mx-auto px-6">
         <h2 class="text-4xl md:text-6xl font-black tracking-tighter text-center mb-16">Smart, practical
             <span class="text-brand-yellow">answers</span>
