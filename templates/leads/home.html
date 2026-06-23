@@ -5,29 +5,28 @@
 <div x-data="{ 
     activeSlide: 0, 
     slides: [
-        '{% static "images/slide-1.png" %}', '{% static "images/slide-2.png" %}' , '{% static "images/slide-3.png" %}'
+        '{% static " images/slide-1.png" %}', '{% static "images/slide-2.png" %}' , '{% static "images/slide-3.png" %}'
     , '{% static "images/slide-4.png" %}' ] }"
     x-init="setInterval(() => { activeSlide = (activeSlide + 1) % slides.length }, 6000)"
-    class="relative mt-[104px] h-[calc(100vh-104px)] bg-slate-900 overflow-hidden">
+    class="group relative mt-[104px] h-[calc(100vh-104px)] bg-slate-900 overflow-hidden">
 
     <template x-for="(slide, index) in slides" :key="index">
         <div x-show="activeSlide === index" x-transition:enter="transition ease-out duration-1000 transform"
             x-transition:enter-start="opacity-0 scale-110" x-transition:enter-end="opacity-100 scale-100"
             class="absolute inset-0 w-full h-full">
-            <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/60 via-brand-navy/20 to-transparent z-10">
-            </div>
             <img :src="slide" class="w-full h-full object-fill" alt="Slide Image">
         </div>
     </template>
+
+    <div class="absolute inset-0 bg-transparent group-hover:bg-blue-500/10 transition-colors duration-500 z-10">
+    </div>
 
     <div class="relative z-20 h-full flex items-end pb-24">
         <div class="max-w-7xl mx-auto px-6 w-full text-center">
             <div class="flex flex-col sm:flex-row justify-center gap-5 pt-4">
                 <a href="{% url 'appointment' %}"
-                    class="px-10 py-5 bg-gradient-to-r from-amber-700 via-brand-yellow to-amber-700 text-white border border-transparent font-black rounded-2xl hover:bg-none hover:bg-brand-navy transition-all">Book Appointment</a>
-                <a href="https://addwisefin.investwell.app/app/#/login" target="_blank" rel="noopener noreferrer"
-                    class="px-10 py-5 bg-gradient-to-r from-amber-700 via-brand-yellow to-amber-700 text-white border border-transparent font-black rounded-2xl hover:bg-none hover:bg-brand-navy transition-all">Portfolio
-                    Login</a>
+                    class="px-10 py-5 bg-gradient-to-r from-amber-700 via-brand-yellow to-amber-700 text-white border border-transparent font-black rounded-2xl hover:bg-none hover:bg-brand-navy transition-all">Book
+                    Appointment</a>
             </div>
         </div>
     </div>
@@ -118,32 +117,74 @@
     <div class="text-center mb-10">
         <h4 class="text-[10px] font-black uppercase tracking-[0.5em] text-slate-300">Institutional Banking Partners</h4>
     </div>
-    <div class="flex items-center overflow-hidden w-full relative">
-        <div class="animate-marquee flex shrink-0 items-center">
-            <img src="{% static 'images/partners/partner-1.png' %}" alt="Partner 1" class="h-12 mr-16">
-            <img src="{% static 'images/partners/partner-2.png' %}" alt="Partner 2" class="h-12 mr-16">
-            <img src="{% static 'images/partners/partner-3.png' %}" alt="Partner 3" class="h-12 mr-16">
-            <img src="{% static 'images/partners/partner-4.png' %}" alt="Partner 4" class="h-12 mr-16">
-            <img src="{% static 'images/partners/partner-5.png' %}" alt="Partner 5" class="h-12 mr-16">
-            <img src="{% static 'images/partners/partner-6.png' %}" alt="Partner 6" class="h-12 mr-16">
-            <img src="{% static 'images/partners/partner-7.png' %}" alt="Partner 7" class="h-12 mr-16">
-            <img src="{% static 'images/partners/partner-8.png' %}" alt="Partner 8" class="h-12 mr-16">
-            <img src="{% static 'images/partners/partner-9.png' %}" alt="Partner 9" class="h-12 mr-16">
-            <img src="{% static 'images/partners/partner-10.png' %}" alt="Partner 10" class="h-12 mr-16">
-            <img src="{% static 'images/partners/partner-11.png' %}" alt="Partner 11" class="h-12 mr-16">
+    <div class="flex flex-row flex-nowrap items-center overflow-hidden w-full relative">
+        <div class="animate-marquee flex flex-row flex-nowrap shrink-0 items-center">
+            <img src="{% static 'images/partners/sbi.png' %}" alt="SBI Mutual Fund"
+                class="h-12 w-auto object-contain shrink-0 mr-16">
+            <img src="{% static 'images/partners/union.png' %}" alt="Union Mutual Fund"
+                class="h-12 w-auto object-contain shrink-0 mr-16">
+            <img src="{% static 'images/partners/kotak.png' %}" alt="Kotak Mutual Fund"
+                class="h-12 w-auto object-contain shrink-0 mr-16">
+            <img src="{% static 'images/partners/axis.png' %}" alt="Axis Mutual Fund"
+                class="h-12 w-auto object-contain shrink-0 mr-16">
+            <img src="{% static 'images/partners/icici_prudential.png' %}" alt="ICICI Prudential Mutual Fund"
+                class="h-12 w-auto object-contain shrink-0 mr-16">
+            <img src="{% static 'images/partners/iti.png' %}" alt="ITI Mutual Fund"
+                class="h-12 w-auto object-contain shrink-0 mr-16">
+            <img src="{% static 'images/partners/whiteoak.png' %}" alt="Whiteoak Capital"
+                class="h-12 w-auto object-contain shrink-0 mr-16">
+            <img src="{% static 'images/partners/jm_financial.png' %}" alt="JM Financial Mutual Fund"
+                class="h-12 w-auto object-contain shrink-0 mr-16">
+            <img src="{% static 'images/partners/baroda_bnp.png' %}" alt="Baroda BNP Paribas Mutual Fund"
+                class="h-12 w-auto object-contain shrink-0 mr-16">
+            <img src="{% static 'images/partners/uti.png' %}" alt="UTI Mutual Fund"
+                class="h-12 w-auto object-contain shrink-0 mr-16">
+            <img src="{% static 'images/partners/twc.png' %}" alt="The Wealth Company"
+                class="h-12 w-auto object-contain shrink-0 mr-16">
+            <img src="{% static 'images/partners/absl.png' %}" alt="ABSL Mutual Fund"
+                class="h-12 w-auto object-contain shrink-0 mr-16">
+            <img src="{% static 'images/partners/sundaram.png' %}" alt="Sundaram Mutual Fund"
+                class="h-12 w-auto object-contain shrink-0 mr-16">
+            <img src="{% static 'images/partners/dsp.png' %}" alt="DSP Mutual Fund"
+                class="h-12 w-auto object-contain shrink-0 mr-16">
+            <img src="{% static 'images/partners/bajaj.png' %}" alt="Bajaj Finserv"
+                class="h-12 w-auto object-contain shrink-0 mr-16">
+            <img src="{% static 'images/partners/mirae.png' %}" alt="Mirae Asset Mutual Fund"
+                class="h-12 w-auto object-contain shrink-0 mr-16">
         </div>
-        <div class="animate-marquee flex shrink-0 items-center" aria-hidden="true">
-            <img src="{% static 'images/partners/partner-1.png' %}" alt="Partner 1" class="h-12 mr-16">
-            <img src="{% static 'images/partners/partner-2.png' %}" alt="Partner 2" class="h-12 mr-16">
-            <img src="{% static 'images/partners/partner-3.png' %}" alt="Partner 3" class="h-12 mr-16">
-            <img src="{% static 'images/partners/partner-4.png' %}" alt="Partner 4" class="h-12 mr-16">
-            <img src="{% static 'images/partners/partner-5.png' %}" alt="Partner 5" class="h-12 mr-16">
-            <img src="{% static 'images/partners/partner-6.png' %}" alt="Partner 6" class="h-12 mr-16">
-            <img src="{% static 'images/partners/partner-7.png' %}" alt="Partner 7" class="h-12 mr-16">
-            <img src="{% static 'images/partners/partner-8.png' %}" alt="Partner 8" class="h-12 mr-16">
-            <img src="{% static 'images/partners/partner-9.png' %}" alt="Partner 9" class="h-12 mr-16">
-            <img src="{% static 'images/partners/partner-10.png' %}" alt="Partner 10" class="h-12 mr-16">
-            <img src="{% static 'images/partners/partner-11.png' %}" alt="Partner 11" class="h-12 mr-16">
+        <div class="animate-marquee flex flex-row flex-nowrap shrink-0 items-center" aria-hidden="true">
+            <img src="{% static 'images/partners/sbi.png' %}" alt="SBI Mutual Fund"
+                class="h-12 w-auto object-contain shrink-0 mr-16">
+            <img src="{% static 'images/partners/union.png' %}" alt="Union Mutual Fund"
+                class="h-12 w-auto object-contain shrink-0 mr-16">
+            <img src="{% static 'images/partners/kotak.png' %}" alt="Kotak Mutual Fund"
+                class="h-12 w-auto object-contain shrink-0 mr-16">
+            <img src="{% static 'images/partners/axis.png' %}" alt="Axis Mutual Fund"
+                class="h-12 w-auto object-contain shrink-0 mr-16">
+            <img src="{% static 'images/partners/icici_prudential.png' %}" alt="ICICI Prudential Mutual Fund"
+                class="h-12 w-auto object-contain shrink-0 mr-16">
+            <img src="{% static 'images/partners/iti.png' %}" alt="ITI Mutual Fund"
+                class="h-12 w-auto object-contain shrink-0 mr-16">
+            <img src="{% static 'images/partners/whiteoak.png' %}" alt="Whiteoak Capital"
+                class="h-12 w-auto object-contain shrink-0 mr-16">
+            <img src="{% static 'images/partners/jm_financial.png' %}" alt="JM Financial Mutual Fund"
+                class="h-12 w-auto object-contain shrink-0 mr-16">
+            <img src="{% static 'images/partners/baroda_bnp.png' %}" alt="Baroda BNP Paribas Mutual Fund"
+                class="h-12 w-auto object-contain shrink-0 mr-16">
+            <img src="{% static 'images/partners/uti.png' %}" alt="UTI Mutual Fund"
+                class="h-12 w-auto object-contain shrink-0 mr-16">
+            <img src="{% static 'images/partners/twc.png' %}" alt="The Wealth Company"
+                class="h-12 w-auto object-contain shrink-0 mr-16">
+            <img src="{% static 'images/partners/absl.png' %}" alt="ABSL Mutual Fund"
+                class="h-12 w-auto object-contain shrink-0 mr-16">
+            <img src="{% static 'images/partners/sundaram.png' %}" alt="Sundaram Mutual Fund"
+                class="h-12 w-auto object-contain shrink-0 mr-16">
+            <img src="{% static 'images/partners/dsp.png' %}" alt="DSP Mutual Fund"
+                class="h-12 w-auto object-contain shrink-0 mr-16">
+            <img src="{% static 'images/partners/bajaj.png' %}" alt="Bajaj Finserv"
+                class="h-12 w-auto object-contain shrink-0 mr-16">
+            <img src="{% static 'images/partners/mirae.png' %}" alt="Mirae Asset Mutual Fund"
+                class="h-12 w-auto object-contain shrink-0 mr-16">
         </div>
     </div>
 </section>
@@ -152,7 +193,7 @@
     <div class="max-w-7xl mx-auto px-6">
         <div class="text-center mb-10">
             <h2 class="text-3xl md:text-4xl font-black text-slate-900">What Our Customers Say</h2>
-            <p class="text-sm text-slate-500 mt-2">Addwise Financials · Deccan Gymkhana, Pune</p>
+            <p class="text-sm text-slate-500 mt-2">Addwise Financials · Bhandarkar Road, Pune</p>
             <a href="https://www.google.com/search?sca_esv=1547c3fcb5ab963b&rlz=1C1CHBF_enIN1129IN1129&sxsrf=ANbL-n6wMOvMeTlghny7Qe1Min3vn5RXpQ:1779015704540&kgmid=/g/11k664vcg7&q=Addwise+Financials&shem=rimspwouoe&shndl=30&source=sh/x/loc/uni/m1/1&kgs=44179f0b404f61bd&utm_source=rimspwouoe,sh/x/loc/uni/m1/1#lrd=0x3bc2bfc43d3a9eab:0x386c680a8bd2da02,3,,,,"
                 target="_blank" rel="noopener noreferrer"
                 class="inline-flex items-center mt-4 px-6 py-3 rounded-full bg-brand-navy text-white font-bold hover:bg-brand-yellow transition-all">Write
@@ -249,8 +290,7 @@
                     <span x-show="active === 1" class="text-2xl">−</span>
                 </button>
                 <div x-show="active === 1" x-collapse class="p-8 pt-0 text-slate-500 font-medium">
-                    We map your goal timelines, cashflow stability, and risk capacity. The mix is adjusted to keep the
-                    probability of goal completion high without taking unnecessary volatility.
+                    It is always open
                 </div>
             </div>
 
@@ -263,18 +303,6 @@
                 <div x-show="active === 2" x-collapse class="p-8 pt-0 text-slate-500 font-medium">
                     Every plan has clear checkpoints: goal funding ratio, emergency runway, and post-tax returns.
                     We review these quarterly and rebalance when drift exceeds your agreed guardrails.
-                </div>
-            </div>
-
-            <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100">
-                <button @click="active = (active === 3 ? 0 : 3)" class="w-full flex justify-between items-center p-8">
-                    <span class="text-lg font-bold">How quickly can a loan get approved?</span>
-                    <span x-show="active !== 3" class="text-2xl">+</span>
-                    <span x-show="active === 3" class="text-2xl">−</span>
-                </button>
-                <div x-show="active === 3" x-collapse class="p-8 pt-0 text-slate-500 font-medium">
-                    Approval timelines depend on profile and documentation, but we prioritize clear eligibility checks
-                    so you get realistic timelines from the start.
                 </div>
             </div>
 
@@ -311,6 +339,18 @@
                 <div x-show="active === 7" x-collapse class="p-8 pt-0 text-slate-500 font-medium">
                     You have access to a secure online dashboard that provides real-time updates, portfolio performance,
                     asset allocation, statements, and insights.
+                </div>
+            </div>
+
+            <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100">
+                <button @click="active = (active === 3 ? 0 : 3)" class="w-full flex justify-between items-center p-8">
+                    <span class="text-lg font-bold">How quickly can a loan get approved?</span>
+                    <span x-show="active !== 3" class="text-2xl">+</span>
+                    <span x-show="active === 3" class="text-2xl">−</span>
+                </button>
+                <div x-show="active === 3" x-collapse class="p-8 pt-0 text-slate-500 font-medium">
+                    Approval timelines depend on profile and documentation, but we prioritize clear eligibility checks
+                    so you get realistic timelines from the start.
                 </div>
             </div>
         </div>

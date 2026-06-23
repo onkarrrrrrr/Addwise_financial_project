@@ -39,6 +39,7 @@ class Appointment(models.Model):
         ('TERM', 'Term Insurance'),
         ('HEALTH', 'Health Insurance'),
         ('LOANS', 'Loans & Credit Solutions'),
+        ('LEGACY', 'Legacy Planning'),
     ]
 
     full_name = models.CharField(max_length=100)
