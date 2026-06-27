@@ -119,6 +119,11 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+# Auth: redirect to superadmin dashboard after login
+LOGIN_REDIRECT_URL = '/superadmin/'
+LOGIN_URL = '/superadmin/login/'
+
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 

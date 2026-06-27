@@ -1,8 +1,7 @@
-{% extends 'base.html' %}
+{% extends 'leads/superadmin_base.html' %}
 
-{% block content %}
-<section class="pt-32 pb-20 bg-white min-h-screen">
-    <div class="max-w-4xl mx-auto px-6">
+{% block superadmin_content %}
+<div class="max-w-4xl mx-auto">
         <div class="mb-10">
             <p class="text-xs font-black uppercase tracking-[0.5em] text-slate-400">Admin</p>
             <h1 class="text-3xl md:text-5xl font-black text-slate-900 mt-3">{{ action }} Role</h1>
@@ -90,5 +89,5 @@
             </form>
         </div>
     </div>
-</section>
+</div>
 {% endblock %}

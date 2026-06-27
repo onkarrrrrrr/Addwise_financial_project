@@ -1,8 +1,7 @@
-{% extends 'base.html' %}
+{% extends 'leads/superadmin_base.html' %}
 
-{% block content %}
-<section class="pt-32 pb-20 bg-white min-h-screen">
-    <div class="max-w-4xl mx-auto px-6">
+{% block superadmin_content %}
+<div class="max-w-4xl mx-auto">
         <div class="flex items-center justify-between gap-6">
             <div>
                 <p class="text-xs font-black uppercase tracking-[0.5em] text-slate-400">Appointment</p>
@@ -62,7 +61,5 @@
 
                 <a href="{% url 'appointments_list' %}" class="inline-flex mt-6 text-sm font-bold text-brand-navy">Back to list</a>
             </div>
-        </div>
-    </div>
-</section>
+</div>
 {% endblock %}

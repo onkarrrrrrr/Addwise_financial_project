@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Administration Gateway - Verification</title>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at center, #0f172a, #020617);
+        }
+        .code-font {
+            font-family: 'Courier Prime', monospace;
+        }
+        .spinner {
+            border-top-color: #f59e0b;
+            animation: spin 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-6 text-slate-200 antialiased overflow-hidden">
+    <div class="max-w-md w-full bg-slate-900/60 border border-slate-800 rounded-3xl p-8 backdrop-blur-xl shadow-2xl relative">
+        <div class="absolute -top-20 -left-20 w-40 h-40 bg-amber-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-20 -right-20 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl"></div>
+
+        <div class="flex flex-col items-center text-center">
+            <!-- Spinner -->
+            <div class="relative w-20 h-20 mb-8">
+                <div class="absolute inset-0 rounded-full border-4 border-slate-800"></div>
+                <div class="absolute inset-0 rounded-full border-4 border-transparent spinner"></div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <svg class="w-8 h-8 text-amber-500 animate-pulse" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                    </svg>
+                </div>
+            </div>
+
+            <h1 class="text-xl font-extrabold text-white tracking-wide uppercase">Gateway Verification</h1>
+            <p class="text-xs text-slate-500 uppercase tracking-widest mt-2">Checking client credentials</p>
+
+            <!-- Console Log -->
+            <div class="w-full bg-black/60 rounded-2xl p-5 border border-slate-800 mt-6 text-left code-font text-xs leading-relaxed text-amber-500/80">
+                <div id="console-logs" class="space-y-1.5 h-36 overflow-y-auto scrollbar-none">
+                    <div class="text-green-500">[OK] Establish handshake with node...</div>
+                </div>
+            </div>
+            
+            <p class="text-xs text-slate-500 mt-6">Please do not refresh or close this tab.</p>
+        </div>
+    </div>
+
+    <script>
+        const logsContainer = document.getElementById('console-logs');
+        const phrases = [
+            "Scanning client environment...",
+            "Validating system attributes...",
+            "Decrypting ephemeral session keys...",
+            "Verifying security tokens...",
+            "Checking database replication parity...",
+            "Testing network integrity...",
+            "Performing MFA validation challenges...",
+            "Syncing security audit logging...",
+            "Retrieving credential hashes...",
+            "Performing cryptographic signature checks...",
+            "Generating authorization token...",
+            "Establishing tunnel proxy...",
+            "Analyzing hardware fingerprint...",
+            "Checking geo-IP authorization...",
+            "Sanitizing session headers...",
+            "Authenticating administrative node..."
+        ];
+
+        let index = 0;
+        
+        function appendLog() {
+            // Generate a random loading parameter
+            const delay = Math.floor(Math.random() * 1500) + 800;
+            setTimeout(() => {
+                const phrase = phrases[index % phrases.length];
+                index++;
+                
+                const log = document.createElement('div');
+                // Alternating color for realism
+                if (Math.random() > 0.85) {
+                    log.className = "text-red-400 font-bold";
+                    log.textContent = `[WARN] Retrying credentials handshake...`;
+                } else if (Math.random() > 0.8) {
+                    log.className = "text-green-400";
+                    log.textContent = `[OK] ${phrase}`;
+                } else {
+                    log.className = "text-amber-500/80";
+                    log.textContent = `[INFO] ${phrase}`;
+                }
+                
+                logsContainer.appendChild(log);
+                logsContainer.scrollTop = logsContainer.scrollHeight;
+                
+                // Truncate logs if too long to save DOM footprint
+                if (logsContainer.children.length > 25) {
+                    logsContainer.removeChild(logsContainer.firstChild);
+                }
+                
+                appendLog();
+            }, delay);
+        }
+
+        // Start infinite append
+        appendLog();
+    </script>
+</body>
+</html>

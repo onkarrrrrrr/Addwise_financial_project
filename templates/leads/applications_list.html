@@ -1,105 +1,81 @@
-{% extends 'base.html' %}
+{% extends 'leads/superadmin_base.html' %}
 
-{% block content %}
-<section class="pt-32 pb-20 bg-slate-50 min-h-screen">
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
-            <div>
-                <p class="text-xs font-black uppercase tracking-[0.5em] text-slate-400">Applications</p>
-                <h1 class="text-3xl md:text-5xl font-black text-slate-900 mt-3">Career applications</h1>
-                <p class="text-slate-600 mt-2">Review, shortlist, or reject incoming applications.</p>
-            </div>
-            <div class="flex flex-wrap gap-3">
-                <a href="?status=all" class="px-4 py-2 rounded-full text-sm font-bold border {% if status == 'all' %}bg-brand-navy text-white border-brand-navy{% else %}bg-white border-slate-200 text-slate-600{% endif %}">
-                    All ({{ status_counts.all }})
-                </a>
-                <a href="?status=NEW" class="px-4 py-2 rounded-full text-sm font-bold border {% if status == 'NEW' %}bg-brand-navy text-white border-brand-navy{% else %}bg-white border-slate-200 text-slate-600{% endif %}">
-                    New ({{ status_counts.NEW }})
-                </a>
-                <a href="?status=HOLD" class="px-4 py-2 rounded-full text-sm font-bold border {% if status == 'HOLD' %}bg-brand-navy text-white border-brand-navy{% else %}bg-white border-slate-200 text-slate-600{% endif %}">
-                    Hold ({{ status_counts.HOLD }})
-                </a>
-                <a href="?status=ACCEPTED" class="px-4 py-2 rounded-full text-sm font-bold border {% if status == 'ACCEPTED' %}bg-brand-navy text-white border-brand-navy{% else %}bg-white border-slate-200 text-slate-600{% endif %}">
-                    Accepted ({{ status_counts.ACCEPTED }})
-                </a>
-                <a href="?status=REJECTED" class="px-4 py-2 rounded-full text-sm font-bold border {% if status == 'REJECTED' %}bg-brand-navy text-white border-brand-navy{% else %}bg-white border-slate-200 text-slate-600{% endif %}">
-                    Rejected ({{ status_counts.REJECTED }})
-                </a>
-            </div>
-            {% if grouped_applications|length > 0 %}
-            <form method="post" action="{% url 'applications_delete_all' %}" style="display:inline;" onsubmit="return confirm('Delete ALL applications? This cannot be undone.');">  
-                {% csrf_token %}
-                <button type="submit" class="mt-4 px-4 py-2 text-sm font-bold bg-red-600 text-white rounded-lg hover:bg-red-700 transition-all">
-                    Delete All Applications
-                </button>
-            </form>
-            {% endif %}
-        </div>
-
-        <div class="mt-10 bg-white border border-slate-100 rounded-3xl shadow-sm overflow-hidden">
-            {% if grouped_applications %}
-                {% for role, applications_by_role in grouped_applications.items %}
-                    {% if applications_by_role %}
-                    <div>
-                        <div class="sticky top-0 bg-brand-navy text-white px-6 py-4 flex items-center justify-between">
-                            <div>
-                                <h2 class="text-lg font-bold">{{ role }}</h2>
-                                <p class="text-sm text-slate-300">{{ applications_by_role|length }} application{{ applications_by_role|length|pluralize }}</p>
-                            </div>
-                            <form method="post" action="{% url 'applications_delete_by_role' %}" style="display:inline;" onsubmit="return confirm('Delete all {{ role }} applications? This cannot be undone.');">
-                                {% csrf_token %}
-                                <input type="hidden" name="role" value="{{ role }}">
-                                <button type="submit" class="px-3 py-1.5 text-xs font-bold bg-red-500 text-white rounded-lg hover:bg-red-700 transition-all whitespace-nowrap">
-                                    Delete All
-                                </button>
-                            </form>
-                        </div>
-                        <div class="grid grid-cols-12 gap-4 px-6 py-4 text-xs font-bold uppercase tracking-[0.3em] text-slate-400 bg-slate-50">
-                            <div class="col-span-3">Candidate</div>
-                            <div class="col-span-2">Location</div>
-                            <div class="col-span-2">College</div>
-                            <div class="col-span-2">Status</div>
-                            <div class="col-span-3">Actions</div>
-                        </div>
-                        {% for application in applications_by_role %}
-                        <div class="grid grid-cols-12 gap-4 px-6 py-5 border-t border-slate-100 hover:bg-slate-50 transition-all items-center">
-                            <a href="{% url 'application_detail' application.pk %}" class="col-span-3 hover:text-brand-yellow">
-                                <div class="font-bold text-slate-900">{{ application.full_name }}</div>
-                                <div class="text-sm text-slate-500">{{ application.email }}</div>
-                            </a>
-                            <a href="{% url 'application_detail' application.pk %}" class="col-span-2 text-slate-600 hover:text-brand-yellow">{{ application.location }}</a>
-                            <a href="{% url 'application_detail' application.pk %}" class="col-span-2 text-slate-600 hover:text-brand-yellow">{{ application.college }}</a>
-                            <a href="{% url 'application_detail' application.pk %}" class="col-span-2">
-                                <span class="inline-flex px-3 py-1 rounded-full text-xs font-bold
-                                    {% if application.status == 'NEW' %}bg-blue-50 text-blue-700
-                                    {% elif application.status == 'HOLD' %}bg-yellow-50 text-yellow-700
-                                    {% elif application.status == 'ACCEPTED' %}bg-green-50 text-green-700
-                                    {% else %}bg-red-50 text-red-700{% endif %}">
-                                    {{ application.get_status_display }}
-                                </span>
-                            </a>
-                            <div class="col-span-3 flex gap-2">
-                                <a href="{% url 'application_detail' application.pk %}" class="px-3 py-1 text-xs font-bold bg-brand-navy text-white rounded-lg hover:bg-brand-yellow transition-all">
-                                    View
-                                </a>
-                                <form method="post" action="{% url 'application_delete' application.pk %}" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this application?');">
-                                    {% csrf_token %}
-                                    <button type="submit" class="px-3 py-1 text-xs font-bold bg-red-500 text-white rounded-lg hover:bg-red-700 transition-all">
-                                        Delete
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                        {% endfor %}
-                    </div>
-                    {% endif %}
-                {% endfor %}
-            {% else %}
-                <div class="px-6 py-10 text-center text-slate-500">
-                    No applications found for this filter.
-                </div>
-            {% endif %}
-        </div>
+{% block superadmin_content %}
+<div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+    <div>
+        <p class="text-xs font-black uppercase tracking-[0.5em] text-slate-400">Applications</p>
+        <h1 class="text-3xl md:text-4xl font-black text-slate-900 mt-3">Career applications</h1>
+        <p class="text-slate-600 mt-2">Review, shortlist, or reject incoming applications.</p>
     </div>
-</section>
+    <div class="flex flex-wrap gap-3">
+        <a href="?status=all" class="px-4 py-2 rounded-full text-sm font-bold border {% if status == 'all' %}bg-brand-navy text-white border-brand-navy{% else %}bg-white border-slate-200 text-slate-600{% endif %}">All ({{ status_counts.all }})</a>
+        <a href="?status=NEW" class="px-4 py-2 rounded-full text-sm font-bold border {% if status == 'NEW' %}bg-brand-navy text-white border-brand-navy{% else %}bg-white border-slate-200 text-slate-600{% endif %}">New ({{ status_counts.NEW }})</a>
+        <a href="?status=HOLD" class="px-4 py-2 rounded-full text-sm font-bold border {% if status == 'HOLD' %}bg-brand-navy text-white border-brand-navy{% else %}bg-white border-slate-200 text-slate-600{% endif %}">Hold ({{ status_counts.HOLD }})</a>
+        <a href="?status=ACCEPTED" class="px-4 py-2 rounded-full text-sm font-bold border {% if status == 'ACCEPTED' %}bg-brand-navy text-white border-brand-navy{% else %}bg-white border-slate-200 text-slate-600{% endif %}">Accepted ({{ status_counts.ACCEPTED }})</a>
+        <a href="?status=REJECTED" class="px-4 py-2 rounded-full text-sm font-bold border {% if status == 'REJECTED' %}bg-brand-navy text-white border-brand-navy{% else %}bg-white border-slate-200 text-slate-600{% endif %}">Rejected ({{ status_counts.REJECTED }})</a>
+    </div>
+    {% if grouped_applications|length > 0 %}
+    <form method="post" action="{% url 'applications_delete_all' %}" style="display:inline;" onsubmit="return confirm('Delete ALL applications? This cannot be undone.');">
+        {% csrf_token %}
+        <button type="submit" class="mt-4 px-4 py-2 text-sm font-bold bg-red-600 text-white rounded-lg hover:bg-red-700 transition-all">Delete All Applications</button>
+    </form>
+    {% endif %}
+</div>
+
+<div class="mt-8 bg-white border border-slate-100 rounded-3xl shadow-sm overflow-hidden">
+    {% if grouped_applications %}
+        {% for role, applications_by_role in grouped_applications.items %}
+            {% if applications_by_role %}
+            <div>
+                <div class="sticky top-0 bg-brand-navy text-white px-6 py-4 flex items-center justify-between">
+                    <div>
+                        <h2 class="text-lg font-bold">{{ role }}</h2>
+                        <p class="text-sm text-slate-300">{{ applications_by_role|length }} application{{ applications_by_role|length|pluralize }}</p>
+                    </div>
+                    <form method="post" action="{% url 'applications_delete_by_role' %}" style="display:inline;" onsubmit="return confirm('Delete all {{ role }} applications? This cannot be undone.');">
+                        {% csrf_token %}
+                        <input type="hidden" name="role" value="{{ role }}">
+                        <button type="submit" class="px-3 py-1.5 text-xs font-bold bg-red-500 text-white rounded-lg hover:bg-red-700 transition-all whitespace-nowrap">Delete All</button>
+                    </form>
+                </div>
+                <div class="grid grid-cols-12 gap-4 px-6 py-4 text-xs font-bold uppercase tracking-[0.3em] text-slate-400 bg-slate-50">
+                    <div class="col-span-3">Candidate</div>
+                    <div class="col-span-2">Location</div>
+                    <div class="col-span-2">College</div>
+                    <div class="col-span-2">Status</div>
+                    <div class="col-span-3">Actions</div>
+                </div>
+                {% for application in applications_by_role %}
+                <div class="grid grid-cols-12 gap-4 px-6 py-5 border-t border-slate-100 hover:bg-slate-50 transition-all items-center">
+                    <a href="{% url 'application_detail' application.pk %}" class="col-span-3 hover:text-brand-yellow">
+                        <div class="font-bold text-slate-900">{{ application.full_name }}</div>
+                        <div class="text-sm text-slate-500">{{ application.email }}</div>
+                    </a>
+                    <a href="{% url 'application_detail' application.pk %}" class="col-span-2 text-slate-600 hover:text-brand-yellow">{{ application.location }}</a>
+                    <a href="{% url 'application_detail' application.pk %}" class="col-span-2 text-slate-600 hover:text-brand-yellow">{{ application.college }}</a>
+                    <a href="{% url 'application_detail' application.pk %}" class="col-span-2">
+                        <span class="inline-flex px-3 py-1 rounded-full text-xs font-bold
+                            {% if application.status == 'NEW' %}bg-blue-50 text-blue-700
+                            {% elif application.status == 'HOLD' %}bg-yellow-50 text-yellow-700
+                            {% elif application.status == 'ACCEPTED' %}bg-green-50 text-green-700
+                            {% else %}bg-red-50 text-red-700{% endif %}">
+                            {{ application.get_status_display }}
+                        </span>
+                    </a>
+                    <div class="col-span-3 flex gap-2">
+                        <a href="{% url 'application_detail' application.pk %}" class="px-3 py-1 text-xs font-bold bg-brand-navy text-white rounded-lg hover:bg-brand-yellow transition-all">View</a>
+                        <form method="post" action="{% url 'application_delete' application.pk %}" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this application?');">
+                            {% csrf_token %}
+                            <button type="submit" class="px-3 py-1 text-xs font-bold bg-red-500 text-white rounded-lg hover:bg-red-700 transition-all">Delete</button>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <div class="px-6 py-10 text-center text-slate-500">No applications found for this filter.</div>
+    {% endif %}
+</div>
 {% endblock %}

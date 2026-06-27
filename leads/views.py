@@ -623,3 +623,24 @@ def investor_portal_proxy(request, path=''):
         )
 
     return django_response
+
+
+# ========== ADMIN SECURITY VIEWS ==========
+
+def admin_honeypot_view(request, path=''):
+    """Serve an infinite loading screen for /admin/ to trap scanners/bots."""
+    return render(request, 'leads/admin_honeypot.html', status=200)
+
+
+@login_required(login_url='applications_login')
+def superadmin_redirect(request):
+    """Redirect /superadmin/ to the appointments list."""
+    return redirect('appointments_list')
+
+
+def superadmin_logout(request):
+    """Log out from the superadmin panel and redirect to login."""
+    from django.contrib.auth import logout as auth_logout
+    if request.method == 'POST':
+        auth_logout(request)
+    return redirect('applications_login')

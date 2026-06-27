@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-50">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Addwise Financials | Superadmin Dashboard</title>
+    <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-navy': '#153769',
+                        'brand-yellow': '#F38D1E',
+                        'brand-grey': '#4C4C4C',
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'], }
+                }
+            }
+        }
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>
+        [x-cloak] { display: none !important; }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="h-full antialiased text-slate-900">
+    <div class="flex h-full overflow-hidden">
+        <!-- Sidebar -->
+        <aside class="hidden md:flex md:w-64 md:flex-col bg-slate-900 text-slate-300 border-r border-slate-800 justify-between shrink-0">
+            <div>
+                <!-- Brand Header -->
+                <div class="p-6 border-b border-slate-800">
+                    <a href="{% url 'home' %}" class="flex items-center gap-3">
+                        <img src="{% static 'images/logo-mark.png' %}" alt="Addwise Logo" class="h-8 w-auto">
+                        <span class="font-extrabold text-white text-lg tracking-tight">Superadmin</span>
+                    </a>
+                </div>
+                <!-- Navigation Tabs -->
+                <nav class="p-4 space-y-1.5">
+                    <a href="{% url 'appointments_list' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition-all {% if 'appointment' in request.path %}bg-brand-yellow text-slate-950 font-bold{% else %}text-slate-400 hover:bg-slate-800 hover:text-white{% endif %}">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                        Appointments
+                    </a>
+                    <a href="{% url 'applications_list' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition-all {% if 'application' in request.path %}bg-brand-yellow text-slate-950 font-bold{% else %}text-slate-400 hover:bg-slate-800 hover:text-white{% endif %}">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                        Careers
+                    </a>
+                    <a href="{% url 'roles_list' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition-all {% if 'role' in request.path %}bg-brand-yellow text-slate-950 font-bold{% else %}text-slate-400 hover:bg-slate-800 hover:text-white{% endif %}">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                        </svg>
+                        Job Roles
+                    </a>
+                </nav>
+            </div>
+            
+            <!-- User / Logout -->
+            <div class="p-4 border-t border-slate-850 bg-slate-950/40">
+                <div class="px-4 mb-3">
+                    <div class="text-xs text-slate-500 font-medium">Logged in as</div>
+                    <div class="text-sm font-bold text-white truncate">{{ request.user.username }}</div>
+                </div>
+                <form method="post" action="{% url 'superadmin_logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold bg-slate-800 border border-slate-700 text-slate-300 hover:bg-red-950 hover:text-red-200 hover:border-red-900 transition-all">
+                        Sign Out
+                    </button>
+                </form>
+            </div>
+        </aside>
+
+        <!-- Mobile Header & Nav -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <header class="md:hidden bg-slate-900 text-white flex items-center justify-between px-6 py-4 border-b border-slate-800 shrink-0">
+                <a href="{% url 'home' %}" class="flex items-center gap-3">
+                    <img src="{% static 'images/logo-mark.png' %}" alt="Addwise Logo" class="h-8 w-auto">
+                    <span class="font-extrabold text-white text-md">Superadmin</span>
+                </a>
+                <div x-data="{ open: false }" class="relative">
+                    <button @click="open = !open" class="p-2 text-slate-400 hover:text-white focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
+                    </button>
+                    <!-- Mobile dropdown -->
+                    <div x-show="open" x-cloak @click.away="open = false" class="absolute right-0 mt-2 w-48 bg-slate-850 rounded-xl shadow-lg py-2 z-50 border border-slate-800 bg-slate-900">
+                        <a href="{% url 'appointments_list' %}" class="block px-4 py-2 text-sm hover:bg-slate-800">Appointments</a>
+                        <a href="{% url 'applications_list' %}" class="block px-4 py-2 text-sm hover:bg-slate-800">Careers</a>
+                        <a href="{% url 'roles_list' %}" class="block px-4 py-2 text-sm hover:bg-slate-800">Job Roles</a>
+                        <hr class="border-slate-800 my-2">
+                        <form method="post" action="{% url 'superadmin_logout' %}" class="px-4 py-1">
+                            {% csrf_token %}
+                            <button type="submit" class="w-full text-left text-sm text-red-400 hover:text-red-300">Sign Out</button>
+                        </form>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main Scroll Container -->
+            <main class="flex-1 overflow-y-auto bg-slate-50 focus:outline-none p-4 md:p-8">
+                {% block superadmin_content %}{% endblock %}
+            </main>
+        </div>
+    </div>
+</body>
+</html>

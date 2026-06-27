@@ -1,8 +1,7 @@
-{% extends 'base.html' %}
+{% extends 'leads/superadmin_base.html' %}
 
-{% block content %}
-<section class="pt-32 pb-20 bg-white min-h-screen">
-    <div class="max-w-5xl mx-auto px-6">
+{% block superadmin_content %}
+<div class="max-w-5xl mx-auto">
         <div class="flex items-center justify-between gap-6 mb-8">
             <div>
                 <p class="text-xs font-black uppercase tracking-[0.5em] text-slate-400">Role</p>
@@ -85,5 +84,5 @@
             <a href="{% url 'roles_list' %}" class="text-brand-navy font-bold hover:underline">← Back to Roles</a>
         </div>
     </div>
-</section>
+</div>
 {% endblock %}
