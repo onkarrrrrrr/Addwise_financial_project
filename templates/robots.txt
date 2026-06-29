@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+Disallow: /oldsuperadmin/
+Disallow: /admin/
+Disallow: /superadmin/
+
+# Explicitly Allow Major AI Crawlers for AI Search Engine Optimisation (AIEO)
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://www.addwisefin.com/sitemap.xml

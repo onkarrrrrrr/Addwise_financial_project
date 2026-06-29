@@ -5,7 +5,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Addwise Financials | Grow Wisely</title>
+    <!-- Standard Meta Tags -->
+    <title>{% block meta_title %}Addwise Financials | Grow Wisely - Financial Advisors in Pune{% endblock %}</title>
+    <meta name="description" content="{% block meta_description %}Addwise Financials is one of the leading wealth management firms in Pune. Get expert financial planning, mutual fund investment consulting, portfolio management, and retirement services.{% endblock %}">
+    <meta name="keywords" content="{% block meta_keywords %}Financial Advisor Pune, Financial Planner Pune, Wealth Management Pune, Mutual Fund Advisor Pune, SIP Advisor Pune, Retirement Planner Pune, Insurance Advisor Pune{% endblock %}">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{ request.build_absolute_uri }}">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:title" content="{% block og_title %}Addwise Financials | Wealth Management Pune{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Addwise Financials is a premium wealth management firm in Pune offering goal-based investing, retirement planning, mutual funds, and insurance solutions.{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/logo-text.png' %}{% endblock %}">
+    <meta property="og:site_name" content="Addwise Financials">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{ request.build_absolute_uri }}">
+    <meta name="twitter:title" content="{% block twitter_title %}Addwise Financials | Financial Planner Pune{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}Expert financial planning, mutual fund advisor services, and tax-saving investment solutions in Pune.{% endblock %}">
+    <meta name="twitter:image" content="{% block twitter_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/logo-text.png' %}{% endblock %}">
+
+    <!-- Schema.org JSON-LD Markup for Search Engines & LLMs -->
+    <script type="application/ld+json">
+    {% block schema %}
+    {
+      "@context": "https://schema.org",
+      "@type": "FinancialService",
+      "name": "Addwise Financials",
+      "alternateName": "Addwise Financial Planning Services Pune",
+      "url": "{{ request.scheme }}://{{ request.get_host }}/",
+      "logo": "{{ request.scheme }}://{{ request.get_host }}{% static 'images/logo-mark.png' %}",
+      "description": "Addwise Financials is one of the premier wealth management firms in Pune, offering investment advisory, retirement planning, child education planning, and mutual fund consulting.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Bhandarkar Road, Prabhat Road",
+        "addressLocality": "Pune",
+        "addressRegion": "Maharashtra",
+        "postalCode": "411004",
+        "addressCountry": "IN"
+      },
+      "telephone": "+91-XXXXXXXXXX",
+      "priceRange": "$$",
+      "knowsAbout": [
+        "Wealth Management Pune",
+        "Mutual Fund Advisor Pune",
+        "SIP Investment Consultant",
+        "Retirement Planning Services",
+        "Portfolio Management Services",
+        "Tax Saving Investments",
+        "Child Education Planning",
+        "Marriage Planning Investments",
+        "Family Financial Planning",
+        "Wealth Management Company Pune",
+        "Mutual fund consultants near Bhandarkar Road",
+        "financial advisors in Prabhat Road",
+        "NRI financial advisor in Pune",
+        "financial planner for corporate employees Pune",
+        "business expansion loan consultants Pune"
+      ],
+      "serviceType": [
+        "Wealth Management Services",
+        "Financial Planning Services",
+        "Investment Planning Services",
+        "Insurance Consultation",
+        "SIP Investment Consulting"
+      ]
+    }
+    {% endblock %}
+    </script>
+
     <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/png">
     <link rel="apple-touch-icon" href="{% static 'images/logo-mark.png' %}">
 
